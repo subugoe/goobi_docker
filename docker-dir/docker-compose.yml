@@ -1,17 +1,25 @@
 goobitomcat:
   image: tomcat:7.0
   ports:
-      - "8080:8080"
-#  volumes:
-#      - /opt/edfu/data/upload:edfu/data/upload
-#  links:
-#      - goobi-db:goobi-db
-goobidb:
-  build: ../db
-  # image: mysql:5.5
-  environment:
-      - MYSQL_ROOT_PASSWORD=test
-      - MYSQL_USER=testuser
-      - MYSQL_PASSWORD=testuser
-      - MYSQL_DATABASE=mydn
+     - "8080:8080"
+  #volumes:
+  #   - /opt/edfu/data/upload:edfu/data/upload
+  links:
+     - goobidb:goobidb
+  env_file:
+     - docker-env.yml
 
+goobidb:
+  build: db/
+  #image: mysql:5.5
+  ports:
+     - 3306:3306
+  env_file:
+     - docker-env.yml
+
+goobistorage:
+  #build: storage/
+  image: ubuntu:14.04
+  volumes:
+     - ../data/:/data
+  command: tail -f /dev/null
