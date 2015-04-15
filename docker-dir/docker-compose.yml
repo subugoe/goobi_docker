@@ -1,0 +1,17 @@
+goobitomcat:
+  image: tomcat:7.0
+  ports:
+      - "8080:8080"
+#  volumes:
+#      - /opt/edfu/data/upload:edfu/data/upload
+#  links:
+#      - goobi-db:goobi-db
+goobidb:
+  build: ../db
+  # image: mysql:5.5
+  environment:
+      - MYSQL_ROOT_PASSWORD=test
+      - MYSQL_USER=testuser
+      - MYSQL_PASSWORD=testuser
+      - MYSQL_DATABASE=mydn
+
