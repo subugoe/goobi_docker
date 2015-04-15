@@ -13,7 +13,7 @@ goobidb:
   build: db/
   #image: mysql:5.5
   ports:
-     - 3306:3306
+     - 3307:3306
   env_file:
      - docker-env.yml
 
