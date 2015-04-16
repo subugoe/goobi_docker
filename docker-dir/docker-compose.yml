@@ -1,5 +1,6 @@
 goobitomcat:
-  image: tomcat:7.0
+  build: tomcat/
+  #image: tomcat:7.0
   ports:
      - "8080:8080"
   #volumes:
