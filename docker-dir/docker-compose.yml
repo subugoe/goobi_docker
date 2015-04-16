@@ -13,10 +13,15 @@ goobitomcat:
 goobidb:
   build: db/
   #image: mysql:5.5
+<<<<<<< HEAD
   #ports:
   #   - 3306:3306
   volumes_from:
     - goobistorage
+=======
+  ports:
+     - 3307:3306
+>>>>>>> 5c45ec2ee6ab2c31571c0535906eb4a27e6829b8
   env_file:
      - docker-env.yml
 
