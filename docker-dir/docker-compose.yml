@@ -2,28 +2,31 @@ goobitomcat:
   build: tomcat/
   #image: tomcat:7.0
   ports:
-     - "8080:8080"
-  #volumes:
-  #   -
+    - "8080:8080"
+  volumes_from:
+    - goobistorage
+  volumes:
+    - tomcat/goobi:webapps/goobi
   links:
-     - goobidb:goobidb
+    - goobi:goobi
   env_file:
-     - docker-env.yml
+    - docker-env.yml
 
-goobidb:
+
+goobi:
   build: db/
   #image: mysql:5.5
-  #ports:
-  #   - 3306:3306
+  ports:
+    - 3306:3306
   volumes_from:
     - goobistorage
   env_file:
-     - docker-env.yml
+    - docker-env.yml
 
 goobistorage:
   #build: storage/
   image: ubuntu:14.04
   volumes:
-     - ../data/db:/data/db
-     #- ../data/solr:/data/solr
+    - ../data:/data
+    #- ../data/solr:/data/solr
   command: tail -f /dev/null

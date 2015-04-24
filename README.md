@@ -19,7 +19,7 @@ Identify the container Id's:
 ## Build the containers
 
 	$ cd <path-to-docker-dir>
-	$ docker rm $(docker ps --no-trunc -aq)  # removes all containers!!!
+	$ docker rm
 	$ docker-compose build
 	$ docker-compose up
 	
