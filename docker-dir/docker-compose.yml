@@ -6,7 +6,7 @@ goobitomcat:
   volumes_from:
     - goobistorage
   volumes:
-    - tomcat/goobi:webapps/goobi
+    - tomcat/goobi:/usr/local/tomcat/webapps/goobi
   links:
     - goobi:goobi
   env_file:
@@ -30,3 +30,19 @@ goobistorage:
     - ../data:/data
     #- ../data/solr:/data/solr
   command: tail -f /dev/null
+
+dbtables:
+  build: db-tables/
+  volumes_from:
+    - goobitomcat
+  links:
+    - goobi:goobi
+
+dbcontent:
+  build: db-content/
+  links:
+    - goobi:goobi
+    - dbtables:dbtables
+  env_file:
+    - docker-env.yml
+
