@@ -38,3 +38,11 @@ dbtables:
   links:
     - goobi:goobi
 
+dbcontent:
+  build: db-content/
+  links:
+    - goobi:goobi
+    - dbtables:dbtables
+  env_file:
+    - docker-env.yml
+
