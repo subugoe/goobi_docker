@@ -6,4 +6,4 @@ docker-env.yml
 **/tomcat/~goobi/
 **/db/goobi/
 **/*~
-
+**/tomcat/goobi2.0/

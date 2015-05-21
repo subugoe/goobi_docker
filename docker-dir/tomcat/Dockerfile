@@ -4,13 +4,14 @@ FROM tomcat:7.0
 WORKDIR /usr/local/tomcat/
 
 RUN mkdir webapps/goobi/
-ADD ./goobi/ webapps/goobi/
+#ADD ./goobi2.0/ webapps/goobi/
 
 
 #ADD goobi.war               webapps/goobi.war
 #ADD hibernate.cfg.xml       webapps/goobi/WEB-INF/classes/hibernate.cfg.xml
 
 
+ADD data/goobi.xml    /usr/local/tomcat/conf/Catalina/localhost/goobi.xml
 ADD data/tomcat-users.xml    /usr/local/tomcat/conf/tomcat-users.xml
 
 RUN mkdir -p    /usr/local/goobi/config/
