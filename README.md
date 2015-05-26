@@ -5,6 +5,7 @@ Goobi docker configuration, with different containers for db, tomcat, reverse pr
 ## Missing files
 * goobi.war
 	 * build your own goobi.war and add it to the docker-dir/tomcat/ folder
+	 * unpack it to a directory called docker-dir/tomcat/goobi2.0
 
 ## List containers
 
@@ -16,16 +17,20 @@ Identify the container Id's:
 	<id-2>			...
 	...
 
+## (Optional) Remove previously created images and containers
+
+	$ cd <path-to-docker-dir>
+	$ ./clean-all.sh
+
 ## Build the containers
 
 	$ cd <path-to-docker-dir>
-	$ docker rm
 	$ docker-compose build
 	$ docker-compose up
 	
-## Connext to a contailer
+## Connect to a container
 
-Connect to a container, e.g. the datafase container:
+Connect to a container, e.g. the database container:
 
 	$ docker exec -it <id-1> bash
 	root@a39b7f03199a:/$ mysql -p
