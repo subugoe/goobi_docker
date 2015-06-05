@@ -1,6 +1,5 @@
-FROM tomcat:7.0
+FROM mysql:5.5
 
-RUN mkdir -p 	/tmp/sql-tables
-COPY sql-tables/DatabaseCreator.class /tmp/sql-tables/
-WORKDIR /tmp/sql-tables/
-CMD java -cp .:/usr/local/tomcat/webapps/goobi/WEB-INF/lib/*:/usr/local/tomcat/webapps/goobi/WEB-INF/classes:/usr/local/tomcat/lib/* DatabaseCreator && tail -f /dev/null
+ADD Goobi_setup_schema.sql /tmp/Goobi_setup_schema.sql
+CMD sleep 10 && mysql --host=goobi -u $MYSQL_USER --password=$MYSQL_PASSWORD -D $MYSQL_DATABASE < /tmp/Goobi_setup_schema.sql  && tail -f /dev/null
+
