@@ -87,6 +87,7 @@ COPY data/goobi_*.xml    /usr/local/goobi/config/
 
 COPY data/modules.xml    /usr/local/goobi/config/
 COPY data/docket.xsl     /usr/local/goobi/xslt/
+COPY data/slub.xml /usr/local/goobi/rulesets/
 
 COPY data/script_*.sh /usr/local/goobi/scripts/
 #ADD data/script_createDirUserHome.sh /usr/local/goobi/scripts/script_createDirUserHome.sh
