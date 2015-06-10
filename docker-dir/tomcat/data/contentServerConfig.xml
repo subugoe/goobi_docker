@@ -8,8 +8,8 @@
 	<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ * 
 	Path to local config file
 		/> *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-	<!-- <localConfigPath value="/opt/digiverso/goobi/config/config_contentServer.xml" /> -->
-	<localConfigPath value="/usr/local/goobi/config/config_contentServer.xml" />
+	<localConfigPath value="/opt/digiverso/goobi/config/config_contentServer.xml" />
+	<!--<localConfigPath value="/usr/local/goobi/config/config_contentServer.xml" />-->
 
 	<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ * default 
 		resulution for results of image processing * sample: <defaultResolution value="600" 
@@ -91,10 +91,10 @@
 		if watermark should be used and url for watermark content configuration file 
 		* sample: <watermark use="true" configFile="file:///home/goobi/config/watermarkconfig.xml" 
 		/> *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-	<!-- <watermark use="false" scale="true" convertColorSpace="false" scaleToPercent="6"
-        configFile="file:///opt/digiverso/goobi/config/config_imageFooter.xml" /> -->
 	<watermark use="false" scale="true" convertColorSpace="false" scaleToPercent="6"
-			   configFile="file:///usr/local/goobi/config/config_imageFooter.xml" />
+        configFile="file:///opt/digiverso/goobi/config/config_imageFooter.xml" />
+	<!--<watermark use="false" scale="true" convertColorSpace="false" scaleToPercent="6"
+			   configFile="file:///usr/local/goobi/config/config_imageFooter.xml" />-->
 
 	<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ * configuration 
 		for the error watermark if message should not be shown on jsp echo page * 
@@ -118,10 +118,10 @@
 		if titlepage for pdf file should be generated and * which config-file defines 
 		how the title page should look like * * sample: <defaultRepositoryPath value="file:///home/goobi/config/pdftitlepage.xml" 
 		/> *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-	<!-- <pdfTitlePage use="false"
-		configFile="file:///opt/digiverso/goobi/config/config_pdfTitlePage.xml" /> -->
 	<pdfTitlePage use="false"
-				  configFile="file:///usr/local/goobi/config/config_pdfTitlePage.xml" />
+		configFile="file:///opt/digiverso/goobi/config/config_pdfTitlePage.xml" />
+	<!--<pdfTitlePage use="false"
+				  configFile="file:///usr/local/goobi/config/config_pdfTitlePage.xml" />-->
 
 
 
