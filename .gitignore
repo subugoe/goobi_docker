@@ -1,6 +1,5 @@
 goobi_docker.iml
 .idea/*
-docker-env.yml
 **/*.war
 #**/tomcat/goobi/
 **/tomcat/~goobi/
