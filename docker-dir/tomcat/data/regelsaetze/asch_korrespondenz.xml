@@ -1,0 +1,1452 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- GDZ - VD18 Regelsatz - Goobi 2.0- -->
+	
+
+<!-- CHANGELOG
+	================================================================================
+	24.04.2015, Timo Schleier
+		- Neue Strukturtypen: cover, file, index, envelope
+		- Ab 3. Ebene können alle Objekte alle möglichen Metadaten enthalten
+	15.01.2015 - 05.02.2015, Timo Schleier
+		- Regelsatz erstellt
+	================================================================================ -->
+
+<Preferences>
+
+	<!-- ##########################################################################
+		 ##  Metadata types for the physical structure                           ##
+		 ########################################################################## -->
+
+	<!-- ##  DO NOT CHANGE  ## -->
+	<MetadataType>
+		<Name>physPageNumber</Name>
+		<language name="de">Physische Seitenzahl (Imagenummer)</language>
+		<language name="en">Physical page number</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>logicalPageNumber</Name>
+		<language name="de">Logische Seitenzahl (gedruckte Zeitenzahl)</language>
+		<language name="en">Logical page number</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>pagesize</Name>
+		<language name="de">Seitengröße / Format</language>
+		<language name="en">Format of book</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>mediumsource</Name>
+		<language name="de">Vorlagenform</language>
+		<language name="en">Medium of source</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>shelfmarksource</Name>
+		<language name="de">Signatur der Quelle</language>
+		<language name="en">Shelfmark of source media</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>shelfmarkarchiveimageset</Name>
+		<language name="de">Signatur des Archivierungsimagesets</language>
+		<language name="en">Shelfmark of archive imageset</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>imagedescr</Name>
+		<language name="de">ImageDescription (TIFF-Header)</language>
+		<language name="en">Image description of tiff header</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>datedigit</Name>
+		<language name="de">Datum Digitalisierung</language>
+		<language name="en">Date digitalization</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>pathimagefiles</Name>
+		<language name="de">Pfad der Imagedaten</language>
+		<language name="en">Path of image data</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>copyrightimageset</Name>
+		<language name="de">Copyright</language>
+		<language name="en">Copyright</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>singleDigCollection</Name>
+		<language name="de">Digitale Kollektion</language>
+		<language name="en">Digital collection</language>
+	</MetadataType>
+    <MetadataType>
+        <Name>PhysicalLocation</Name>
+        <language name="de">Aufbewahrungsort</language>
+        <language name="en">Physical location</language>
+    </MetadataType>
+	<MetadataType>
+		<Name>TSL_ATS</Name>
+		<language name="en">TSL/ATS</language>
+		<language name="de">TSL/ATS</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>FormatSourcePrint</Name>
+		<language name="de">Ausmasse/Dimension (Quelle)</language>
+		<language name="en">Dimensions</language>
+	</MetadataType>
+	<!-- ##  DO NOT CHANGE  ## -->
+
+	<!-- ##########################################################################
+		 ##  Metadata types for the logical structure                            ##
+		 ########################################################################## -->
+
+	<!-- They are fully configurable; make sure, that modules within GOOBI will be
+		 reconfigured accordingly, if any changes are made here! -->
+	
+	<!-- Titelinformationen -->
+	<MetadataType>
+		<Name>TitleDocMain</Name>
+		<language name="de">Sachtitel</language>
+		<language name="en">Main title</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>subTitle</Name>
+		<language name="de">Zusatz zum Titel</language>
+		<language name="en">Subtitle</language>
+	</MetadataType>
+
+	<!-- Informationen zum Datensatz -->
+	<MetadataType type="identifier">
+		<Name>CatalogIDDigital</Name>
+		<language name="de">Identifier (nicht verändern)</language>
+		<language name="en">Identifier (do not change)</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>_CatalogIDDigital</Name>
+		<language name="de">Identifier (versteckt)</language>
+		<language name="en">Identifier (hidden)</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>identifier_uri</Name>
+		<language name="de">Lokale Identnummer</language>
+		<language name="en">Local identifier</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>recordIdentifier</Name>
+		<language name="de">Identifier des Datensatzes (HANS)</language>
+		<language name="en">Record Identifier (HANS)</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>recordCreationDate</Name>
+		<language name="de">Erfassungsdatum (Hans)</language>
+		<language name="en">Record creation date</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>recordChangeDate</Name>
+		<language name="de">Korrekturdatum (HANS)</language>
+		<language name="en">Record change date</language>
+	</MetadataType>
+	
+	<!-- Ressourcentyp -->
+	<MetadataType>
+		<Name>genre</Name>
+		<language name="de">Ressourcentyp</language>
+		<language name="en">Ressource type</language>
+	</MetadataType>
+	
+	
+	
+	
+	
+	<!-- Informationen zum Standort -->
+	<!-- Standort -->
+	<MetadataType>
+		<Name>physicalLocation</Name>
+		<language name="de">Standort</language>
+		<language name="en">Physical location</language>
+	</MetadataType>	
+	<MetadataType>
+		<Name>shelfLocator</Name>
+		<language name="de">Signatur</language>
+		<language name="en">Shelflocator</language>
+	</MetadataType>
+	
+	<!-- Sprache -->
+	<Group>
+		<Name>location</Name>
+		<language name="de">Informationen zum Standort</language>
+		<language name="en">Informationen zum Standort</language>
+		<metadata>physicalLocation</metadata>
+		<metadata>shelfLocator</metadata>
+	</Group>
+	
+	
+	
+	<!-- Beteiligte Personen -->
+	<MetadataType type="person" namepart="true" normdata="true">
+		<Name>personal_addressee</Name>
+		<language name="de">Adressat (Person)</language>
+		<language name="en">Addressee (person)</language>
+	</MetadataType>
+	<MetadataType type="person" namepart="true" normdata="true">
+		<Name>personal_creator</Name>
+		<language name="de">Verfasser (Person)</language>
+		<language name="en">Creator (person)</language>
+	</MetadataType>
+	<MetadataType type="person" namepart="true" normdata="true">
+		<Name>personal_contributor</Name>
+		<language name="de">Beiträger (Person)</language>
+		<language name="en">Contributor (person)</language>
+	</MetadataType>
+	<MetadataType type="person" namepart="true" normdata="true">
+		<Name>subject_name_personal</Name>
+		<language name="de">Person (Schlagwort)</language>
+		<language name="en">Person (subject)</language>
+	</MetadataType>
+	
+
+	<!-- Beteiligte Körperschaften -->
+	<MetadataType type="person" namepart="true" normdata="true">
+		<Name>corporate_addressee</Name>
+		<language name="de">Adressat (Körperschaft)</language>
+		<language name="en">Addressee (corporate)</language>
+	</MetadataType>
+	<MetadataType type="person" namepart="true" normdata="true">
+		<Name>corporate_creator</Name>
+		<language name="de">Urheber (Körperschaft)</language>
+		<language name="en">Creator (corporate)</language>
+	</MetadataType>
+	<MetadataType type="person" namepart="true" normdata="true">
+		<Name>corporate_contributor</Name>
+		<language name="de">Beiträger (Körperschaft)</language>
+		<language name="en">Contributor (corporate)</language>
+	</MetadataType>
+	
+	
+	
+	<!-- Informationen zur Entstehung -->
+	<MetadataType normdata="true">
+		<Name>placeTerm</Name>
+		<language name="de">Entstehungsort</language>
+		<language name="en">Place of creation</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>dateCreated</Name>
+		<language name="de">Datierung</language>
+		<language name="en">Date of creation</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>dateOther_jul</Name>
+		<language name="de">Datierung (julianisch)</language>
+		<language name="en">Date of creation (jul.)</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>edition</Name>
+		<language name="de">Auflage</language>
+		<language name="en">Edition</language>
+	</MetadataType>
+	
+	<!-- Eingangsdatum -->
+	<MetadataType>
+		<Name>dateOther_receipt</Name>
+		<language name="de">Eingangsdatum</language>
+		<language name="en">Date of receipt</language>
+	</MetadataType>
+	
+	<!-- Umfang -->
+	<MetadataType>
+		<Name>extent</Name>
+		<language name="de">Umfang</language>
+		<language name="en">Extent</language>
+	</MetadataType>
+	
+	<!-- Editionshinweis -->
+	<MetadataType>
+		<Name>note_publications</Name>
+		<language name="de">Editionshinweis</language>
+		<language name="en">Edition information</language>
+	</MetadataType>
+	
+	<!-- Titel beigegebener Werke -->
+	<MetadataType>
+		<Name>note_content</Name>
+		<language name="de">Titel beigegebener Werke</language>
+		<language name="en">Titel beigegebener Werke</language>
+	</MetadataType>
+	
+	<!-- Fußnote -->
+	<MetadataType>
+		<Name>note</Name>
+		<language name="de">Anmerkung</language>
+		<language name="en">Anotation</language>
+	</MetadataType>
+	
+	<!-- Literaturhinweis -->
+	<MetadataType>
+		<Name>note_citation_reference</Name>
+		<language name="de">Literaturhinweis</language>
+		<language name="en">Literaturhinweis</language>
+	</MetadataType>
+	
+	<!-- 
+		## Schlagworte ##
+	-->
+	<!-- Person -->
+	<MetadataType type="person" namepart="true" normdata="true">
+		<Name>subject_name_personal</Name>
+		<language name="de">Person (Schlagwort)</language>
+		<language name="en">Person (subject)</language>
+	</MetadataType>
+	<!-- Körperschaft -->
+	<MetadataType type="person" namepart="true" normdata="true">
+		<Name>subject_name_corporate</Name>
+		<language name="de">Körperschaft (Schlagwort)</language>
+		<language name="en">Corporate (subject)</language>
+	</MetadataType>
+	<!-- Ort -->	
+	<MetadataType normdata="true">
+		<Name>subject_geographic</Name>
+		<language name="de">Schlagwort - Ort</language>
+		<language name="en">Place (subject)</language>
+	</MetadataType>
+	<!-- Zeit -->	
+	<MetadataType normdata="true">
+		<Name>subject_temporal</Name>
+		<language name="de">Schlagwort - Zeit</language>
+		<language name="en">Time (subject)</language>
+	</MetadataType>
+	<!-- Objekte und Themen -->	
+	<MetadataType normdata="true">
+		<Name>subject_topic</Name>
+		<language name="de">Schlagwort - Objekte und Themen</language>
+		<language name="en">Topic</language>
+	</MetadataType>
+	
+	<!-- Sprache (Text) -->	
+	<MetadataType>
+		<Name>language_text</Name>
+		<language name="de">Text</language>
+		<language name="en">text</language>
+	</MetadataType>
+	<!-- Sprache (Code) -->	
+	<MetadataType>
+		<Name>language_code</Name>
+		<language name="de">Code (639-2b)</language>
+		<language name="en">Code (639-2b)</language>
+	</MetadataType>
+	<!-- Sprache -->
+	<Group>
+		<Name>language</Name>
+		<language name="de">Sprache</language>
+		<language name="en">Language</language>
+		<metadata>language_text</metadata>
+		<metadata>language_code</metadata>
+	</Group>
+	
+	<!-- Zusammenfassung des Inhalts -->	
+	<MetadataType>
+		<Name>abstract</Name>
+		<language name="de">Zusammenfassung des Inhalts</language>
+		<language name="en">Abstract</language>
+	</MetadataType>
+	
+	<!-- Erhaltungszustand -->	
+	<MetadataType>
+		<Name>physicalDescription_note</Name>
+		<language name="de">Erhaltungszustand</language>
+		<language name="en">Condition</language>
+	</MetadataType>
+	
+	
+	
+	<!-- Interne Bemerkungen (wird nicht in MODS ausgegeben) -->	
+	<MetadataType>
+		<Name>internal_note</Name>
+		<language name="de">Anmerkungen (intern)</language>
+		<language name="en">Anmerkungen (intern)</language>
+	</MetadataType>
+	
+	<!-- Stichwörter (wird nicht in MODS ausgegeben) -->	
+	<MetadataType>
+		<Name>keyword</Name>
+		<language name="de">Stichwörter (intern)</language>
+		<language name="en">Stichwörter (intern)</language>
+	</MetadataType>
+	
+	
+	
+	<!-- Angabe zum Digitalisat -->	
+	<MetadataType>
+		<Name>_digitalOrigin</Name>
+		<language name="de">Digitale Herkunft</language>
+		<language name="en">Digital origin</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>_placeOfElectronicOrigin</Name>
+		<language name="de">Herkunft der digit. Ausgabe (Ort)</language>
+		<language name="en">Origin of Electronic ed.</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>_electronicPublisher</Name>
+		<language name="de">Hersteller der digit. Ausgabe</language>
+		<language name="en">Publisher of Electronic ed.</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>_electronicEdition</Name>
+		<language name="de">Electronic ed.</language>
+		<language name="en">Electronic ed.</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>_dateDigitization</Name>
+		<language name="de">Datum Digitalisierung</language>
+		<language name="en">Date digitization</language>
+	</MetadataType>
+	
+	<!-- Zählung -->
+	<MetadataType>
+		<Name>part_order</Name>
+		<language name="de">Bandnummer (codiert, Zahl)</language>
+		<language name="en">Volume no. (code)</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>part_detail</Name>
+		<language name="de">Bandnummer (Text)</language>
+		<language name="en">Volume no. (text)</language>
+	</MetadataType>
+	
+	
+	
+	<!-- #########################
+		 ##  ASCH Strukturtypen ##
+		 ######################### -->
+
+	<!-- Nachlass -->
+	<DocStrctType anchor="true">
+		<Name>MultiVolumeWork</Name>
+		<language name="de">Nachlass</language>
+		<language name="en">Convolute</language>
+		<allowedchildtype>Volume</allowedchildtype>
+		<metadata DefaultDisplay="true" num="1m">TitleDocMain</metadata>
+		<metadata DefaultDisplay="true" num="1o">subTitle</metadata>
+		
+		<!-- Beteiligte Personen -->
+		<metadata DefaultDisplay="true" num="*">personal_contributor</metadata>
+		<!-- Beteiligte Körperschaften -->
+		<metadata DefaultDisplay="true" num="*">corporate_contributor</metadata>
+		
+		<!-- Datierung -->
+		<metadata DefaultDisplay="true" num="1m">dateCreated</metadata>
+		<!-- Signatur -->
+		<group DefaultDisplay="true" num="*">location</group>
+		
+		<!-- Ressourcentyp -->
+		<metadata DefaultDisplay="false" num="1o">genre</metadata>
+		
+		<!-- Sammlung -->
+		<metadata DefaultDisplay="true" num="+">singleDigCollection</metadata>
+		
+		<!-- Identifier -->
+		<metadata DefaultDisplay="true" num="1m">CatalogIDDigital</metadata>
+		<metadata num="1m">_CatalogIDDigital</metadata>
+		
+		<!-- Angaben zum Digitalisat -->
+		<metadata num="1o">_placeOfElectronicOrigin</metadata>
+		<metadata num="1o">_electronicPublisher</metadata>
+		<metadata num="1o">_electronicEdition</metadata>
+		<metadata num="1o">_dateDigitization</metadata>
+	</DocStrctType>
+	
+	
+	<!-- Mappe -->
+	<DocStrctType>
+		<Name>Volume</Name>
+		<language name="de">Mappe</language>
+		<language name="en">Folder</language>
+		<allowedchildtype>cover</allowedchildtype>
+		<allowedchildtype>file</allowedchildtype>
+		<allowedchildtype>letter</allowedchildtype>
+		<allowedchildtype>additional</allowedchildtype>
+		<allowedchildtype>index</allowedchildtype>
+		<allowedchildtype>envelope</allowedchildtype>
+		
+		<metadata DefaultDisplay="true" num="1m">TitleDocMain</metadata>
+		<metadata DefaultDisplay="true" num="1o">subTitle</metadata>
+		
+		<!-- "Bandnummer" (Text) -->
+		<metadata DefaultDisplay="true" num="1m">part_detail</metadata>
+		<!-- "Bandnummer" (Zahl) -->
+		<metadata DefaultDisplay="true" num="1m">part_order</metadata>
+		
+		<!-- Ressourcentyp -->
+		<metadata DefaultDisplay="false" num="1o">genre</metadata>
+		
+		<!-- Sammlung -->
+		<metadata DefaultDisplay="true" num="+">singleDigCollection</metadata>
+		
+		<!-- Beteiligte Personen -->
+		<metadata DefaultDisplay="true" num="*">personal_contributor</metadata>
+		<!-- Beteiligte Körperschaften -->
+		<metadata DefaultDisplay="true" num="*">corporate_contributor</metadata>
+		
+		<!-- Datierung -->
+		<metadata DefaultDisplay="true" num="1m">dateCreated</metadata>
+		<!-- Signatur -->
+		<group DefaultDisplay="true" num="*">location</group>
+		
+		<!-- Identifier -->
+		<metadata DefaultDisplay="true" num="1m">CatalogIDDigital</metadata>
+		<metadata num="1m">_CatalogIDDigital</metadata>
+		
+		<!-- Angaben zum Digitalisat -->
+		<metadata num="1o">_placeOfElectronicOrigin</metadata>
+		<metadata num="1o">_electronicPublisher</metadata>
+		<metadata num="1o">_electronicEdition</metadata>
+		<metadata num="1o">_dateDigitization</metadata>
+	</DocStrctType>
+	
+	
+	<!-- Brief -->
+	<DocStrctType>
+		<Name>letter</Name>
+		<language name="de">Brief</language>
+		<language name="en">Letter</language>
+		<allowedchildtype>envelope</allowedchildtype>
+		<allowedchildtype>additional</allowedchildtype>
+		<allowedchildtype>index</allowedchildtype>
+		
+		<!-- Sachtitel -->
+		<metadata DefaultDisplay="true" num="1m">TitleDocMain</metadata>
+		<!-- Zusatz zum Sachtitel -->
+		<metadata DefaultDisplay="true" num="*">subTitle</metadata>
+		<!-- Titel beigegebener Werke -->
+		<metadata DefaultDisplay="true" num="*">note_content</metadata>
+		
+		<!-- Signatur -->
+		<group DefaultDisplay="true" num="*">location</group>
+		
+		<!-- Ressourcentyp -->
+		<metadata DefaultDisplay="true" num="1m">genre</metadata>
+		
+		<!-- Beteiligte Personen -->
+		<metadata num="*">personal_addressee</metadata>
+		<metadata num="*">personal_creator</metadata>
+		<metadata num="*">personal_contributor</metadata>
+		<!-- Beteiligte Körperschaften -->
+		<metadata num="*">corporate_addressee</metadata>
+		<metadata num="*">corporate_creator</metadata>
+		<metadata num="*">corporate_contributor</metadata>
+		
+		<!-- 
+			## Informationen zur Entstehung ##
+		-->
+		<!-- Entstehungsort -->
+		<metadata DefaultDisplay="true" num="*">placeTerm</metadata>
+		<!-- Entstehungsdatum (greg.) -->
+		<metadata DefaultDisplay="true" num="*">dateCreated</metadata>
+		<!-- Entstehungsdatum (jul.) -->
+		<metadata DefaultDisplay="true" num="*">dateOther_jul</metadata>
+		<!-- Ausgabe -->
+		<metadata DefaultDisplay="false" num="1o">edition</metadata>
+		<!-- Eingangsdatum -->
+		<metadata DefaultDisplay="true" num="1o">dateOther_receipt</metadata>
+		
+		<!-- Sprache -->
+		<group DefaultDisplay="true" num="+">language</group>
+		<!-- Umfang -->
+		<metadata DefaultDisplay="true" num="1o">extent</metadata>
+		<!-- Editionshinweis -->
+		<metadata DefaultDisplay="true" num="*">note_publications</metadata>
+		<!-- Fußnote -->
+		<metadata DefaultDisplay="true" num="*">note</metadata>
+		<!-- Literaturhinweis -->
+		<metadata DefaultDisplay="true" num="*">note_citation_reference</metadata>
+		<!-- Erhaltungszustand -->
+		<metadata DefaultDisplay="true" num="1o">physicalDescription_note</metadata>
+		
+		<!-- 
+			## Schlagwörter ##
+		-->
+		<!-- Person -->
+		<metadata num="*">subject_name_personal</metadata>
+		<!-- Körperschaft -->
+		<metadata num="*">subject_name_corporate</metadata>
+		<!-- Ort -->
+		<metadata DefaultDisplay="true" num="*">subject_geographic</metadata>
+		<!-- Zeit -->	
+		<metadata DefaultDisplay="true" num="*">subject_temporal</metadata>
+		<!-- Objekte und Themen -->
+		<metadata DefaultDisplay="true" num="*">subject_topic</metadata>
+		
+		<!-- Zusammenfassung des Inhalts -->
+		<metadata DefaultDisplay="true" num="1o">abstract</metadata>
+		
+		<!-- Interne Bemerkungen (wird nicht in MODS ausgegeben) -->
+		<metadata num="1o">internal_note</metadata>
+		<!-- Stichwörter (wird nicht in MODS ausgegeben) -->
+		<metadata num="*">keyword</metadata>
+		
+		<!-- Lokale Identnummer -->
+		<metadata DefaultDisplay="true" num="1o">identifier_uri</metadata>
+		<!-- Identifier des Datensatzes -->
+		<metadata DefaultDisplay="true" num="1o">recordIdentifier</metadata>
+		<!-- Erfassungsdatum (HANS)-->
+		<metadata DefaultDisplay="true" num="1o">recordCreationDate</metadata>
+		<!-- Korrekturdatum (HANS) -->
+		<metadata DefaultDisplay="true" num="1o">recordChangeDate</metadata>
+	</DocStrctType>
+	
+
+	<!-- Beilage -->
+	<DocStrctType>
+		<Name>additional</Name>
+		<language name="de">Beilage</language>
+		<language name="en">Additional</language>
+		
+		<!-- Sachtitel -->
+		<metadata DefaultDisplay="true" num="1m">TitleDocMain</metadata>
+		<!-- Zusatz zum Sachtitel -->
+		<metadata DefaultDisplay="true" num="*">subTitle</metadata>
+		<!-- Titel beigegebener Werke -->
+		<metadata DefaultDisplay="true" num="*">note_content</metadata>
+		
+		<!-- Signatur -->
+		<group DefaultDisplay="true" num="*">location</group>
+		
+		<!-- Ressourcentyp -->
+		<metadata DefaultDisplay="true" num="1m">genre</metadata>
+		
+		<!-- Beteiligte Personen -->
+		<metadata num="*">personal_addressee</metadata>
+		<metadata num="*">personal_creator</metadata>
+		<metadata num="*">personal_contributor</metadata>
+		<!-- Beteiligte Körperschaften -->
+		<metadata num="*">corporate_addressee</metadata>
+		<metadata num="*">corporate_creator</metadata>
+		<metadata num="*">corporate_contributor</metadata>
+		
+		<!-- 
+			## Informationen zur Entstehung ##
+		-->
+		<!-- Entstehungsort -->
+		<metadata DefaultDisplay="true" num="*">placeTerm</metadata>
+		<!-- Entstehungsdatum (greg.) -->
+		<metadata DefaultDisplay="true" num="*">dateCreated</metadata>
+		<!-- Entstehungsdatum (jul.) -->
+		<metadata DefaultDisplay="true" num="*">dateOther_jul</metadata>
+		<!-- Ausgabe -->
+		<metadata DefaultDisplay="false" num="1o">edition</metadata>
+		<!-- Eingangsdatum -->
+		<metadata DefaultDisplay="true" num="1o">dateOther_receipt</metadata>
+		
+		<!-- Sprache -->
+		<group DefaultDisplay="true" num="+">language</group>
+		<!-- Umfang -->
+		<metadata DefaultDisplay="true" num="1o">extent</metadata>
+		<!-- Editionshinweis -->
+		<metadata DefaultDisplay="true" num="*">note_publications</metadata>
+		<!-- Fußnote -->
+		<metadata DefaultDisplay="true" num="*">note</metadata>
+		<!-- Literaturhinweis -->
+		<metadata DefaultDisplay="true" num="*">note_citation_reference</metadata>
+		<!-- Erhaltungszustand -->
+		<metadata DefaultDisplay="true" num="1o">physicalDescription_note</metadata>
+		
+		<!-- 
+			## Schlagwörter ##
+		-->
+		<!-- Person -->
+		<metadata num="*">subject_name_personal</metadata>
+		<!-- Körperschaft -->
+		<metadata num="*">subject_name_corporate</metadata>
+		<!-- Ort -->
+		<metadata DefaultDisplay="true" num="*">subject_geographic</metadata>
+		<!-- Zeit -->	
+		<metadata DefaultDisplay="true" num="*">subject_temporal</metadata>
+		<!-- Objekte und Themen -->
+		<metadata DefaultDisplay="true" num="*">subject_topic</metadata>
+		
+		<!-- Zusammenfassung des Inhalts -->
+		<metadata DefaultDisplay="true" num="1o">abstract</metadata>
+		
+		<!-- Interne Bemerkungen (wird nicht in MODS ausgegeben) -->
+		<metadata num="1o">internal_note</metadata>
+		<!-- Stichwörter (wird nicht in MODS ausgegeben) -->
+		<metadata num="*">keyword</metadata>
+		
+		<!-- Lokale Identnummer -->
+		<metadata DefaultDisplay="true" num="1o">identifier_uri</metadata>
+		<!-- Identifier des Datensatzes -->
+		<metadata DefaultDisplay="true" num="1o">recordIdentifier</metadata>
+		<!-- Erfassungsdatum (HANS)-->
+		<metadata DefaultDisplay="true" num="1o">recordCreationDate</metadata>
+		<!-- Korrekturdatum (HANS) -->
+		<metadata DefaultDisplay="true" num="1o">recordChangeDate</metadata>
+	</DocStrctType>
+	
+	
+	<!-- Deckel -->
+	<DocStrctType>
+		<Name>cover</Name>
+		<language name="de">Deckel</language>
+		<language name="en">cover</language>
+		
+		<!-- Sachtitel -->
+		<metadata DefaultDisplay="true" num="1m">TitleDocMain</metadata>
+		<!-- Zusatz zum Sachtitel -->
+		<metadata DefaultDisplay="true" num="*">subTitle</metadata>
+		<!-- Titel beigegebener Werke -->
+		<metadata DefaultDisplay="true" num="*">note_content</metadata>
+		
+		<!-- Signatur -->
+		<group DefaultDisplay="true" num="*">location</group>
+		
+		<!-- Ressourcentyp -->
+		<metadata DefaultDisplay="true" num="1m">genre</metadata>
+		
+		<!-- Beteiligte Personen -->
+		<metadata num="*">personal_addressee</metadata>
+		<metadata num="*">personal_creator</metadata>
+		<metadata num="*">personal_contributor</metadata>
+		<!-- Beteiligte Körperschaften -->
+		<metadata num="*">corporate_addressee</metadata>
+		<metadata num="*">corporate_creator</metadata>
+		<metadata num="*">corporate_contributor</metadata>
+		
+		<!-- 
+			## Informationen zur Entstehung ##
+		-->
+		<!-- Entstehungsort -->
+		<metadata DefaultDisplay="true" num="*">placeTerm</metadata>
+		<!-- Entstehungsdatum (greg.) -->
+		<metadata DefaultDisplay="true" num="*">dateCreated</metadata>
+		<!-- Entstehungsdatum (jul.) -->
+		<metadata DefaultDisplay="true" num="*">dateOther_jul</metadata>
+		<!-- Ausgabe -->
+		<metadata DefaultDisplay="false" num="1o">edition</metadata>
+		<!-- Eingangsdatum -->
+		<metadata DefaultDisplay="true" num="1o">dateOther_receipt</metadata>
+		
+		<!-- Sprache -->
+		<group DefaultDisplay="true" num="+">language</group>
+		<!-- Umfang -->
+		<metadata DefaultDisplay="true" num="1o">extent</metadata>
+		<!-- Editionshinweis -->
+		<metadata DefaultDisplay="true" num="*">note_publications</metadata>
+		<!-- Fußnote -->
+		<metadata DefaultDisplay="true" num="*">note</metadata>
+		<!-- Literaturhinweis -->
+		<metadata DefaultDisplay="true" num="*">note_citation_reference</metadata>
+		<!-- Erhaltungszustand -->
+		<metadata DefaultDisplay="true" num="1o">physicalDescription_note</metadata>
+		
+		<!-- 
+			## Schlagwörter ##
+		-->
+		<!-- Person -->
+		<metadata num="*">subject_name_personal</metadata>
+		<!-- Körperschaft -->
+		<metadata num="*">subject_name_corporate</metadata>
+		<!-- Ort -->
+		<metadata DefaultDisplay="true" num="*">subject_geographic</metadata>
+		<!-- Zeit -->	
+		<metadata DefaultDisplay="true" num="*">subject_temporal</metadata>
+		<!-- Objekte und Themen -->
+		<metadata DefaultDisplay="true" num="*">subject_topic</metadata>
+		
+		<!-- Zusammenfassung des Inhalts -->
+		<metadata DefaultDisplay="true" num="1o">abstract</metadata>
+		
+		<!-- Interne Bemerkungen (wird nicht in MODS ausgegeben) -->
+		<metadata num="1o">internal_note</metadata>
+		<!-- Stichwörter (wird nicht in MODS ausgegeben) -->
+		<metadata num="*">keyword</metadata>
+		
+		<!-- Lokale Identnummer -->
+		<metadata DefaultDisplay="true" num="1o">identifier_uri</metadata>
+		<!-- Identifier des Datensatzes -->
+		<metadata DefaultDisplay="true" num="1o">recordIdentifier</metadata>
+		<!-- Erfassungsdatum (HANS)-->
+		<metadata DefaultDisplay="true" num="1o">recordCreationDate</metadata>
+		<!-- Korrekturdatum (HANS) -->
+		<metadata DefaultDisplay="true" num="1o">recordChangeDate</metadata>
+	</DocStrctType>
+	
+	
+	<!-- Archivale -->
+	<DocStrctType>
+		<Name>file</Name>
+		<language name="de">Archivale</language>
+		<language name="en">file</language>
+		<allowedchildtype>letter</allowedchildtype>
+		<allowedchildtype>cover</allowedchildtype>
+		<allowedchildtype>additional</allowedchildtype>
+		<allowedchildtype>index</allowedchildtype>
+		<allowedchildtype>envelope</allowedchildtype>
+		
+		<!-- Sachtitel -->
+		<metadata DefaultDisplay="true" num="1m">TitleDocMain</metadata>
+		<!-- Zusatz zum Sachtitel -->
+		<metadata DefaultDisplay="true" num="*">subTitle</metadata>
+		<!-- Titel beigegebener Werke -->
+		<metadata DefaultDisplay="true" num="*">note_content</metadata>
+		
+		<!-- Signatur -->
+		<group DefaultDisplay="true" num="*">location</group>
+		
+		<!-- Ressourcentyp -->
+		<metadata DefaultDisplay="true" num="1m">genre</metadata>
+		
+		<!-- Beteiligte Personen -->
+		<metadata num="*">personal_addressee</metadata>
+		<metadata num="*">personal_creator</metadata>
+		<metadata num="*">personal_contributor</metadata>
+		<!-- Beteiligte Körperschaften -->
+		<metadata num="*">corporate_addressee</metadata>
+		<metadata num="*">corporate_creator</metadata>
+		<metadata num="*">corporate_contributor</metadata>
+		
+		<!-- 
+			## Informationen zur Entstehung ##
+		-->
+		<!-- Entstehungsort -->
+		<metadata DefaultDisplay="true" num="*">placeTerm</metadata>
+		<!-- Entstehungsdatum (greg.) -->
+		<metadata DefaultDisplay="true" num="*">dateCreated</metadata>
+		<!-- Entstehungsdatum (jul.) -->
+		<metadata DefaultDisplay="true" num="*">dateOther_jul</metadata>
+		<!-- Ausgabe -->
+		<metadata DefaultDisplay="false" num="1o">edition</metadata>
+		<!-- Eingangsdatum -->
+		<metadata DefaultDisplay="true" num="1o">dateOther_receipt</metadata>
+		
+		<!-- Sprache -->
+		<group DefaultDisplay="true" num="+">language</group>
+		<!-- Umfang -->
+		<metadata DefaultDisplay="true" num="1o">extent</metadata>
+		<!-- Editionshinweis -->
+		<metadata DefaultDisplay="true" num="*">note_publications</metadata>
+		<!-- Fußnote -->
+		<metadata DefaultDisplay="true" num="*">note</metadata>
+		<!-- Literaturhinweis -->
+		<metadata DefaultDisplay="true" num="*">note_citation_reference</metadata>
+		<!-- Erhaltungszustand -->
+		<metadata DefaultDisplay="true" num="1o">physicalDescription_note</metadata>
+		
+		<!-- 
+			## Schlagwörter ##
+		-->
+		<!-- Person -->
+		<metadata num="*">subject_name_personal</metadata>
+		<!-- Körperschaft -->
+		<metadata num="*">subject_name_corporate</metadata>
+		<!-- Ort -->
+		<metadata DefaultDisplay="true" num="*">subject_geographic</metadata>
+		<!-- Zeit -->	
+		<metadata DefaultDisplay="true" num="*">subject_temporal</metadata>
+		<!-- Objekte und Themen -->
+		<metadata DefaultDisplay="true" num="*">subject_topic</metadata>
+		
+		<!-- Zusammenfassung des Inhalts -->
+		<metadata DefaultDisplay="true" num="1o">abstract</metadata>
+		
+		<!-- Interne Bemerkungen (wird nicht in MODS ausgegeben) -->
+		<metadata num="1o">internal_note</metadata>
+		<!-- Stichwörter (wird nicht in MODS ausgegeben) -->
+		<metadata num="*">keyword</metadata>
+		
+		<!-- Lokale Identnummer -->
+		<metadata DefaultDisplay="true" num="1o">identifier_uri</metadata>
+		<!-- Identifier des Datensatzes -->
+		<metadata DefaultDisplay="true" num="1o">recordIdentifier</metadata>
+		<!-- Erfassungsdatum (HANS)-->
+		<metadata DefaultDisplay="true" num="1o">recordCreationDate</metadata>
+		<!-- Korrekturdatum (HANS) -->
+		<metadata DefaultDisplay="true" num="1o">recordChangeDate</metadata>
+	</DocStrctType>
+	
+	
+	<!-- Verzeichnis -->
+	<DocStrctType>
+		<Name>index</Name>
+		<language name="de">Verzeichnis</language>
+		<language name="en">index</language>
+		
+		<!-- Sachtitel -->
+		<metadata DefaultDisplay="true" num="1m">TitleDocMain</metadata>
+		<!-- Zusatz zum Sachtitel -->
+		<metadata DefaultDisplay="true" num="*">subTitle</metadata>
+		<!-- Titel beigegebener Werke -->
+		<metadata DefaultDisplay="true" num="*">note_content</metadata>
+		
+		<!-- Signatur -->
+		<group DefaultDisplay="true" num="*">location</group>
+		
+		<!-- Ressourcentyp -->
+		<metadata DefaultDisplay="true" num="1m">genre</metadata>
+		
+		<!-- Beteiligte Personen -->
+		<metadata num="*">personal_addressee</metadata>
+		<metadata num="*">personal_creator</metadata>
+		<metadata num="*">personal_contributor</metadata>
+		<!-- Beteiligte Körperschaften -->
+		<metadata num="*">corporate_addressee</metadata>
+		<metadata num="*">corporate_creator</metadata>
+		<metadata num="*">corporate_contributor</metadata>
+		
+		<!-- 
+			## Informationen zur Entstehung ##
+		-->
+		<!-- Entstehungsort -->
+		<metadata DefaultDisplay="true" num="*">placeTerm</metadata>
+		<!-- Entstehungsdatum (greg.) -->
+		<metadata DefaultDisplay="true" num="*">dateCreated</metadata>
+		<!-- Entstehungsdatum (jul.) -->
+		<metadata DefaultDisplay="true" num="*">dateOther_jul</metadata>
+		<!-- Ausgabe -->
+		<metadata DefaultDisplay="false" num="1o">edition</metadata>
+		<!-- Eingangsdatum -->
+		<metadata DefaultDisplay="true" num="1o">dateOther_receipt</metadata>
+		
+		<!-- Sprache -->
+		<group DefaultDisplay="true" num="+">language</group>
+		<!-- Umfang -->
+		<metadata DefaultDisplay="true" num="1o">extent</metadata>
+		<!-- Editionshinweis -->
+		<metadata DefaultDisplay="true" num="*">note_publications</metadata>
+		<!-- Fußnote -->
+		<metadata DefaultDisplay="true" num="*">note</metadata>
+		<!-- Literaturhinweis -->
+		<metadata DefaultDisplay="true" num="*">note_citation_reference</metadata>
+		<!-- Erhaltungszustand -->
+		<metadata DefaultDisplay="true" num="1o">physicalDescription_note</metadata>
+		
+		<!-- 
+			## Schlagwörter ##
+		-->
+		<!-- Person -->
+		<metadata num="*">subject_name_personal</metadata>
+		<!-- Körperschaft -->
+		<metadata num="*">subject_name_corporate</metadata>
+		<!-- Ort -->
+		<metadata DefaultDisplay="true" num="*">subject_geographic</metadata>
+		<!-- Zeit -->	
+		<metadata DefaultDisplay="true" num="*">subject_temporal</metadata>
+		<!-- Objekte und Themen -->
+		<metadata DefaultDisplay="true" num="*">subject_topic</metadata>
+		
+		<!-- Zusammenfassung des Inhalts -->
+		<metadata DefaultDisplay="true" num="1o">abstract</metadata>
+		
+		<!-- Interne Bemerkungen (wird nicht in MODS ausgegeben) -->
+		<metadata num="1o">internal_note</metadata>
+		<!-- Stichwörter (wird nicht in MODS ausgegeben) -->
+		<metadata num="*">keyword</metadata>
+		
+		<!-- Lokale Identnummer -->
+		<metadata DefaultDisplay="true" num="1o">identifier_uri</metadata>
+		<!-- Identifier des Datensatzes -->
+		<metadata DefaultDisplay="true" num="1o">recordIdentifier</metadata>
+		<!-- Erfassungsdatum (HANS)-->
+		<metadata DefaultDisplay="true" num="1o">recordCreationDate</metadata>
+		<!-- Korrekturdatum (HANS) -->
+		<metadata DefaultDisplay="true" num="1o">recordChangeDate</metadata>
+	</DocStrctType>
+	
+	
+	<!-- Umschlag -->
+	<DocStrctType>
+		<Name>envelope</Name>
+		<language name="de">Umschlag</language>
+		<language name="en">envelope</language>
+
+		<!-- Sachtitel -->
+		<metadata DefaultDisplay="true" num="1m">TitleDocMain</metadata>
+		<!-- Zusatz zum Sachtitel -->
+		<metadata DefaultDisplay="true" num="*">subTitle</metadata>
+		<!-- Titel beigegebener Werke -->
+		<metadata DefaultDisplay="true" num="*">note_content</metadata>
+		
+		<!-- Signatur -->
+		<group DefaultDisplay="true" num="*">location</group>
+		
+		<!-- Ressourcentyp -->
+		<metadata DefaultDisplay="true" num="1m">genre</metadata>
+		
+		<!-- Beteiligte Personen -->
+		<metadata num="*">personal_addressee</metadata>
+		<metadata num="*">personal_creator</metadata>
+		<metadata num="*">personal_contributor</metadata>
+		<!-- Beteiligte Körperschaften -->
+		<metadata num="*">corporate_addressee</metadata>
+		<metadata num="*">corporate_creator</metadata>
+		<metadata num="*">corporate_contributor</metadata>
+		
+		<!-- 
+			## Informationen zur Entstehung ##
+		-->
+		<!-- Entstehungsort -->
+		<metadata DefaultDisplay="true" num="*">placeTerm</metadata>
+		<!-- Entstehungsdatum (greg.) -->
+		<metadata DefaultDisplay="true" num="*">dateCreated</metadata>
+		<!-- Entstehungsdatum (jul.) -->
+		<metadata DefaultDisplay="true" num="*">dateOther_jul</metadata>
+		<!-- Ausgabe -->
+		<metadata DefaultDisplay="false" num="1o">edition</metadata>
+		<!-- Eingangsdatum -->
+		<metadata DefaultDisplay="true" num="1o">dateOther_receipt</metadata>
+		
+		<!-- Sprache -->
+		<group DefaultDisplay="true" num="+">language</group>
+		<!-- Umfang -->
+		<metadata DefaultDisplay="true" num="1o">extent</metadata>
+		<!-- Editionshinweis -->
+		<metadata DefaultDisplay="true" num="*">note_publications</metadata>
+		<!-- Fußnote -->
+		<metadata DefaultDisplay="true" num="*">note</metadata>
+		<!-- Literaturhinweis -->
+		<metadata DefaultDisplay="true" num="*">note_citation_reference</metadata>
+		<!-- Erhaltungszustand -->
+		<metadata DefaultDisplay="true" num="1o">physicalDescription_note</metadata>
+		
+		<!-- 
+			## Schlagwörter ##
+		-->
+		<!-- Person -->
+		<metadata num="*">subject_name_personal</metadata>
+		<!-- Körperschaft -->
+		<metadata num="*">subject_name_corporate</metadata>
+		<!-- Ort -->
+		<metadata DefaultDisplay="true" num="*">subject_geographic</metadata>
+		<!-- Zeit -->	
+		<metadata DefaultDisplay="true" num="*">subject_temporal</metadata>
+		<!-- Objekte und Themen -->
+		<metadata DefaultDisplay="true" num="*">subject_topic</metadata>
+		
+		<!-- Zusammenfassung des Inhalts -->
+		<metadata DefaultDisplay="true" num="1o">abstract</metadata>
+		
+		<!-- Interne Bemerkungen (wird nicht in MODS ausgegeben) -->
+		<metadata num="1o">internal_note</metadata>
+		<!-- Stichwörter (wird nicht in MODS ausgegeben) -->
+		<metadata num="*">keyword</metadata>
+		
+		<!-- Lokale Identnummer -->
+		<metadata DefaultDisplay="true" num="1o">identifier_uri</metadata>
+		<!-- Identifier des Datensatzes -->
+		<metadata DefaultDisplay="true" num="1o">recordIdentifier</metadata>
+		<!-- Erfassungsdatum (HANS)-->
+		<metadata DefaultDisplay="true" num="1o">recordCreationDate</metadata>
+		<!-- Korrekturdatum (HANS) -->
+		<metadata DefaultDisplay="true" num="1o">recordChangeDate</metadata>
+	</DocStrctType>
+	
+
+	<!-- ##########################################################################
+		 ##  Physical document structure types                                   ##
+		 ########################################################################## -->
+
+	<!-- ##  DO NOT CHANGE  ## -->
+	<DocStrctType>
+		<Name>BoundBook</Name>
+		<language name="de">Gebundenes Buch</language>
+		<language name="en">Bound book</language>
+		<metadata num="1o">copyrightimageset</metadata>
+		<metadata num="1o">shelfmarksource</metadata>
+		<metadata num="1o">shelfmarkarchiveimageset</metadata>
+		<metadata num="1o">imagedescr</metadata>
+		<metadata num="1o">datedigit</metadata>
+		<metadata num="1o">pathimagefiles</metadata>
+		<metadata num="1o">FormatSourcePrint</metadata>
+		<metadata num="*">PhysicalLocation</metadata>
+		<allowedchildtype>page</allowedchildtype>
+	</DocStrctType>
+	<DocStrctType>
+		<Name>page</Name>
+		<language name="de">Seite</language>
+		<language name="en">Page</language>
+		<metadata num="1m">physPageNumber</metadata>
+		<metadata num="1m">logicalPageNumber</metadata>
+	</DocStrctType>
+	<!-- ##  DO NOT CHANGE  ## -->
+
+	<Formats>
+
+		<!-- ##########################################################################
+			 ##  The PicaPlus Section                                                ##
+			 ########################################################################## -->
+
+		<PicaPlus>
+
+			<!-- ##########################################################################
+				 ##  Person elements                                                     ##
+				 ########################################################################## -->
+
+
+			<!-- ##########################################################################
+				 ##  Metadata elements                                                   ##
+				 ########################################################################## -->
+
+			
+
+			<!-- ##########################################################################
+				 ##  DocStruct elements                                                  ##
+				 ########################################################################## -->
+
+			
+		</PicaPlus>
+
+		<!-- ##########################################################################
+			 ##  METS/MODS                                                           ##
+			 ########################################################################## -->
+
+		<METS>
+
+			<!-- ##########################################################################
+				 ##  Only the <AnchorIdentifierMetadataType> is needed for internal      ##
+				 ##  METS storing.                                                       ##
+				 ########################################################################## -->
+
+			<AnchorIdentifierMetadataType>_CatalogIDDigital</AnchorIdentifierMetadataType>
+			<XPathAnchorQuery>./mods:mods/mods:relatedItem[@type='host']/mods:recordInfo/mods:recordIdentifier[@source='Kalliope']</XPathAnchorQuery>
+
+			<NamespaceDefinition>
+				<URI>http://zvdd.gdz-cms.de/</URI>
+				<prefix>zvdd</prefix>
+			</NamespaceDefinition>
+
+			<!-- ##########################################################################
+				 ##  Metadata mapping definition                                         ##
+				 ########################################################################## -->
+			
+			
+			<!-- Titelinformationen -->
+			<Metadata>
+				<InternalName>TitleDocMain</InternalName>
+				<WriteXPath>./mods:mods/mods:titleInfo/#mods:title</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>subTitle</InternalName>
+				<WriteXPath>./mods:mods/mods:titleInfo/#mods:subTitle</WriteXPath>
+			</Metadata>
+			
+			
+			<!-- Personen -->
+			<Metadata>
+				<InternalName>personal_addressee</InternalName>
+				<WriteXPath>./mods:mods/#mods:name[@type='personal'][mods:role/mods:roleTerm='rcp'[@authority='marcrelator'][@type='code'][@valueURI='http://id.loc.gov/vocabulary/relators/rcp']]</WriteXPath>
+				<FirstnameXPath>./mods:namePart[@type='given']</FirstnameXPath>
+				<LastnameXPath>./mods:namePart[@type='family']</LastnameXPath>
+				<!-- Yet still hardcoded in UGH -->
+				<IdentifierXPath>../mods:name[@valueURI='']</IdentifierXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>personal_creator</InternalName>
+				<WriteXPath>./mods:mods/#mods:name[@type='personal'][mods:role/mods:roleTerm='cre'[@authority='marcrelator'][@type='code'][@valueURI='http://id.loc.gov/vocabulary/relators/cre']]</WriteXPath>
+				<FirstnameXPath>./mods:namePart[@type='given']</FirstnameXPath>
+				<LastnameXPath>./mods:namePart[@type='family']</LastnameXPath>
+				<!-- Yet still hardcoded in UGH -->
+				<IdentifierXPath>../mods:name[@valueURI='']</IdentifierXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>personal_contributor</InternalName>
+				<WriteXPath>./mods:mods/#mods:name[@type='personal'][mods:role/mods:roleTerm='ctb'[@authority='marcrelator'][@type='code'][@valueURI='http://id.loc.gov/vocabulary/relators/ctb']]</WriteXPath>
+				<FirstnameXPath>./mods:namePart[@type='given']</FirstnameXPath>
+				<LastnameXPath>./mods:namePart[@type='family']</LastnameXPath>
+				<!-- Yet still hardcoded in UGH -->
+				<IdentifierXPath>../mods:name[@valueURI='']</IdentifierXPath>
+			</Metadata>
+			
+			
+			<!-- Körperschaften -->
+			<Metadata>
+				<InternalName>corporate_addressee</InternalName>
+				<WriteXPath>./mods:mods/#mods:name[@type='corporate'][mods:role/mods:roleTerm='rcp'[@authority='marcrelator'][@type='code'][@valueURI='http://id.loc.gov/vocabulary/relators/rcp']]</WriteXPath>
+				<LastnameXPath>./mods:namePart</LastnameXPath>
+				<!-- Yet still hardcoded in UGH -->
+				<IdentifierXPath>../mods:name[@valueURI='']</IdentifierXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>corporate_creator</InternalName>
+				<WriteXPath>./mods:mods/#mods:name[@type='corporate'][mods:role/mods:roleTerm='cre'[@authority='marcrelator'][@type='code'][@valueURI='http://id.loc.gov/vocabulary/relators/cre']]</WriteXPath>
+				<LastnameXPath>./mods:namePart</LastnameXPath>
+				<!-- Yet still hardcoded in UGH -->
+				<IdentifierXPath>../mods:name[@valueURI='']</IdentifierXPath>
+			</Metadata>
+			
+			
+			<!-- Ressourcentyp -->
+			<Metadata>
+				<InternalName>genre</InternalName>
+				<WriteXPath>./mods:mods/#mods:genre</WriteXPath>
+			</Metadata>
+
+
+			<!-- Informationen zur Entstehung -->
+			<Metadata>
+				<InternalName>placeTerm</InternalName>
+				<WriteXPath>./mods:mods/mods:originInfo[1]/#mods:place/mods:placeTerm[@type='text']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>dateCreated</InternalName>
+				<WriteXPath>./mods:mods/mods:originInfo[1]/#mods:dateCreated</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>dateOther_jul</InternalName>
+				<WriteXPath>./mods:mods/mods:originInfo[1]/#mods:dateOther[@type='jul.']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>edition</InternalName>
+				<WriteXPath>./mods:mods/mods:originInfo[1]/#mods:edition</WriteXPath>
+			</Metadata>
+
+
+			<!-- Eingangsdatum -->
+			<Metadata>
+				<InternalName>dateOther_receipt</InternalName>
+				<WriteXPath>./mods:mods/mods:originInfo[2]/#mods:dateOther[@type='receipt']</WriteXPath>
+			</Metadata>
+			<!-- Standartwert "Göttingen", falls dateOther_receipt gesetzt -->
+			<Metadata>
+				<InternalName>dateOther_receipt</InternalName>
+				<ValueCondition>/.+/</ValueCondition>
+				<ValueRegExp>s/(.*)/Göttingen/</ValueRegExp>
+				<WriteXPath>./mods:mods/mods:originInfo[2]/#mods:place/mods:placeTerm[@type='text']</WriteXPath>
+			</Metadata>
+			
+			
+			<!-- Angaben zum Digitalisat -->
+			<Metadata>
+				<InternalName>_placeOfElectronicOrigin</InternalName>
+				<WriteXPath>./mods:mods/mods:originInfo[@eventType='digitization']/#mods:place/mods:placeTerm[@type='text']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>_dateDigitization</InternalName>
+				<WriteXPath>./mods:mods/mods:originInfo[@eventType='digitization']/#mods:dateCaptured[@encoding='w3cdtf']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>_electronicPublisher</InternalName>
+				<WriteXPath>./mods:mods/mods:originInfo[@eventType='digitization']/#mods:publisher</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>_electronicEdition</InternalName>
+				<WriteXPath>./mods:mods/mods:originInfo[@eventType='digitization']/#mods:edition</WriteXPath>
+			</Metadata>
+			
+			
+			<!-- Sprache -->
+			<Group>
+				<InternalName>language</InternalName>
+				<WriteXPath>./mods:mods/#mods:language</WriteXPath>
+				<Metadata>
+					<InternalName>language_text</InternalName>
+					<WriteXPath>./mods:languageTerm[@type='text']</WriteXPath>
+				</Metadata>
+				<Metadata>
+					<InternalName>language_code</InternalName>
+					<WriteXPath>./mods:languageTerm[@type='code'][@authority='iso639-2b']</WriteXPath>
+				</Metadata>
+			</Group>
+			
+			
+			<!-- Umfang -->
+			<Metadata>
+				<InternalName>extent</InternalName>
+				<WriteXPath>./mods:mods/mods:physicalDescription/#mods:extent</WriteXPath>
+			</Metadata>
+			
+			<!-- Erhaltungszustand -->
+			<Metadata>
+				<InternalName>physicalDescription_note</InternalName>
+				<WriteXPath>./mods:mods/mods:physicalDescription/#mods:note[@type='condition']</WriteXPath>
+			</Metadata>
+			
+			
+			<!-- Zusammenfassung des Inhalts -->
+			<Metadata>
+				<InternalName>abstract</InternalName>
+				<WriteXPath>./mods:mods/#mods:abstract</WriteXPath>
+			</Metadata>
+			
+			
+			<!-- Anmerkung -->
+			<Metadata>
+				<InternalName>note</InternalName>
+				<WriteXPath>./mods:mods/#mods:note</WriteXPath>
+			</Metadata>
+			
+			<!-- Editionshinweis -->
+			<Metadata>
+				<InternalName>note_publications</InternalName>
+				<WriteXPath>./mods:mods/#mods:note[@type='publications']</WriteXPath>
+			</Metadata>
+			
+			<!-- Titel beigegebener Werke -->
+			<Metadata>
+				<InternalName>note_content</InternalName>
+				<WriteXPath>./mods:mods/#mods:note[@type='content']</WriteXPath>
+			</Metadata>
+			
+			<!-- Literaturhinweis -->
+			<Metadata>
+				<InternalName>note_citation_reference</InternalName>
+				<WriteXPath>./mods:mods/#mods:note[@type='citation/reference']</WriteXPath>
+			</Metadata>
+			
+			
+			<!-- 
+				## Schlagwörter ##
+			-->
+			<!-- Ort -->
+			<Metadata>
+				<InternalName>subject_geographic</InternalName>
+				<WriteXPath>./mods:mods/#mods:subject/mods:geographic</WriteXPath>
+			</Metadata>
+			<!-- Zeit -->
+			<Metadata>
+				<InternalName>subject_temporal</InternalName>
+				<WriteXPath>./mods:mods/#mods:subject/mods:temporal</WriteXPath>
+			</Metadata>
+			<!-- Objekte und Themen -->
+			<Metadata>
+				<InternalName>subject_topic</InternalName>
+				<WriteXPath>./mods:mods/#mods:subject/mods:topic</WriteXPath>
+			</Metadata>
+			<!-- Personen -->
+			<Metadata>
+				<InternalName>subject_name_personal</InternalName>
+				<WriteXPath>./mods:mods/#mods:subject/mods:name[@type='personal']</WriteXPath>
+				<FirstnameXPath>./mods:namePart[@type='given']</FirstnameXPath>
+				<LastnameXPath>./mods:namePart[@type='family']</LastnameXPath>
+				<!-- Yet still hardcoded in UGH -->
+				<IdentifierXPath>../mods:name[@valueURI='']</IdentifierXPath>
+			</Metadata>
+			<!-- Körperschaften -->
+			<Metadata>
+				<InternalName>subject_name_corporate</InternalName>
+				<WriteXPath>./mods:mods/#mods:subject/mods:name[@type='corporate']</WriteXPath>
+				<LastnameXPath>./mods:namePart</LastnameXPath>
+				<!-- Yet still hardcoded in UGH -->
+				<IdentifierXPath>../mods:name[@valueURI='']</IdentifierXPath>
+			</Metadata>
+			
+			
+			<!-- Gesamttitel, wird automatisch generiert da immer der Titel des Nachlasses gesetzt ist -->
+			<!-- Für Mappen, da "part_order" verpflichtend ist und nur in Mappen vorkommt -->
+			<Metadata>
+				<InternalName>part_order</InternalName>
+				<ValueCondition>/.+/</ValueCondition>
+				<ValueRegExp>s/(.*)/Nachlass Georg Thomas von Asch/</ValueRegExp>
+				<WriteXPath>./mods:mods/mods:relatedItem[@type='host']/mods:titleInfo/#mods:title</WriteXPath>
+			</Metadata>
+			<!-- Für Briefe, da "genre" dort verpflichtend ist und nur für Briefe vorkommt -->
+			<Metadata>
+				<InternalName>genre</InternalName>
+				<ValueCondition>/.+/</ValueCondition>
+				<ValueRegExp>s/(.*)/Nachlass Georg Thomas von Asch/</ValueRegExp>
+				<WriteXPath>./mods:mods/mods:relatedItem/mods:titleInfo/#mods:title</WriteXPath>
+			</Metadata>
+			
+			
+			<!-- Lokale Identnummer (Identifier) -->
+			<Metadata>
+				<InternalName>identifier_uri</InternalName>
+				<WriteXPath>./mods:mods/#mods:identifier[@type='DE-7/hans']</WriteXPath>
+			</Metadata>
+			
+			
+			
+			<!-- Informationen zum Standort -->
+			<Group>
+				<InternalName>location</InternalName>
+				<WriteXPath>./mods:mods/#mods:location</WriteXPath>
+				<Metadata>
+					<InternalName>physicalLocation</InternalName>
+					<WriteXPath>./mods:physicalLocation</WriteXPath>
+				</Metadata>
+				<Metadata>
+					<InternalName>shelfLocator</InternalName>
+					<WriteXPath>./mods:shelfLocator</WriteXPath>
+				</Metadata>
+			</Group>
+			
+			
+			<!-- Link zum Digitalisat -->
+			<Metadata>
+				<InternalName>_CatalogIDDigital</InternalName>
+				<ValueRegExp>s/(.*)/http:\/\/resolver\.sub\.uni\-goettingen\.de\/purl\?$1/</ValueRegExp>
+				<WriteXPath>./mods:mods/mods:location/#mods:url</WriteXPath>
+			</Metadata>
+			 
+			
+			
+			<!-- Zählung -->
+			<Metadata>
+				<InternalName>part_order</InternalName>
+				<WriteXPath>./mods:mods/#mods:part/@order</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>part_detail</InternalName>
+				<WriteXPath>./mods:mods/mods:part/mods:detail/mods:number</WriteXPath>
+			</Metadata>
+			
+			
+			<!-- Identifier des Datensatzes (Nachlass und Mappe) (verstecktes Feld wird zur Sicherheit ausgegeben) -->
+			<Metadata>
+				<InternalName>_CatalogIDDigital</InternalName>
+				<WriteXPath>./mods:mods/mods:recordInfo/#mods:recordIdentifier[@source='Kalliope']</WriteXPath>
+			</Metadata>
+			<!-- Identifier des Datensatzes (Brief) -->
+			<Metadata>
+				<InternalName>recordIdentifier</InternalName>
+				<WriteXPath>./mods:mods/mods:recordInfo/#mods:recordIdentifier[@source='DE-7/hans']</WriteXPath>
+			</Metadata>
+			<!-- Erfassungsdatum -->
+			<Metadata>
+				<InternalName>recordCreationDate</InternalName>
+				<WriteXPath>./mods:mods/mods:recordInfo/#mods:recordCreationDate[@encoding='iso8601']</WriteXPath>
+			</Metadata>
+			<!-- Korrekturdatum (HANS) -->
+			<Metadata>
+				<InternalName>recordChangeDate</InternalName>
+				<WriteXPath>./mods:mods/mods:recordInfo/#mods:recordChangeDate[@encoding='iso8601']</WriteXPath>
+			</Metadata>
+			
+
+			<!-- Do NOT map this metadata field. -->
+			<!--Metadata>
+				<InternalName>CreatorsAllOrigin</InternalName>
+				<MODSName skipping="yes">xxx</MODSName>
+			</Metadata-->
+            <Metadata>
+                <InternalName>PhysicalLocation</InternalName>
+                <WriteXPath>./mods:mods/mods:location/mods:physicalLocation[@type='current']</WriteXPath>
+            </Metadata>
+
+			<!-- ##########################################################################
+				 ##  Physical document structure types                                   ##
+				 ########################################################################## -->
+
+			<!-- DO NOT CHANGE!! -->
+			<DocStruct>
+				<InternalName>BoundBook</InternalName>
+				<MetsType>physSequence</MetsType>
+			</DocStruct>
+			<DocStruct>
+				<InternalName>page</InternalName>
+				<MetsType>page</MetsType>
+			</DocStruct>
+			<!-- DO NOT CHANGE!! -->
+
+			<!-- ##########################################################################
+				 ##  Logical document structure types                                    ##
+				 ########################################################################## -->
+
+			<!-- The DocStructTypes below are mapped to zvdd at METS export. Please change
+				names to get the original DocStructTypes.-->
+
+			<DocStruct>
+				<InternalName>MultiVolumeWork</InternalName>
+				<MetsType>bundle</MetsType>
+			</DocStruct>
+			<DocStruct>
+				<InternalName>Volume</InternalName>
+				<MetsType>folder</MetsType>
+			</DocStruct>
+		</METS>
+	</Formats>
+</Preferences>

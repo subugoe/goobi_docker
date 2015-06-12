@@ -1,0 +1,2880 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- GDZ - RusDML Regelsatz - Goobi 1.5.1 - Stand: 22.06.2009
+	================================================================================
+	
+	This file defines the ruleset for the UGH metadata library. This ruleset is
+	read by the "Prefs.class" of the UGH library.
+	
+	The file defines all metadata types, types of document structures and their
+	relationship. To read/write the data at least one format must be defined in
+	the <Formats> section. The appropriate section for the format is read by the
+	class implementing the read/write routines for the format. Not all title formats
+	need to be readale and/or writeable.
+	
+	This document depends on the ZVDD structure types, the metadata types were partly
+	taken from the GDZ Regelsatz.
+	================================================================================ -->
+
+<!-- TODO
+	================================================================================
+	================================================================================ -->
+
+<!-- Änderungen
+	================================================================================
+	22.07.2013, Alex Jahnke
+	- Verwendung von + und 1o ueberprueft, alle Vorkommen von + in * geaendert, ausser bei CurrentNoSorting, dort in 1o
+	22.06.2009, Stefan E. Funk
+		- Removed old comments, re-organised order of the DocStruct subelements.
+		- Metadata field _digitalOrigin added.
+		- Purl changed to _purl (now hidden).
+		- Changed mapping for sizeSourcePrint from mods:form to mods:extent.
+	10.06.2009, Stefan E. Funk
+		- Corrected CurrentNoSorting in METS section.
+		- Removed all tags used for METS external reading.
+	09.06.2009, Stefan E. Funk
+		- Added [@type='personal'] to mods:name.
+		- <IdentifierXPath>../mods:nameq[@authority='pnd'][@ID='']</IdentifierXPath>
+			added to persons.
+	29.05.2009, Stefan E. Funk
+		- Purls added to TopStructs.
+	27.03.2009, Stefan E. Funk
+		- Angepasst an neue UGH-Klassen, METS Profil V2.0, etc.
+	10.10.2008, Stefan E. Funk
+		- ZBLAbstract in METS konfiguriert.
+	09.10.2008, Stefan E. Funk
+		- JFMIdentifier benötigen "type", nicht "displayLabel" als Attribut.
+	25.09.2008, Stefan E. Funk
+		- FileGroups können jetzt beliebig definiert werden.
+	- Wenn METS als defaultNamespace deklariert ist, dann wird kein prefix genutzt.
+		16.09.2008 Stefan E. Funk
+		- ZVDD Section (METS-mapping) erstellt
+	05.09.2008 Stefan E. Funk
+		- Exel Format Section gelöscht
+		- METS_MODS ersetzt durch ZVDD Format Section
+	NEUE KONFIGURATION
+		- inkl. neuen Metadatentypen für zbl-Seitenangaben und alle anderen zbl-Daten
+		- rusdml-Bezeichnungen als Übersetzung
+		- zusätzliches Feld für ZBL-Autoren
+		- neue DocStruct-Typen für Bärbel
+		- Korrektur wegen fehlendem Publication-Year
+		- statt Remark -> Remarks
+		- BiographSy als Strukturelement eingefügt
+		- Umbenennung für die Kompatibilität mit anderen GDZ-Preferences (MainTitle-TitleDocMain,
+			Publisher-PublisherName)
+		- Umbenennung der digitalen PPN in standardkonformes CatalogIDdigital
+	================================================================================ -->
+
+
+<Preferences>
+
+	<!-- ##########################################################################
+		 ##  Metadata types for the physical structure                           ##
+		 ########################################################################## -->
+
+	<MetadataType>
+		<!-- MainTitle, the title of the original in the language of the work / article-->
+		<Name>TitleDocMain</Name>
+		<language name="en">Title</language>
+		<language name="de">Titel</language>
+		<language name="rusdml">Title</language>
+	</MetadataType>
+	<MetadataType>
+		<!-- MainTitle, the title of the original in the language of the work / article-->
+		<Name>RUSMainTitle</Name>
+		<language name="en">Title</language>
+		<language name="de">Titel</language>
+		<language name="rusdml">russian Title</language>
+	</MetadataType>
+	<MetadataType>
+		<!-- MainTitle, the title of the original in the language of the work / article-->
+		<Name>MainTitleTranslated</Name>
+		<language name="en">Title</language>
+		<language name="de">Titel</language>
+		<language name="rusdml">Title translated</language>
+	</MetadataType>
+	<MetadataType>
+		<!-- MainTitle, the title of the original in the language of the work / article-->
+		<Name>MainTitleTransliterated</Name>
+		<language name="en">Title</language>
+		<language name="de">Titel</language>
+		<language name="rusdml">Title transliterated</language>
+	</MetadataType>
+	<!-- Abstract of an article-->
+	<MetadataType>
+		<Name>Abstract</Name>
+		<language name="en">Abstract</language>
+		<language name="de">Abstract/Zusammenfassung:</language>
+		<language name="rusdml">Abstract</language>
+	</MetadataType>
+	<!-- MSC -->
+	<MetadataType>
+		<Name>ClassificationMSC</Name>
+		<language name="en">MSC</language>
+		<language name="de">MSC</language>
+		<language name="rusdml">MSC</language>
+	</MetadataType>
+	<!-- UDK -->
+	<MetadataType>
+		<Name>ClassificationUDK</Name>
+		<language name="en">UDK</language>
+		<language name="de">UDK</language>
+		<language name="rusdml">UDK</language>
+	</MetadataType>
+	<!-- Subject; keywords -->
+	<MetadataType>
+		<Name>Keyword</Name>
+		<language name="en">Keyword</language>
+		<language name="de">Schlagwort</language>
+		<language name="rusdml">Keyword</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>RUSKeyword</Name>
+		<language name="en">Keyword</language>
+		<language name="de">Schlagwort</language>
+		<language name="rusdml">Keyword russian</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>CreatorsAllOrigin</Name>
+		<language name="en">all creators (original version)</language>
+		<language name="de">Alle Autoren u. Beteiligte (orig.)</language>
+		<language name="rusdml">all creators (original version)</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>PersonAsSubject</Name>
+		<language name="en">Person as subject</language>
+		<language name="de">Person als Subjekt</language>
+		<language name="rusdml">Person as subject of article</language>
+	</MetadataType>
+
+	<!-- ##########################################################################
+		 ##  Metadata types (Persons) for the physical structure                 ##
+		 ########################################################################## -->
+
+	<!-- Author -->
+	<MetadataType type="person" normdata="true" namepart="true">
+		<Name>Author</Name>
+		<language name="en">Author</language>
+		<language name="de">Autor</language>
+		<language name="rusdml">Author: cyrillic</language>
+	</MetadataType>
+	<!-- Author Transliterated ISO -->
+	<MetadataType type="person" normdata="true" namepart="true">
+		<Name>AuthorTransliteratedDIN</Name>
+		<language name="en">Author</language>
+		<language name="de">Autor</language>
+		<language name="rusdml"> Author: transliterated DIN 1460 </language>
+	</MetadataType>
+	<!-- Author Transliterated DIN -->
+	<MetadataType type="person" normdata="true" namepart="true">
+		<Name>AuthorTransliteratedISO</Name>
+		<language name="en">Author</language>
+		<language name="de">Autor</language>
+		<language name="rusdml">Author: transliterated ISO 9</language>
+	</MetadataType>
+	<!-- ZBL-Author -->
+	<MetadataType type="person" normdata="true" namepart="true">
+		<Name>ZBLAuthor</Name>
+		<language name="en">ZBLAuthor</language>
+		<language name="de">ZBLAutor</language>
+		<language name="rusdml">ZBLAuthor</language>
+	</MetadataType>
+	<!-- Author-Variations -->
+	<MetadataType type="person" normdata="true" namepart="true">
+		<Name>AuthorVariation</Name>
+		<language name="en">AuthorVariation</language>
+		<language name="de">AutorVariation</language>
+		<language name="rusdml">AuthorVariation</language>
+	</MetadataType>
+	<!-- Contributor -->
+	<MetadataType type="person" normdata="true" namepart="true">
+		<Name>Contributor</Name>
+		<language name="en">Contributor</language>
+		<language name="de">Kontributor</language>
+		<language name="rusdml">Contributor</language>
+	</MetadataType>
+	<!-- Creator -->
+	<MetadataType type="person" normdata="true" namepart="true">
+		<Name>Creator</Name>
+		<language name="en">Creator</language>
+		<language name="de">Creator</language>
+		<language name="rusdml">Creator</language>
+	</MetadataType>
+	<!-- Editor -->
+	<MetadataType type="person" normdata="true" namepart="true">
+		<Name>Editor</Name>
+		<language name="en">Editor</language>
+		<language name="de">Herausgeber</language>
+		<language name="rusdml">Editor</language>
+	</MetadataType>
+	<!-- Illustrator -->
+	<MetadataType type="person" normdata="true" namepart="true">
+		<Name>Illustrator</Name>
+		<language name="en">Illustrator</language>
+		<language name="de">Illustrator</language>
+		<language name="rusdml">Illustrator</language>
+	</MetadataType>
+	<!-- Printer -->
+	<MetadataType type="person" normdata="true" namepart="true">
+		<Name>Printer</Name>
+		<language name="en">Printer</language>
+		<language name="de">Drucker</language>
+		<language name="rusdml">Printer</language>
+	</MetadataType>
+	<!-- Reviewer -->
+	<MetadataType type="person" normdata="true" namepart="true">
+		<Name>Reviewer</Name>
+		<language name="en">Reviewer</language>
+		<language name="de">Reviewer</language>
+		<language name="rusdml">Reviewer</language>
+	</MetadataType>
+	<!-- Translator -->
+	<MetadataType type="person" normdata="true" namepart="true">
+		<Name>Translator</Name>
+		<language name="en">Translator</language>
+		<language name="de">Übersetzer</language>
+		<language name="rusdml">Translator</language>
+	</MetadataType>
+	<!-- LogicalPageNumbers - are only used  as internal metadata- to store data from Zentralblatt -->
+	<MetadataType>
+		<Name>_LogicalPageNumbers</Name>
+		<language name="en">LogicalPageNumbers</language>
+		<language name="de">LogicalPageNumbers</language>
+		<language name="rusdml">LogicalPageNumbers</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>DocLanguage</Name>
+		<language name="en">language</language>
+		<language name="de">Sprache</language>
+		<language name="rusdml">language</language>
+	</MetadataType>
+	<!-- metadata for volume level -->
+	<MetadataType>
+		<Name>CurrentNo</Name>
+		<language name="en">volume/issue number</language>
+		<language name="de">Band/Heftnummer</language>
+		<language name="rusdml">volume/issue number</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>CurrentNoSorting</Name>
+		<language name="en">number (sorting)</language>
+		<language name="de">Sortiernummer</language>
+		<language name="rusdml">number (sorting)</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>PublisherName</Name>
+		<language name="en">publisher</language>
+		<language name="de">Verleger</language>
+		<language name="rusdml">publisher</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>RUSPublisherName</Name>
+		<language name="en">publisher</language>
+		<language name="de">Verleger</language>
+		<language name="rusdml">publisher russian</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>PlaceOfPublication</Name>
+		<language name="en">place of publication</language>
+		<language name="de">Erscheinungsort</language>
+		<language name="rusdml">place of publication</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>RUSPublicationHouse</Name>
+		<language name="en">publishing house russian</language>
+		<language name="de">Verlag russisch</language>
+		<language name="rusdml">publishing house russian</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>RUSPlaceOfPublication</Name>
+		<language name="en">place of publication</language>
+		<language name="de">Erscheinungsort</language>
+		<language name="rusdml">place of publication russian</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>PublicationYear</Name>
+		<language name="en">Year of publication</language>
+		<language name="de">Erscheinungsjahr</language>
+		<language name="rusdml">Year of publication</language>
+	</MetadataType>
+	<!-- Identifier -->
+	<MetadataType>
+		<Name>ISSN</Name>
+		<language name="en">ISSN</language>
+		<language name="de">ISSN</language>
+		<language name="rusdml">ISSN</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>ZDBID</Name>
+		<language name="en">Identifer from ZDB</language>
+		<language name="de">ZDB-Identifier</language>
+		<language name="rusdml">Identifer from ZDB</language>
+	</MetadataType>
+	<MetadataType type="identifier">
+		<Name>CatalogIDDigital</Name>
+		<language name="en">Identifier (digital)</language>
+		<language name="de">Identifier (digial)</language>
+		<language name="rusdml">Identifier (digital)</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>IdentifierSource</Name>
+		<language name="en">Identifier (printed source)</language>
+		<language name="de">Identifier (Vorlage)</language>
+		<language name="rusdml">Identifier (printed source)</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>SICI</Name>
+		<language name="en">SICI</language>
+		<language name="de">SICI</language>
+		<language name="rusdml">SICI</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>ZBLIdentifier</Name>
+		<language name="en">ZBL-Identifier</language>
+		<language name="de">ZBL-Identifier</language>
+		<language name="rusdml">ZBL-Identifier</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>JFMIdentifier</Name>
+		<language name="en">JFM-Identifier</language>
+		<language name="de">JFM-Identifier</language>
+		<language name="rusdml">JFM-Identifier</language>
+	</MetadataType>
+	<!-- metadata on journal level -->
+	<MetadataType>
+		<Name>PublicationStart</Name>
+		<language name="en">beginning of publication</language>
+		<language name="de">Start der Publikation</language>
+		<language name="rusdml">beginning of publication</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>PublicationEnd</Name>
+		<language name="en">end of publication</language>
+		<language name="de">Ende der Publikation</language>
+		<language name="rusdml">end of publication</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>TSL_ATS</Name>
+		<language name="en">TSL/ATS</language>
+		<language name="de">TSL/ATS</language>
+		<language name="rusdml">TSL/ATS</language>
+	</MetadataType>
+	<!-- spezielle Zentralblatt-Datenfelder -->
+	<MetadataType>
+		<Name>ZBLPageNumber</Name>
+		<language name="en">ZBL page number</language>
+		<language name="de">Zentralblatt Seitennummer</language>
+		<language name="rusdml">ZBL page number</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>ZBLSource</Name>
+		<language name="en">ZBLSource</language>
+		<language name="de">Zentralblatt Source</language>
+		<language name="rusdml">ZBLSource</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>ZBLAbstract</Name>
+		<language name="en">ZBLAbstract</language>
+		<language name="de">Zentralblatt Abstract</language>
+		<language name="rusdml">ZBLAbstract</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>ZBLReviewAuthor</Name>
+		<language name="en">ZBLReviewAuthor</language>
+		<language name="de">Zentralblatt Review Autor</language>
+		<language name="rusdml">ZBLReviewAuthor</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>ZBLCita</Name>
+		<language name="en">ZBLCita</language>
+		<language name="de">Zentralblatt Zitate</language>
+		<language name="rusdml">ZBLCita</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>ZBLTempID</Name>
+		<language name="en">ZBLTempID</language>
+		<language name="de">Zentralblatt temporäre ID</language>
+		<language name="rusdml">ZBLTempID</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>ZBLReviewLink</Name>
+		<language name="en">ZBLReviewLink</language>
+		<language name="de">Zentralblatt Link zum Review</language>
+		<language name="rusdml">ZBLReviewLink</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>ZBLIntern</Name>
+		<language name="en">ZBLIntern</language>
+		<language name="de">Zentralblatt Interne Bemerkungen</language>
+		<language name="rusdml">ZBLIntern</language>
+	</MetadataType>
+	<!-- logical and physical page numbers for pages only -->
+	<MetadataType>
+		<Name>physPageNumber</Name>
+		<language name="en">phy. pagenumber</language>
+		<language name="de">phy. Seitennummer</language>
+		<language name="rusdml">phy. pagenumber</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>logicalPageNumber</Name>
+		<language name="en">page number</language>
+		<language name="de">Seitennummer</language>
+		<language name="rusdml">page number</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>pagesize</Name>
+		<language name="en">size of page</language>
+		<language name="de">Seitengrösse</language>
+		<language name="rusdml">size of page</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>copyrightimageset</Name>
+		<language name="en">copyright</language>
+		<language name="de">copyright</language>
+		<language name="rusdml">copyright</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>editionVersion</Name>
+		<language name="en">Version of edition</language>
+		<language name="de">Version/Auflage</language>
+		<language name="rusdml">Version of edition</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>mediumsource</Name>
+		<language name="en">sourcemedia</language>
+		<language name="de">Quellmedium</language>
+		<language name="rusdml">sourcemedia</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>shelfmarksource</Name>
+		<language name="en">shelfmark of source media</language>
+		<language name="de">Signatur der Quelle</language>
+		<language name="rusdml">shelfmark of source media</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>imagedescr</Name>
+		<language name="en">Image description</language>
+		<language name="de">Beschreibung des Images</language>
+		<language name="rusdml">Image description</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>commentsource</Name>
+		<language name="en">comment (source)</language>
+		<language name="de">Kommentar (Quelle)</language>
+		<language name="rusdml">comment (source)</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>FormatSourcePrint</Name>
+		<language name="en">Format of print(source)</language>
+		<language name="de">Ausmasse/Dimension (Quelle)</language>
+		<language name="rusdml">Format of print(source)</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>datedigit</Name>
+		<language name="en">date of digitization</language>
+		<language name="de">Datum der Digitalisierung</language>
+		<language name="rusdml">date of digitization</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>pathimagefiles</Name>
+		<language name="en">path to imagefiles</language>
+		<language name="de">Pfad z.d. Imagedateien</language>
+		<language name="rusdml">path to imagefiles</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>originImageSet</Name>
+		<language name="en">origin of imagefiles</language>
+		<language name="de">Ursprung d. Imagedateien</language>
+		<language name="rusdml">origin of imagefiles</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>copyrightSource</Name>
+		<language name="en">copyright owner of source</language>
+		<language name="de">Copyright-Inhaber der Vorlage</language>
+		<language name="rusdml">copyright owner of source</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>shelfmarkarchiveimageset</Name>
+		<language name="en">shelfmark of imageset</language>
+		<language name="de">Signatur des Imagesets</language>
+		<language name="rusdml">shelfmark of imageset</language>
+	</MetadataType>
+	<!-- Collection is set to RusDML and Mathematica - should be done automatically -->
+	<MetadataType>
+		<Name>singleDigCollection</Name>
+		<language name="rusdml">Digital Collection</language>
+		<language name="de">digitale Kollektion</language>
+		<language name="en">Digital Collection</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>SizeSourcePrint</Name>
+		<language name="en">size / format of book</language>
+		<language name="de">Grösse der Vorlage</language>
+		<language name="rusdml">size / format of book</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>Illustration</Name>
+		<language name="en">??? Illustration ???</language>
+		<language name="de">??? Illustration ???</language>
+		<language name="rusdml">??? Illustration ???</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>_purl</Name>
+		<language name="de">PURL</language>
+		<language name="en">PURL</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>_digitalOrigin</Name>
+		<language name="de">digitalOrigin</language>
+		<language name="en">digitalOrigin</language>
+	</MetadataType>
+
+	<!-- ##########################################################################
+		 ##  DocStruct types for the logical structure                           ##
+		 ########################################################################## -->
+
+	<DocStrctType anchor="true">
+		<Name>Periodical</Name>
+		<language name="en">Periodical</language>
+		<language name="de">Zeitschrift</language>
+		<language name="rusdml">Periodical</language>
+		<allowedchildtype>PeriodicalVolume</allowedchildtype>
+		<metadata num="1o">TitleDocMain</metadata>
+		<metadata num="1o">RUSMainTitle</metadata>
+		<metadata num="*">MainTitleTranslated</metadata>
+		<metadata num="*">MainTitleTransliterated</metadata>
+		<metadata num="*">Editor</metadata>
+		<metadata num="*">PublisherName</metadata>
+		<metadata num="*">RUSPublisherName</metadata>
+		<metadata num="*">DocLanguage</metadata>
+		<metadata num="*">PlaceOfPublication</metadata>
+		<metadata num="*">RUSPlaceOfPublication</metadata>
+		<metadata num="*">RUSPublicationHouse</metadata>
+		<metadata num="*">singleDigCollection</metadata>
+		<metadata num="*">ISSN</metadata>
+		<metadata num="*">ZDBID</metadata>
+		<metadata num="1m">CatalogIDDigital</metadata>
+		<metadata num="1o">IdentifierSource</metadata>
+		<metadata num="1o">TSL_ATS</metadata>
+		<metadata num="1o">PublicationStart</metadata>
+		<metadata num="1o">PublicationEnd</metadata>
+		<metadata num="1o">_purl</metadata>
+		<metadata num="1o">_digitalOrigin</metadata>
+	</DocStrctType>
+	<DocStrctType fileset="yes">
+		<Name>PeriodicalVolume</Name>
+		<language name="en">Volume</language>
+		<language name="de">Zeitschriftenband</language>
+		<language name="rusdml">Volume</language>
+		<allowedchildtype>PeriodicalIssue</allowedchildtype>
+		<allowedchildtype>PeriodicalPart</allowedchildtype>
+		<allowedchildtype>Figure</allowedchildtype>
+		<allowedchildtype>Supplement</allowedchildtype>
+		<allowedchildtype>Imprint</allowedchildtype>
+		<allowedchildtype>Errata</allowedchildtype>
+		<allowedchildtype>CurriculumVitae</allowedchildtype>
+		<allowedchildtype>Obituary</allowedchildtype>
+		<allowedchildtype>Index</allowedchildtype>
+		<allowedchildtype>Review</allowedchildtype>
+		<allowedchildtype>OtherDocStrct</allowedchildtype>
+		<allowedchildtype>Table</allowedchildtype>
+		<allowedchildtype>TitlePage</allowedchildtype>
+		<allowedchildtype>List</allowedchildtype>
+		<allowedchildtype>TableOfContents</allowedchildtype>
+		<allowedchildtype>ListOfPublications</allowedchildtype>
+		<allowedchildtype>Advertising</allowedchildtype>
+		<allowedchildtype>Dedication</allowedchildtype>
+		<allowedchildtype>Article</allowedchildtype>
+		<allowedchildtype>Abstract</allowedchildtype>
+		<allowedchildtype>Biography</allowedchildtype>
+		<metadata num="*">CurrentNo</metadata>
+		<metadata num="1o">CurrentNoSorting</metadata>
+		<metadata num="1m">CatalogIDDigital</metadata>
+		<metadata num="1o">TSL_ATS</metadata>
+		<metadata num="*">PlaceOfPublication</metadata>
+		<metadata num="*">RUSPlaceOfPublication</metadata>
+		<metadata num="*">PublisherName</metadata>
+		<metadata num="*">RUSPublisherName</metadata>
+		<metadata num="1o">PublicationYear</metadata>
+		<metadata num="*">singleDigCollection</metadata>
+		<metadata num="1o">_purl</metadata>
+		<metadata num="1o">_digitalOrigin</metadata>
+	</DocStrctType>
+	<DocStrctType>
+		<Name>PeriodicalIssue</Name>
+		<language name="en">Issue</language>
+		<language name="de">Heft</language>
+		<language name="rusdml">Issue</language>
+		<metadata num="*">CurrentNo</metadata>
+		<metadata num="1o">CurrentNoSorting</metadata>
+		<metadata num="1o">PublicationYear</metadata>
+		<allowedchildtype>PeriodicalPart</allowedchildtype>
+		<allowedchildtype>Figure</allowedchildtype>
+		<allowedchildtype>Supplement</allowedchildtype>
+		<allowedchildtype>Imprint</allowedchildtype>
+		<allowedchildtype>Errata</allowedchildtype>
+		<allowedchildtype>CurriculumVitae</allowedchildtype>
+		<allowedchildtype>Obituary</allowedchildtype>
+		<allowedchildtype>Index</allowedchildtype>
+		<allowedchildtype>Review</allowedchildtype>
+		<allowedchildtype>OtherDocStrct</allowedchildtype>
+		<allowedchildtype>Table</allowedchildtype>
+		<allowedchildtype>TitlePage</allowedchildtype>
+		<allowedchildtype>List</allowedchildtype>
+		<allowedchildtype>TableOfContents</allowedchildtype>
+		<allowedchildtype>ListOfPublications</allowedchildtype>
+		<allowedchildtype>Advertising</allowedchildtype>
+		<allowedchildtype>Dedication</allowedchildtype>
+		<allowedchildtype>Article</allowedchildtype>
+		<allowedchildtype>Abstract</allowedchildtype>
+		<allowedchildtype>Biography</allowedchildtype>
+		<allowedchildtype>Remarks</allowedchildtype>
+		<allowedchildtype>Bibliography</allowedchildtype>
+		<allowedchildtype>Introduction</allowedchildtype>
+		<allowedchildtype>Epilog</allowedchildtype>
+		<allowedchildtype>Preface</allowedchildtype>
+		<allowedchildtype>Addendum</allowedchildtype>
+		<allowedchildtype>Cover</allowedchildtype>
+	</DocStrctType>
+	<DocStrctType>
+		<Name>PeriodicalPart</Name>
+		<language name="en">PeriodicalPart</language>
+		<language name="de">Zeitschriftenteil</language>
+		<language name="rusdml">PeriodicalPart</language>
+		<allowedchildtype>Figure</allowedchildtype>
+		<allowedchildtype>Supplement</allowedchildtype>
+		<allowedchildtype>Imprint</allowedchildtype>
+		<allowedchildtype>Errata</allowedchildtype>
+		<allowedchildtype>CurriculumVitae</allowedchildtype>
+		<allowedchildtype>Obituary</allowedchildtype>
+		<allowedchildtype>Index</allowedchildtype>
+		<allowedchildtype>Review</allowedchildtype>
+		<allowedchildtype>OtherDocStrct</allowedchildtype>
+		<allowedchildtype>Table</allowedchildtype>
+		<allowedchildtype>TitlePage</allowedchildtype>
+		<allowedchildtype>List</allowedchildtype>
+		<allowedchildtype>TableOfContents</allowedchildtype>
+		<allowedchildtype>ListOfPublications</allowedchildtype>
+		<allowedchildtype>Advertising</allowedchildtype>
+		<allowedchildtype>Dedication</allowedchildtype>
+		<allowedchildtype>Article</allowedchildtype>
+		<allowedchildtype>Abstract</allowedchildtype>
+		<metadata num="1o">TitleDocMain</metadata>
+		<metadata num="*">MainTitleTranslated</metadata>
+		<metadata num="*">MainTitleTransliterated</metadata>
+		<metadata num="*">CurrentNo</metadata>
+		<metadata num="1o">CurrentNoSorting</metadata>
+		<metadata num="*">Author</metadata>
+		<metadata num="*">ZBLAuthor</metadata>
+		<metadata num="*">AuthorTransliteratedDIN</metadata>
+		<metadata num="*">AuthorTransliteratedISO</metadata>
+		<metadata num="*">Contributor</metadata>
+		<metadata num="*">Creator</metadata>
+		<metadata num="*">Editor</metadata>
+		<metadata num="*">Illustrator</metadata>
+		<metadata num="*">Printer</metadata>
+		<metadata num="*">Reviewer</metadata>
+		<metadata num="*">Translator</metadata>
+		<metadata num="1o">CreatorsAllOrigin</metadata>
+		<metadata num="1o">IdentifierSource</metadata>
+		<metadata num="1o">CatalogIDDigital</metadata>
+		<metadata num="1o">SICI</metadata>
+		<metadata num="1o">ZBLIdentifier</metadata>
+		<metadata num="1o">JFMIdentifier</metadata>
+		<metadata num="1o">_purl</metadata>
+	</DocStrctType>
+	<DocStrctType>
+		<Name>Article</Name>
+		<language name="en">Article</language>
+		<language name="de">Artikel</language>
+		<language name="rusdml">Article</language>
+		<allowedchildtype>Figure</allowedchildtype>
+		<allowedchildtype>Supplement</allowedchildtype>
+		<allowedchildtype>Imprint</allowedchildtype>
+		<allowedchildtype>Errata</allowedchildtype>
+		<allowedchildtype>CurriculumVitae</allowedchildtype>
+		<allowedchildtype>Obituary</allowedchildtype>
+		<allowedchildtype>Index</allowedchildtype>
+		<allowedchildtype>Review</allowedchildtype>
+		<allowedchildtype>OtherDocStrct</allowedchildtype>
+		<allowedchildtype>Table</allowedchildtype>
+		<allowedchildtype>TitlePage</allowedchildtype>
+		<allowedchildtype>List</allowedchildtype>
+		<allowedchildtype>TableOfContents</allowedchildtype>
+		<allowedchildtype>ListOfPublications</allowedchildtype>
+		<allowedchildtype>Advertising</allowedchildtype>
+		<allowedchildtype>Dedication</allowedchildtype>
+		<allowedchildtype>Abstract</allowedchildtype>
+		<metadata num="1o">TitleDocMain</metadata>
+		<metadata num="*">RUSMainTitle</metadata>
+		<metadata num="*">MainTitleTranslated</metadata>
+		<metadata num="*">MainTitleTransliterated</metadata>
+		<metadata num="*">CurrentNo</metadata>
+		<metadata num="1o">CurrentNoSorting</metadata>
+		<metadata num="*">Author</metadata>
+		<metadata num="*">ZBLAuthor</metadata>
+		<metadata num="*">AuthorTransliteratedDIN</metadata>
+		<metadata num="*">AuthorTransliteratedISO</metadata>
+		<metadata num="*">AuthorVariation</metadata>
+		<metadata num="*">Contributor</metadata>
+		<metadata num="*">Creator</metadata>
+		<metadata num="*">Editor</metadata>
+		<metadata num="*">Illustrator</metadata>
+		<metadata num="*">Printer</metadata>
+		<metadata num="*">Reviewer</metadata>
+		<metadata num="*">Translator</metadata>
+		<metadata num="*">PersonAsSubject</metadata>
+		<metadata num="*">Keyword</metadata>
+		<metadata num="*">RUSKeyword</metadata>
+		<metadata num="*">DocLanguage</metadata>
+		<metadata num="*">ClassificationMSC</metadata>
+		<metadata num="*">ClassificationUDK</metadata>
+		<metadata num="1o">CreatorsAllOrigin</metadata>
+		<metadata num="1o">IdentifierSource</metadata>
+		<metadata num="1o">CatalogIDDigital</metadata>
+		<metadata num="1o">SICI</metadata>
+		<metadata num="1o">ZBLIdentifier</metadata>
+		<metadata num="1o">JFMIdentifier</metadata>
+		<metadata num="1o">_LogicalPageNumbers</metadata>
+		<metadata num="1o">ZBLPageNumber</metadata>
+		<metadata num="1o">ZBLSource</metadata>
+		<metadata num="1o">ZBLAbstract</metadata>
+		<metadata num="1o">ZBLReviewAuthor</metadata>
+		<metadata num="1o">ZBLCita</metadata>
+		<metadata num="1o">ZBLTempID</metadata>
+		<metadata num="1o">ZBLReviewLink</metadata>
+		<metadata num="1o">ZBLIntern</metadata>
+		<metadata num="1o">_purl</metadata>
+	</DocStrctType>
+	<DocStrctType>
+		<Name>Cover</Name>
+		<language name="en">Cover</language>
+		<language name="de">Deckblatt</language>
+	</DocStrctType>
+	<DocStrctType>
+		<Name>Figure</Name>
+		<language name="en">Figure</language>
+		<language name="de">Abbildung</language>
+		<language name="rusdml">Figure</language>
+		<allowedchildtype>Supplement</allowedchildtype>
+		<allowedchildtype>Imprint</allowedchildtype>
+		<allowedchildtype>Errata</allowedchildtype>
+		<allowedchildtype>CurriculumVitae</allowedchildtype>
+		<allowedchildtype>Obituary</allowedchildtype>
+		<allowedchildtype>Index</allowedchildtype>
+		<allowedchildtype>Review</allowedchildtype>
+		<allowedchildtype>OtherDocStrct</allowedchildtype>
+		<allowedchildtype>Table</allowedchildtype>
+		<allowedchildtype>TitlePage</allowedchildtype>
+		<allowedchildtype>List</allowedchildtype>
+		<allowedchildtype>TableOfContents</allowedchildtype>
+		<allowedchildtype>ListOfPublications</allowedchildtype>
+		<allowedchildtype>Advertising</allowedchildtype>
+		<allowedchildtype>Dedication</allowedchildtype>
+		<allowedchildtype>Abstract</allowedchildtype>
+		<metadata num="1o">TitleDocMain</metadata>
+		<metadata num="*">MainTitleTranslated</metadata>
+		<metadata num="*">MainTitleTransliterated</metadata>
+		<metadata num="*">CurrentNo</metadata>
+		<metadata num="1o">CurrentNoSorting</metadata>
+		<metadata num="*">Author</metadata>
+		<metadata num="*">ZBLAuthor</metadata>
+		<metadata num="*">AuthorTransliteratedDIN</metadata>
+		<metadata num="*">AuthorTransliteratedISO</metadata>
+		<metadata num="*">Contributor</metadata>
+		<metadata num="*">Creator</metadata>
+		<metadata num="*">Editor</metadata>
+		<metadata num="*">Illustrator</metadata>
+		<metadata num="*">Printer</metadata>
+		<metadata num="*">Reviewer</metadata>
+		<metadata num="*">Translator</metadata>
+		<metadata num="*">Keyword</metadata>
+		<metadata num="1o">CreatorsAllOrigin</metadata>
+		<metadata num="1o">IdentifierSource</metadata>
+		<metadata num="1o">CatalogIDDigital</metadata>
+		<metadata num="1o">SICI</metadata>
+		<metadata num="1o">ZBLIdentifier</metadata>
+		<metadata num="1o">JFMIdentifier</metadata>
+		<metadata num="1o">_LogicalPageNumbers</metadata>
+		<metadata num="1o">_purl</metadata>
+	</DocStrctType>
+	<DocStrctType>
+		<Name>Supplement</Name>
+		<language name="en">Supplement</language>
+		<language name="de">Beilage</language>
+		<language name="rusdml">Supplement</language>
+		<allowedchildtype>Figure</allowedchildtype>
+		<allowedchildtype>Supplement</allowedchildtype>
+		<allowedchildtype>Imprint</allowedchildtype>
+		<allowedchildtype>Errata</allowedchildtype>
+		<allowedchildtype>CurriculumVitae</allowedchildtype>
+		<allowedchildtype>Obituary</allowedchildtype>
+		<allowedchildtype>Index</allowedchildtype>
+		<allowedchildtype>Review</allowedchildtype>
+		<allowedchildtype>OtherDocStrct</allowedchildtype>
+		<allowedchildtype>Table</allowedchildtype>
+		<allowedchildtype>TitlePage</allowedchildtype>
+		<allowedchildtype>List</allowedchildtype>
+		<allowedchildtype>TableOfContents</allowedchildtype>
+		<allowedchildtype>ListOfPublications</allowedchildtype>
+		<allowedchildtype>Advertising</allowedchildtype>
+		<allowedchildtype>Dedication</allowedchildtype>
+		<allowedchildtype>Abstract</allowedchildtype>
+		<allowedchildtype>Article</allowedchildtype>
+		<metadata num="1o">TitleDocMain</metadata>
+		<metadata num="*">MainTitleTranslated</metadata>
+		<metadata num="*">MainTitleTransliterated</metadata>
+		<metadata num="*">Keyword</metadata>
+		<metadata num="*">CurrentNo</metadata>
+		<metadata num="1o">CurrentNoSorting</metadata>
+		<metadata num="*">Author</metadata>
+		<metadata num="*">ZBLAuthor</metadata>
+		<metadata num="*">AuthorTransliteratedDIN</metadata>
+		<metadata num="*">AuthorTransliteratedISO</metadata>
+		<metadata num="*">Contributor</metadata>
+		<metadata num="*">Creator</metadata>
+		<metadata num="*">Editor</metadata>
+		<metadata num="*">Illustrator</metadata>
+		<metadata num="*">Printer</metadata>
+		<metadata num="*">Reviewer</metadata>
+		<metadata num="*">Translator</metadata>
+		<metadata num="1o">CreatorsAllOrigin</metadata>
+		<metadata num="1o">IdentifierSource</metadata>
+		<metadata num="1o">CatalogIDDigital</metadata>
+		<metadata num="1o">SICI</metadata>
+		<metadata num="1o">ZBLIdentifier</metadata>
+		<metadata num="1o">JFMIdentifier</metadata>
+		<metadata num="1o">_LogicalPageNumbers</metadata>
+		<metadata num="1o">_purl</metadata>
+	</DocStrctType>
+	<DocStrctType>
+		<Name>Imprint</Name>
+		<language name="en">Imprint</language>
+		<language name="de">Impressum</language>
+		<language name="rusdml">Imprint</language>
+		<allowedchildtype>Figure</allowedchildtype>
+		<allowedchildtype>Supplement</allowedchildtype>
+		<allowedchildtype>Imprint</allowedchildtype>
+		<allowedchildtype>Errata</allowedchildtype>
+		<allowedchildtype>CurriculumVitae</allowedchildtype>
+		<allowedchildtype>Obituary</allowedchildtype>
+		<allowedchildtype>Index</allowedchildtype>
+		<allowedchildtype>Review</allowedchildtype>
+		<allowedchildtype>OtherDocStrct</allowedchildtype>
+		<allowedchildtype>Table</allowedchildtype>
+		<allowedchildtype>TitlePage</allowedchildtype>
+		<allowedchildtype>List</allowedchildtype>
+		<allowedchildtype>TableOfContents</allowedchildtype>
+		<allowedchildtype>ListOfPublications</allowedchildtype>
+		<allowedchildtype>Advertising</allowedchildtype>
+		<allowedchildtype>Dedication</allowedchildtype>
+		<allowedchildtype>Abstract</allowedchildtype>
+		<allowedchildtype>Article</allowedchildtype>
+		<metadata num="1o">TitleDocMain</metadata>
+		<metadata num="*">MainTitleTranslated</metadata>
+		<metadata num="*">MainTitleTransliterated</metadata>
+		<metadata num="*">Keyword</metadata>
+		<metadata num="*">CurrentNo</metadata>
+		<metadata num="1o">CurrentNoSorting</metadata>
+		<metadata num="*">Author</metadata>
+		<metadata num="*">ZBLAuthor</metadata>
+		<metadata num="*">AuthorTransliteratedDIN</metadata>
+		<metadata num="*">AuthorTransliteratedISO</metadata>
+		<metadata num="*">Contributor</metadata>
+		<metadata num="*">Creator</metadata>
+		<metadata num="*">Editor</metadata>
+		<metadata num="*">Illustrator</metadata>
+		<metadata num="*">Printer</metadata>
+		<metadata num="*">Reviewer</metadata>
+		<metadata num="*">Translator</metadata>
+		<metadata num="1o">CreatorsAllOrigin</metadata>
+		<metadata num="1o">IdentifierSource</metadata>
+		<metadata num="1o">CatalogIDDigital</metadata>
+		<metadata num="1o">SICI</metadata>
+		<metadata num="1o">ZBLIdentifier</metadata>
+		<metadata num="1o">JFMIdentifier</metadata>
+		<metadata num="1o">_LogicalPageNumbers</metadata>
+		<metadata num="1o">_purl</metadata>
+	</DocStrctType>
+	<DocStrctType>
+		<Name>Errata</Name>
+		<language name="en">Errata</language>
+		<language name="de">Errata</language>
+		<language name="rusdml">Errata</language>
+		<allowedchildtype>Figure</allowedchildtype>
+		<allowedchildtype>Supplement</allowedchildtype>
+		<allowedchildtype>Imprint</allowedchildtype>
+		<allowedchildtype>CurriculumVitae</allowedchildtype>
+		<allowedchildtype>Obituary</allowedchildtype>
+		<allowedchildtype>Index</allowedchildtype>
+		<allowedchildtype>Review</allowedchildtype>
+		<allowedchildtype>OtherDocStrct</allowedchildtype>
+		<allowedchildtype>Table</allowedchildtype>
+		<allowedchildtype>TitlePage</allowedchildtype>
+		<allowedchildtype>List</allowedchildtype>
+		<allowedchildtype>TableOfContents</allowedchildtype>
+		<allowedchildtype>ListOfPublications</allowedchildtype>
+		<allowedchildtype>Advertising</allowedchildtype>
+		<allowedchildtype>Dedication</allowedchildtype>
+		<allowedchildtype>Abstract</allowedchildtype>
+		<allowedchildtype>Article</allowedchildtype>
+		<metadata num="1o">TitleDocMain</metadata>
+		<metadata num="*">MainTitleTranslated</metadata>
+		<metadata num="*">MainTitleTransliterated</metadata>
+		<metadata num="*">Keyword</metadata>
+		<metadata num="*">CurrentNo</metadata>
+		<metadata num="1o">CurrentNoSorting</metadata>
+		<metadata num="*">Author</metadata>
+		<metadata num="*">ZBLAuthor</metadata>
+		<metadata num="*">AuthorTransliteratedDIN</metadata>
+		<metadata num="*">AuthorTransliteratedISO</metadata>
+		<metadata num="*">Contributor</metadata>
+		<metadata num="*">Creator</metadata>
+		<metadata num="*">Editor</metadata>
+		<metadata num="*">Illustrator</metadata>
+		<metadata num="*">Printer</metadata>
+		<metadata num="*">Reviewer</metadata>
+		<metadata num="*">Translator</metadata>
+		<metadata num="1o">CreatorsAllOrigin</metadata>
+		<metadata num="1o">IdentifierSource</metadata>
+		<metadata num="1o">CatalogIDDigital</metadata>
+		<metadata num="1o">SICI</metadata>
+		<metadata num="1o">ZBLIdentifier</metadata>
+		<metadata num="1o">JFMIdentifier</metadata>
+		<metadata num="1o">_LogicalPageNumbers</metadata>
+		<metadata num="1o">_purl</metadata>
+	</DocStrctType>
+	<DocStrctType>
+		<Name>CurriculumVitae</Name>
+		<language name="en">Curriculum Vitae</language>
+		<language name="de">Lebenslauf</language>
+		<language name="rusdml">Curriculum Vitae</language>
+		<allowedchildtype>Figure</allowedchildtype>
+		<allowedchildtype>Supplement</allowedchildtype>
+		<allowedchildtype>Imprint</allowedchildtype>
+		<allowedchildtype>Errata</allowedchildtype>
+		<allowedchildtype>CurriculumVitae</allowedchildtype>
+		<allowedchildtype>Obituary</allowedchildtype>
+		<allowedchildtype>Index</allowedchildtype>
+		<allowedchildtype>Review</allowedchildtype>
+		<allowedchildtype>OtherDocStrct</allowedchildtype>
+		<allowedchildtype>Table</allowedchildtype>
+		<allowedchildtype>TitlePage</allowedchildtype>
+		<allowedchildtype>List</allowedchildtype>
+		<allowedchildtype>TableOfContents</allowedchildtype>
+		<allowedchildtype>ListOfPublications</allowedchildtype>
+		<allowedchildtype>Advertising</allowedchildtype>
+		<allowedchildtype>Dedication</allowedchildtype>
+		<allowedchildtype>Abstract</allowedchildtype>
+		<metadata num="1o">TitleDocMain</metadata>
+		<metadata num="*">MainTitleTranslated</metadata>
+		<metadata num="*">MainTitleTransliterated</metadata>
+		<metadata num="*">Keyword</metadata>
+		<metadata num="*">CurrentNo</metadata>
+		<metadata num="1o">CurrentNoSorting</metadata>
+		<metadata num="*">Author</metadata>
+		<metadata num="*">ZBLAuthor</metadata>
+		<metadata num="*">AuthorTransliteratedDIN</metadata>
+		<metadata num="*">AuthorTransliteratedISO</metadata>
+		<metadata num="*">Contributor</metadata>
+		<metadata num="*">Creator</metadata>
+		<metadata num="*">Editor</metadata>
+		<metadata num="*">Illustrator</metadata>
+		<metadata num="*">Printer</metadata>
+		<metadata num="*">Reviewer</metadata>
+		<metadata num="*">Translator</metadata>
+		<metadata num="1o">CreatorsAllOrigin</metadata>
+		<metadata num="1o">IdentifierSource</metadata>
+		<metadata num="1o">CatalogIDDigital</metadata>
+		<metadata num="1o">SICI</metadata>
+		<metadata num="1o">ZBLIdentifier</metadata>
+		<metadata num="1o">JFMIdentifier</metadata>
+		<metadata num="1o">_LogicalPageNumbers</metadata>
+		<metadata num="1o">_purl</metadata>
+	</DocStrctType>
+	<DocStrctType>
+		<Name>Obituary</Name>
+		<language name="en">Obituary</language>
+		<language name="de">Nachruf</language>
+		<language name="rusdml">Obituary</language>
+		<allowedchildtype>Figure</allowedchildtype>
+		<allowedchildtype>Supplement</allowedchildtype>
+		<allowedchildtype>Imprint</allowedchildtype>
+		<allowedchildtype>Errata</allowedchildtype>
+		<allowedchildtype>CurriculumVitae</allowedchildtype>
+		<allowedchildtype>Obituary</allowedchildtype>
+		<allowedchildtype>Index</allowedchildtype>
+		<allowedchildtype>Review</allowedchildtype>
+		<allowedchildtype>OtherDocStrct</allowedchildtype>
+		<allowedchildtype>Table</allowedchildtype>
+		<allowedchildtype>TitlePage</allowedchildtype>
+		<allowedchildtype>List</allowedchildtype>
+		<allowedchildtype>TableOfContents</allowedchildtype>
+		<allowedchildtype>ListOfPublications</allowedchildtype>
+		<allowedchildtype>Advertising</allowedchildtype>
+		<allowedchildtype>Dedication</allowedchildtype>
+		<allowedchildtype>Abstract</allowedchildtype>
+		<metadata num="1o">TitleDocMain</metadata>
+		<metadata num="*">MainTitleTranslated</metadata>
+		<metadata num="*">MainTitleTransliterated</metadata>
+		<metadata num="*">Keyword</metadata>
+		<metadata num="*">CurrentNo</metadata>
+		<metadata num="1o">CurrentNoSorting</metadata>
+		<metadata num="*">Author</metadata>
+		<metadata num="*">ZBLAuthor</metadata>
+		<metadata num="*">AuthorTransliteratedDIN</metadata>
+		<metadata num="*">AuthorTransliteratedISO</metadata>
+		<metadata num="*">Contributor</metadata>
+		<metadata num="*">Creator</metadata>
+		<metadata num="*">Editor</metadata>
+		<metadata num="*">Illustrator</metadata>
+		<metadata num="*">Printer</metadata>
+		<metadata num="*">Reviewer</metadata>
+		<metadata num="*">Translator</metadata>
+		<metadata num="1o">CreatorsAllOrigin</metadata>
+		<metadata num="1o">IdentifierSource</metadata>
+		<metadata num="1o">CatalogIDDigital</metadata>
+		<metadata num="1o">SICI</metadata>
+		<metadata num="1o">ZBLIdentifier</metadata>
+		<metadata num="1o">JFMIdentifier</metadata>
+		<metadata num="1o">_LogicalPageNumbers</metadata>
+		<metadata num="1o">_purl</metadata>
+	</DocStrctType>
+	<DocStrctType>
+		<Name>Index</Name>
+		<language name="en">Index Vitae</language>
+		<language name="de">Register</language>
+		<language name="rusdml">Index Vitae</language>
+		<allowedchildtype>Figure</allowedchildtype>
+		<allowedchildtype>Supplement</allowedchildtype>
+		<allowedchildtype>Imprint</allowedchildtype>
+		<allowedchildtype>Errata</allowedchildtype>
+		<allowedchildtype>CurriculumVitae</allowedchildtype>
+		<allowedchildtype>Obituary</allowedchildtype>
+		<allowedchildtype>Index</allowedchildtype>
+		<allowedchildtype>Review</allowedchildtype>
+		<allowedchildtype>OtherDocStrct</allowedchildtype>
+		<allowedchildtype>Table</allowedchildtype>
+		<allowedchildtype>TitlePage</allowedchildtype>
+		<allowedchildtype>List</allowedchildtype>
+		<allowedchildtype>TableOfContents</allowedchildtype>
+		<allowedchildtype>ListOfPublications</allowedchildtype>
+		<allowedchildtype>Advertising</allowedchildtype>
+		<allowedchildtype>Dedication</allowedchildtype>
+		<allowedchildtype>Abstract</allowedchildtype>
+		<metadata num="1o">TitleDocMain</metadata>
+		<metadata num="*">MainTitleTranslated</metadata>
+		<metadata num="*">MainTitleTransliterated</metadata>
+		<metadata num="*">Keyword</metadata>
+		<metadata num="*">CurrentNo</metadata>
+		<metadata num="1o">CurrentNoSorting</metadata>
+		<metadata num="*">Author</metadata>
+		<metadata num="*">ZBLAuthor</metadata>
+		<metadata num="*">AuthorTransliteratedDIN</metadata>
+		<metadata num="*">AuthorTransliteratedISO</metadata>
+		<metadata num="*">Contributor</metadata>
+		<metadata num="*">Creator</metadata>
+		<metadata num="*">Editor</metadata>
+		<metadata num="*">Illustrator</metadata>
+		<metadata num="*">Printer</metadata>
+		<metadata num="*">Reviewer</metadata>
+		<metadata num="*">Translator</metadata>
+		<metadata num="1o">CreatorsAllOrigin</metadata>
+		<metadata num="1o">IdentifierSource</metadata>
+		<metadata num="1o">CatalogIDDigital</metadata>
+		<metadata num="1o">SICI</metadata>
+		<metadata num="1o">ZBLIdentifier</metadata>
+		<metadata num="1o">JFMIdentifier</metadata>
+		<metadata num="1o">_LogicalPageNumbers</metadata>
+		<metadata num="1o">_purl</metadata>
+	</DocStrctType>
+	<DocStrctType>
+		<Name>Review</Name>
+		<language name="en">Review</language>
+		<language name="de">Review</language>
+		<language name="rusdml">Review</language>
+		<allowedchildtype>Figure</allowedchildtype>
+		<allowedchildtype>Supplement</allowedchildtype>
+		<allowedchildtype>Imprint</allowedchildtype>
+		<allowedchildtype>Errata</allowedchildtype>
+		<allowedchildtype>CurriculumVitae</allowedchildtype>
+		<allowedchildtype>Obituary</allowedchildtype>
+		<allowedchildtype>Index</allowedchildtype>
+		<allowedchildtype>OtherDocStrct</allowedchildtype>
+		<allowedchildtype>Table</allowedchildtype>
+		<allowedchildtype>TitlePage</allowedchildtype>
+		<allowedchildtype>List</allowedchildtype>
+		<allowedchildtype>TableOfContents</allowedchildtype>
+		<allowedchildtype>ListOfPublications</allowedchildtype>
+		<allowedchildtype>Advertising</allowedchildtype>
+		<allowedchildtype>Dedication</allowedchildtype>
+		<allowedchildtype>Abstract</allowedchildtype>
+		<metadata num="1o">TitleDocMain</metadata>
+		<metadata num="*">MainTitleTranslated</metadata>
+		<metadata num="*">MainTitleTransliterated</metadata>
+		<metadata num="*">Keyword</metadata>
+		<metadata num="*">CurrentNo</metadata>
+		<metadata num="1o">CurrentNoSorting</metadata>
+		<metadata num="*">Author</metadata>
+		<metadata num="*">ZBLAuthor</metadata>
+		<metadata num="*">AuthorTransliteratedDIN</metadata>
+		<metadata num="*">AuthorTransliteratedISO</metadata>
+		<metadata num="*">Contributor</metadata>
+		<metadata num="*">Creator</metadata>
+		<metadata num="*">Editor</metadata>
+		<metadata num="*">Illustrator</metadata>
+		<metadata num="*">Printer</metadata>
+		<metadata num="*">Reviewer</metadata>
+		<metadata num="*">Translator</metadata>
+		<metadata num="1o">CreatorsAllOrigin</metadata>
+		<metadata num="1o">IdentifierSource</metadata>
+		<metadata num="1o">CatalogIDDigital</metadata>
+		<metadata num="1o">SICI</metadata>
+		<metadata num="1o">ZBLIdentifier</metadata>
+		<metadata num="1o">JFMIdentifier</metadata>
+		<metadata num="1o">_LogicalPageNumbers</metadata>
+		<metadata num="1o">_purl</metadata>
+	</DocStrctType>
+	<DocStrctType>
+		<Name>OtherDocStrct</Name>
+		<language name="en">OtherDocStrct</language>
+		<language name="de">Sonstiges</language>
+		<language name="rusdml">OtherDocStrct</language>
+		<allowedchildtype>Figure</allowedchildtype>
+		<allowedchildtype>Supplement</allowedchildtype>
+		<allowedchildtype>Imprint</allowedchildtype>
+		<allowedchildtype>Introduction</allowedchildtype>
+		<allowedchildtype>Errata</allowedchildtype>
+		<allowedchildtype>CurriculumVitae</allowedchildtype>
+		<allowedchildtype>Obituary</allowedchildtype>
+		<allowedchildtype>Index</allowedchildtype>
+		<allowedchildtype>Review</allowedchildtype>
+		<allowedchildtype>OtherDocStrct</allowedchildtype>
+		<allowedchildtype>Table</allowedchildtype>
+		<allowedchildtype>TitlePage</allowedchildtype>
+		<allowedchildtype>List</allowedchildtype>
+		<allowedchildtype>TableOfContents</allowedchildtype>
+		<allowedchildtype>ListOfPublications</allowedchildtype>
+		<allowedchildtype>Advertising</allowedchildtype>
+		<allowedchildtype>Dedication</allowedchildtype>
+		<allowedchildtype>Abstract</allowedchildtype>
+		<allowedchildtype>Article</allowedchildtype>
+		<allowedchildtype>Preface</allowedchildtype>
+		<metadata num="1o">TitleDocMain</metadata>
+		<metadata num="*">RUSMainTitle</metadata>
+		<metadata num="*">MainTitleTranslated</metadata>
+		<metadata num="*">MainTitleTransliterated</metadata>
+		<metadata num="*">Keyword</metadata>
+		<metadata num="*">CurrentNo</metadata>
+		<metadata num="1o">CurrentNoSorting</metadata>
+		<metadata num="*">Author</metadata>
+		<metadata num="*">ZBLAuthor</metadata>
+		<metadata num="*">AuthorTransliteratedDIN</metadata>
+		<metadata num="*">AuthorTransliteratedISO</metadata>
+		<metadata num="*">Contributor</metadata>
+		<metadata num="*">Creator</metadata>
+		<metadata num="*">Editor</metadata>
+		<metadata num="*">Illustrator</metadata>
+		<metadata num="*">Printer</metadata>
+		<metadata num="*">Reviewer</metadata>
+		<metadata num="*">Translator</metadata>
+		<metadata num="1o">CreatorsAllOrigin</metadata>
+		<metadata num="1o">IdentifierSource</metadata>
+		<metadata num="1o">CatalogIDDigital</metadata>
+		<metadata num="1o">SICI</metadata>
+		<metadata num="1o">ZBLIdentifier</metadata>
+		<metadata num="1o">JFMIdentifier</metadata>
+		<metadata num="1o">_LogicalPageNumbers</metadata>
+		<metadata num="1o">_purl</metadata>
+	</DocStrctType>
+	<DocStrctType>
+		<Name>Remarks</Name>
+		<language name="en">Remarks</language>
+		<language name="de">Anmerkung</language>
+		<language name="rusdml">Remarks</language>
+		<allowedchildtype>Figure</allowedchildtype>
+		<allowedchildtype>Supplement</allowedchildtype>
+		<allowedchildtype>Imprint</allowedchildtype>
+		<allowedchildtype>Errata</allowedchildtype>
+		<allowedchildtype>CurriculumVitae</allowedchildtype>
+		<allowedchildtype>Obituary</allowedchildtype>
+		<allowedchildtype>Index</allowedchildtype>
+		<allowedchildtype>Review</allowedchildtype>
+		<allowedchildtype>OtherDocStrct</allowedchildtype>
+		<allowedchildtype>Table</allowedchildtype>
+		<allowedchildtype>TitlePage</allowedchildtype>
+		<allowedchildtype>List</allowedchildtype>
+		<allowedchildtype>TableOfContents</allowedchildtype>
+		<allowedchildtype>ListOfPublications</allowedchildtype>
+		<allowedchildtype>Advertising</allowedchildtype>
+		<allowedchildtype>Dedication</allowedchildtype>
+		<allowedchildtype>Abstract</allowedchildtype>
+		<allowedchildtype>Article</allowedchildtype>
+		<metadata num="1o">TitleDocMain</metadata>
+		<metadata num="*">MainTitleTranslated</metadata>
+		<metadata num="*">MainTitleTransliterated</metadata>
+		<metadata num="*">Keyword</metadata>
+		<metadata num="*">CurrentNo</metadata>
+		<metadata num="1o">CurrentNoSorting</metadata>
+		<metadata num="*">Author</metadata>
+		<metadata num="*">ZBLAuthor</metadata>
+		<metadata num="*">AuthorTransliteratedDIN</metadata>
+		<metadata num="*">AuthorTransliteratedISO</metadata>
+		<metadata num="*">Contributor</metadata>
+		<metadata num="*">Creator</metadata>
+		<metadata num="*">Editor</metadata>
+		<metadata num="*">Illustrator</metadata>
+		<metadata num="*">Printer</metadata>
+		<metadata num="*">Reviewer</metadata>
+		<metadata num="*">Translator</metadata>
+		<metadata num="1o">CreatorsAllOrigin</metadata>
+		<metadata num="1o">IdentifierSource</metadata>
+		<metadata num="1o">CatalogIDDigital</metadata>
+		<metadata num="1o">SICI</metadata>
+		<metadata num="1o">ZBLIdentifier</metadata>
+		<metadata num="1o">JFMIdentifier</metadata>
+		<metadata num="1o">_LogicalPageNumbers</metadata>
+		<metadata num="1o">_purl</metadata>
+	</DocStrctType>
+	<DocStrctType>
+		<Name>Bibliography</Name>
+		<language name="en">Bibliography</language>
+		<language name="de">Bibliographie</language>
+		<language name="rusdml">Bibliography</language>
+		<allowedchildtype>Figure</allowedchildtype>
+		<allowedchildtype>Supplement</allowedchildtype>
+		<allowedchildtype>Imprint</allowedchildtype>
+		<allowedchildtype>Errata</allowedchildtype>
+		<allowedchildtype>CurriculumVitae</allowedchildtype>
+		<allowedchildtype>Obituary</allowedchildtype>
+		<allowedchildtype>Index</allowedchildtype>
+		<allowedchildtype>Review</allowedchildtype>
+		<allowedchildtype>OtherDocStrct</allowedchildtype>
+		<allowedchildtype>Table</allowedchildtype>
+		<allowedchildtype>TitlePage</allowedchildtype>
+		<allowedchildtype>List</allowedchildtype>
+		<allowedchildtype>TableOfContents</allowedchildtype>
+		<allowedchildtype>ListOfPublications</allowedchildtype>
+		<allowedchildtype>Advertising</allowedchildtype>
+		<allowedchildtype>Dedication</allowedchildtype>
+		<allowedchildtype>Abstract</allowedchildtype>
+		<allowedchildtype>Article</allowedchildtype>
+		<metadata num="1o">TitleDocMain</metadata>
+		<metadata num="*">MainTitleTranslated</metadata>
+		<metadata num="*">MainTitleTransliterated</metadata>
+		<metadata num="*">Keyword</metadata>
+		<metadata num="*">CurrentNo</metadata>
+		<metadata num="1o">CurrentNoSorting</metadata>
+		<metadata num="*">Author</metadata>
+		<metadata num="*">ZBLAuthor</metadata>
+		<metadata num="*">AuthorTransliteratedDIN</metadata>
+		<metadata num="*">AuthorTransliteratedISO</metadata>
+		<metadata num="*">Contributor</metadata>
+		<metadata num="*">Creator</metadata>
+		<metadata num="*">Editor</metadata>
+		<metadata num="*">Illustrator</metadata>
+		<metadata num="*">Printer</metadata>
+		<metadata num="*">Reviewer</metadata>
+		<metadata num="*">Translator</metadata>
+		<metadata num="1o">CreatorsAllOrigin</metadata>
+		<metadata num="1o">IdentifierSource</metadata>
+		<metadata num="1o">CatalogIDDigital</metadata>
+		<metadata num="1o">SICI</metadata>
+		<metadata num="1o">ZBLIdentifier</metadata>
+		<metadata num="1o">JFMIdentifier</metadata>
+		<metadata num="1o">_LogicalPageNumbers</metadata>
+		<metadata num="1o">_purl</metadata>
+	</DocStrctType>
+	<DocStrctType>
+		<Name>Introduction</Name>
+		<language name="en">Introduction</language>
+		<language name="de">Einleitung</language>
+		<language name="rusdml">Introduction</language>
+		<allowedchildtype>Figure</allowedchildtype>
+		<allowedchildtype>Supplement</allowedchildtype>
+		<allowedchildtype>Imprint</allowedchildtype>
+		<allowedchildtype>Errata</allowedchildtype>
+		<allowedchildtype>CurriculumVitae</allowedchildtype>
+		<allowedchildtype>Obituary</allowedchildtype>
+		<allowedchildtype>Index</allowedchildtype>
+		<allowedchildtype>Review</allowedchildtype>
+		<allowedchildtype>OtherDocStrct</allowedchildtype>
+		<allowedchildtype>Table</allowedchildtype>
+		<allowedchildtype>TitlePage</allowedchildtype>
+		<allowedchildtype>List</allowedchildtype>
+		<allowedchildtype>TableOfContents</allowedchildtype>
+		<allowedchildtype>ListOfPublications</allowedchildtype>
+		<allowedchildtype>Advertising</allowedchildtype>
+		<allowedchildtype>Dedication</allowedchildtype>
+		<allowedchildtype>Abstract</allowedchildtype>
+		<allowedchildtype>Article</allowedchildtype>
+		<metadata num="1o">TitleDocMain</metadata>
+		<metadata num="*">MainTitleTranslated</metadata>
+		<metadata num="*">MainTitleTransliterated</metadata>
+		<metadata num="*">Keyword</metadata>
+		<metadata num="*">CurrentNo</metadata>
+		<metadata num="1o">CurrentNoSorting</metadata>
+		<metadata num="*">Author</metadata>
+		<metadata num="*">ZBLAuthor</metadata>
+		<metadata num="*">AuthorTransliteratedDIN</metadata>
+		<metadata num="*">AuthorTransliteratedISO</metadata>
+		<metadata num="*">Contributor</metadata>
+		<metadata num="*">Creator</metadata>
+		<metadata num="*">Editor</metadata>
+		<metadata num="*">Illustrator</metadata>
+		<metadata num="*">Printer</metadata>
+		<metadata num="*">Reviewer</metadata>
+		<metadata num="*">Translator</metadata>
+		<metadata num="1o">CreatorsAllOrigin</metadata>
+		<metadata num="1o">IdentifierSource</metadata>
+		<metadata num="1o">CatalogIDDigital</metadata>
+		<metadata num="1o">SICI</metadata>
+		<metadata num="1o">ZBLIdentifier</metadata>
+		<metadata num="1o">JFMIdentifier</metadata>
+		<metadata num="1o">_LogicalPageNumbers</metadata>
+		<metadata num="1o">_purl</metadata>
+	</DocStrctType>
+	<DocStrctType>
+		<Name>Epilog</Name>
+		<language name="en">Epilog</language>
+		<language name="de">Nachwort</language>
+		<language name="rusdml">Epilog</language>
+		<allowedchildtype>Figure</allowedchildtype>
+		<allowedchildtype>Supplement</allowedchildtype>
+		<allowedchildtype>Imprint</allowedchildtype>
+		<allowedchildtype>Errata</allowedchildtype>
+		<allowedchildtype>CurriculumVitae</allowedchildtype>
+		<allowedchildtype>Obituary</allowedchildtype>
+		<allowedchildtype>Index</allowedchildtype>
+		<allowedchildtype>Review</allowedchildtype>
+		<allowedchildtype>OtherDocStrct</allowedchildtype>
+		<allowedchildtype>Table</allowedchildtype>
+		<allowedchildtype>TitlePage</allowedchildtype>
+		<allowedchildtype>List</allowedchildtype>
+		<allowedchildtype>TableOfContents</allowedchildtype>
+		<allowedchildtype>ListOfPublications</allowedchildtype>
+		<allowedchildtype>Advertising</allowedchildtype>
+		<allowedchildtype>Dedication</allowedchildtype>
+		<allowedchildtype>Abstract</allowedchildtype>
+		<allowedchildtype>Article</allowedchildtype>
+		<metadata num="1o">TitleDocMain</metadata>
+		<metadata num="*">MainTitleTranslated</metadata>
+		<metadata num="*">MainTitleTransliterated</metadata>
+		<metadata num="*">Keyword</metadata>
+		<metadata num="*">CurrentNo</metadata>
+		<metadata num="1o">CurrentNoSorting</metadata>
+		<metadata num="*">Author</metadata>
+		<metadata num="*">ZBLAuthor</metadata>
+		<metadata num="*">AuthorTransliteratedDIN</metadata>
+		<metadata num="*">AuthorTransliteratedISO</metadata>
+		<metadata num="*">Contributor</metadata>
+		<metadata num="*">Creator</metadata>
+		<metadata num="*">Editor</metadata>
+		<metadata num="*">Illustrator</metadata>
+		<metadata num="*">Printer</metadata>
+		<metadata num="*">Reviewer</metadata>
+		<metadata num="*">Translator</metadata>
+		<metadata num="1o">CreatorsAllOrigin</metadata>
+		<metadata num="1o">IdentifierSource</metadata>
+		<metadata num="1o">CatalogIDDigital</metadata>
+		<metadata num="1o">SICI</metadata>
+		<metadata num="1o">ZBLIdentifier</metadata>
+		<metadata num="1o">JFMIdentifier</metadata>
+		<metadata num="1o">_LogicalPageNumbers</metadata>
+		<metadata num="1o">_purl</metadata>
+	</DocStrctType>
+	<DocStrctType>
+		<Name>Preface</Name>
+		<language name="en">Preface</language>
+		<language name="de">Vorwort</language>
+		<language name="rusdml">Preface</language>
+		<allowedchildtype>Figure</allowedchildtype>
+		<allowedchildtype>Supplement</allowedchildtype>
+		<allowedchildtype>Imprint</allowedchildtype>
+		<allowedchildtype>Errata</allowedchildtype>
+		<allowedchildtype>CurriculumVitae</allowedchildtype>
+		<allowedchildtype>Obituary</allowedchildtype>
+		<allowedchildtype>Index</allowedchildtype>
+		<allowedchildtype>Review</allowedchildtype>
+		<allowedchildtype>OtherDocStrct</allowedchildtype>
+		<allowedchildtype>Table</allowedchildtype>
+		<allowedchildtype>TitlePage</allowedchildtype>
+		<allowedchildtype>List</allowedchildtype>
+		<allowedchildtype>TableOfContents</allowedchildtype>
+		<allowedchildtype>ListOfPublications</allowedchildtype>
+		<allowedchildtype>Advertising</allowedchildtype>
+		<allowedchildtype>Dedication</allowedchildtype>
+		<allowedchildtype>Abstract</allowedchildtype>
+		<allowedchildtype>Article</allowedchildtype>
+		<metadata num="1o">TitleDocMain</metadata>
+		<metadata num="*">MainTitleTranslated</metadata>
+		<metadata num="*">MainTitleTransliterated</metadata>
+		<metadata num="*">Keyword</metadata>
+		<metadata num="*">CurrentNo</metadata>
+		<metadata num="1o">CurrentNoSorting</metadata>
+		<metadata num="*">Author</metadata>
+		<metadata num="*">ZBLAuthor</metadata>
+		<metadata num="*">AuthorTransliteratedDIN</metadata>
+		<metadata num="*">AuthorTransliteratedISO</metadata>
+		<metadata num="*">Contributor</metadata>
+		<metadata num="*">Creator</metadata>
+		<metadata num="*">Editor</metadata>
+		<metadata num="*">Illustrator</metadata>
+		<metadata num="*">Printer</metadata>
+		<metadata num="*">Reviewer</metadata>
+		<metadata num="*">Translator</metadata>
+		<metadata num="1o">CreatorsAllOrigin</metadata>
+		<metadata num="1o">IdentifierSource</metadata>
+		<metadata num="1o">CatalogIDDigital</metadata>
+		<metadata num="1o">SICI</metadata>
+		<metadata num="1o">ZBLIdentifier</metadata>
+		<metadata num="1o">JFMIdentifier</metadata>
+		<metadata num="1o">_LogicalPageNumbers</metadata>
+		<metadata num="1o">_purl</metadata>
+	</DocStrctType>
+	<DocStrctType>
+		<Name>Addendum</Name>
+		<language name="en">Addendum</language>
+		<language name="de">Nachtrag</language>
+		<language name="rusdml">Addendum</language>
+		<allowedchildtype>Figure</allowedchildtype>
+		<allowedchildtype>Supplement</allowedchildtype>
+		<allowedchildtype>Imprint</allowedchildtype>
+		<allowedchildtype>Errata</allowedchildtype>
+		<allowedchildtype>CurriculumVitae</allowedchildtype>
+		<allowedchildtype>Obituary</allowedchildtype>
+		<allowedchildtype>Index</allowedchildtype>
+		<allowedchildtype>Review</allowedchildtype>
+		<allowedchildtype>OtherDocStrct</allowedchildtype>
+		<allowedchildtype>Table</allowedchildtype>
+		<allowedchildtype>TitlePage</allowedchildtype>
+		<allowedchildtype>List</allowedchildtype>
+		<allowedchildtype>TableOfContents</allowedchildtype>
+		<allowedchildtype>ListOfPublications</allowedchildtype>
+		<allowedchildtype>Advertising</allowedchildtype>
+		<allowedchildtype>Dedication</allowedchildtype>
+		<allowedchildtype>Abstract</allowedchildtype>
+		<allowedchildtype>Article</allowedchildtype>
+		<metadata num="1o">TitleDocMain</metadata>
+		<metadata num="*">MainTitleTranslated</metadata>
+		<metadata num="*">MainTitleTransliterated</metadata>
+		<metadata num="*">Keyword</metadata>
+		<metadata num="*">CurrentNo</metadata>
+		<metadata num="1o">CurrentNoSorting</metadata>
+		<metadata num="*">Author</metadata>
+		<metadata num="*">ZBLAuthor</metadata>
+		<metadata num="*">AuthorTransliteratedDIN</metadata>
+		<metadata num="*">AuthorTransliteratedISO</metadata>
+		<metadata num="*">Contributor</metadata>
+		<metadata num="*">Creator</metadata>
+		<metadata num="*">Editor</metadata>
+		<metadata num="*">Illustrator</metadata>
+		<metadata num="*">Printer</metadata>
+		<metadata num="*">Reviewer</metadata>
+		<metadata num="*">Translator</metadata>
+		<metadata num="1o">CreatorsAllOrigin</metadata>
+		<metadata num="1o">IdentifierSource</metadata>
+		<metadata num="1o">CatalogIDDigital</metadata>
+		<metadata num="1o">SICI</metadata>
+		<metadata num="1o">ZBLIdentifier</metadata>
+		<metadata num="1o">JFMIdentifier</metadata>
+		<metadata num="1o">_LogicalPageNumbers</metadata>
+		<metadata num="1o">_purl</metadata>
+	</DocStrctType>
+	<DocStrctType>
+		<Name>Table</Name>
+		<language name="en">Table</language>
+		<language name="de">Tabelle</language>
+		<language name="rusdml">Table</language>
+		<metadata num="1o">TitleDocMain</metadata>
+		<metadata num="*">MainTitleTranslated</metadata>
+		<metadata num="*">MainTitleTransliterated</metadata>
+		<metadata num="*">Keyword</metadata>
+		<metadata num="*">CurrentNo</metadata>
+		<metadata num="1o">CurrentNoSorting</metadata>
+		<metadata num="*">Author</metadata>
+		<metadata num="*">ZBLAuthor</metadata>
+		<metadata num="*">AuthorTransliteratedDIN</metadata>
+		<metadata num="*">AuthorTransliteratedISO</metadata>
+		<metadata num="*">Contributor</metadata>
+		<metadata num="*">Creator</metadata>
+		<metadata num="*">Editor</metadata>
+		<metadata num="*">Illustrator</metadata>
+		<metadata num="*">Printer</metadata>
+		<metadata num="*">Reviewer</metadata>
+		<metadata num="*">Translator</metadata>
+		<metadata num="1o">CreatorsAllOrigin</metadata>
+		<metadata num="1o">IdentifierSource</metadata>
+		<metadata num="1o">CatalogIDDigital</metadata>
+		<metadata num="1o">SICI</metadata>
+		<metadata num="1o">ZBLIdentifier</metadata>
+		<metadata num="1o">JFMIdentifier</metadata>
+		<metadata num="1o">_LogicalPageNumbers</metadata>
+		<metadata num="1o">_purl</metadata>
+	</DocStrctType>
+	<DocStrctType>
+		<Name>TitlePage</Name>
+		<language name="en">TitlePage</language>
+		<language name="de">Titelseite</language>
+		<language name="rusdml">TitlePage</language>
+		<metadata num="1o">TitleDocMain</metadata>
+		<metadata num="*">MainTitleTranslated</metadata>
+		<metadata num="*">MainTitleTransliterated</metadata>
+		<metadata num="*">Keyword</metadata>
+		<metadata num="*">CurrentNo</metadata>
+		<metadata num="1o">CurrentNoSorting</metadata>
+		<metadata num="*">Author</metadata>
+		<metadata num="*">ZBLAuthor</metadata>
+		<metadata num="*">AuthorTransliteratedDIN</metadata>
+		<metadata num="*">AuthorTransliteratedISO</metadata>
+		<metadata num="*">Contributor</metadata>
+		<metadata num="*">Creator</metadata>
+		<metadata num="*">Editor</metadata>
+		<metadata num="*">Illustrator</metadata>
+		<metadata num="*">Printer</metadata>
+		<metadata num="*">Reviewer</metadata>
+		<metadata num="*">Translator</metadata>
+		<metadata num="1o">CreatorsAllOrigin</metadata>
+		<metadata num="1o">IdentifierSource</metadata>
+		<metadata num="1o">CatalogIDDigital</metadata>
+		<metadata num="1o">SICI</metadata>
+		<metadata num="1o">ZBLIdentifier</metadata>
+		<metadata num="1o">JFMIdentifier</metadata>
+		<metadata num="1o">_LogicalPageNumbers</metadata>
+		<metadata num="1o">_purl</metadata>
+	</DocStrctType>
+	<DocStrctType>
+		<Name>List</Name>
+		<language name="en">List</language>
+		<language name="de">Liste</language>
+		<language name="rusdml">List</language>
+		<metadata num="1o">TitleDocMain</metadata>
+		<metadata num="*">MainTitleTranslated</metadata>
+		<metadata num="*">MainTitleTransliterated</metadata>
+		<metadata num="*">Keyword</metadata>
+		<metadata num="*">CurrentNo</metadata>
+		<metadata num="1o">CurrentNoSorting</metadata>
+		<metadata num="*">Author</metadata>
+		<metadata num="*">ZBLAuthor</metadata>
+		<metadata num="*">AuthorTransliteratedDIN</metadata>
+		<metadata num="*">AuthorTransliteratedISO</metadata>
+		<metadata num="*">Contributor</metadata>
+		<metadata num="*">Creator</metadata>
+		<metadata num="*">Editor</metadata>
+		<metadata num="*">Illustrator</metadata>
+		<metadata num="*">Printer</metadata>
+		<metadata num="*">Reviewer</metadata>
+		<metadata num="*">Translator</metadata>
+		<metadata num="1o">CreatorsAllOrigin</metadata>
+		<metadata num="1o">IdentifierSource</metadata>
+		<metadata num="1o">CatalogIDDigital</metadata>
+		<metadata num="1o">SICI</metadata>
+		<metadata num="1o">ZBLIdentifier</metadata>
+		<metadata num="1o">JFMIdentifier</metadata>
+		<metadata num="1o">_LogicalPageNumbers</metadata>
+		<metadata num="1o">_purl</metadata>
+	</DocStrctType>
+	<DocStrctType>
+		<Name>TableOfContents</Name>
+		<language name="en">Table of Contents</language>
+		<language name="de">Inhaltsverzeichnis</language>
+		<language name="rusdml">Table of Contents</language>
+		<metadata num="1o">TitleDocMain</metadata>
+		<metadata num="*">MainTitleTranslated</metadata>
+		<metadata num="*">MainTitleTransliterated</metadata>
+		<metadata num="*">Keyword</metadata>
+		<metadata num="*">CurrentNo</metadata>
+		<metadata num="1o">CurrentNoSorting</metadata>
+		<metadata num="*">Author</metadata>
+		<metadata num="*">ZBLAuthor</metadata>
+		<metadata num="*">AuthorTransliteratedDIN</metadata>
+		<metadata num="*">AuthorTransliteratedISO</metadata>
+		<metadata num="*">Contributor</metadata>
+		<metadata num="*">Creator</metadata>
+		<metadata num="*">Editor</metadata>
+		<metadata num="*">Illustrator</metadata>
+		<metadata num="*">Printer</metadata>
+		<metadata num="*">Reviewer</metadata>
+		<metadata num="*">Translator</metadata>
+		<metadata num="1o">CreatorsAllOrigin</metadata>
+		<metadata num="1o">IdentifierSource</metadata>
+		<metadata num="1o">CatalogIDDigital</metadata>
+		<metadata num="1o">SICI</metadata>
+		<metadata num="1o">ZBLIdentifier</metadata>
+		<metadata num="1o">JFMIdentifier</metadata>
+		<metadata num="1o">_LogicalPageNumbers</metadata>
+		<metadata num="1o">_purl</metadata>
+	</DocStrctType>
+	<DocStrctType>
+		<Name>ListOfPublications</Name>
+		<language name="en">List of publications</language>
+		<language name="de">Liste von Publikationen</language>
+		<language name="rusdml">List of publications</language>
+		<metadata num="1o">TitleDocMain</metadata>
+		<metadata num="*">MainTitleTranslated</metadata>
+		<metadata num="*">MainTitleTransliterated</metadata>
+		<metadata num="*">Keyword</metadata>
+		<metadata num="*">CurrentNo</metadata>
+		<metadata num="1o">CurrentNoSorting</metadata>
+		<metadata num="*">Author</metadata>
+		<metadata num="*">ZBLAuthor</metadata>
+		<metadata num="*">AuthorTransliteratedDIN</metadata>
+		<metadata num="*">AuthorTransliteratedISO</metadata>
+		<metadata num="*">Contributor</metadata>
+		<metadata num="*">Creator</metadata>
+		<metadata num="*">Editor</metadata>
+		<metadata num="*">Illustrator</metadata>
+		<metadata num="*">Printer</metadata>
+		<metadata num="*">Reviewer</metadata>
+		<metadata num="*">Translator</metadata>
+		<metadata num="1o">CreatorsAllOrigin</metadata>
+		<metadata num="1o">IdentifierSource</metadata>
+		<metadata num="1o">CatalogIDDigital</metadata>
+		<metadata num="1o">SICI</metadata>
+		<metadata num="1o">ZBLIdentifier</metadata>
+		<metadata num="1o">JFMIdentifier</metadata>
+		<metadata num="1o">_LogicalPageNumbers</metadata>
+		<metadata num="1o">_purl</metadata>
+	</DocStrctType>
+	<DocStrctType>
+		<Name>Advertising</Name>
+		<language name="en">Advertising</language>
+		<language name="de">Werbung</language>
+		<language name="rusdml">Advertising</language>
+		<allowedchildtype>Advertising</allowedchildtype>
+		<allowedchildtype>OtherDocStrct</allowedchildtype>
+		<metadata num="1o">TitleDocMain</metadata>
+		<metadata num="*">MainTitleTranslated</metadata>
+		<metadata num="*">MainTitleTransliterated</metadata>
+		<metadata num="*">Keyword</metadata>
+		<metadata num="*">CurrentNo</metadata>
+		<metadata num="1o">CurrentNoSorting</metadata>
+		<metadata num="*">Author</metadata>
+		<metadata num="*">ZBLAuthor</metadata>
+		<metadata num="*">AuthorTransliteratedDIN</metadata>
+		<metadata num="*">AuthorTransliteratedISO</metadata>
+		<metadata num="*">Contributor</metadata>
+		<metadata num="*">Creator</metadata>
+		<metadata num="*">Editor</metadata>
+		<metadata num="*">Illustrator</metadata>
+		<metadata num="*">Printer</metadata>
+		<metadata num="*">Reviewer</metadata>
+		<metadata num="*">Translator</metadata>
+		<metadata num="1o">CreatorsAllOrigin</metadata>
+		<metadata num="1o">IdentifierSource</metadata>
+		<metadata num="1o">CatalogIDDigital</metadata>
+		<metadata num="1o">SICI</metadata>
+		<metadata num="1o">ZBLIdentifier</metadata>
+		<metadata num="1o">JFMIdentifier</metadata>
+		<metadata num="1o">_LogicalPageNumbers</metadata>
+		<metadata num="1o">_purl</metadata>
+	</DocStrctType>
+	<DocStrctType>
+		<Name>Dedication</Name>
+		<language name="en">Dedication</language>
+		<language name="de">Widmung</language>
+		<language name="rusdml">Dedication</language>
+		<metadata num="1o">TitleDocMain</metadata>
+		<metadata num="*">MainTitleTranslated</metadata>
+		<metadata num="*">MainTitleTransliterated</metadata>
+		<metadata num="*">Keyword</metadata>
+		<metadata num="*">CurrentNo</metadata>
+		<metadata num="1o">CurrentNoSorting</metadata>
+		<metadata num="*">Author</metadata>
+		<metadata num="*">ZBLAuthor</metadata>
+		<metadata num="*">AuthorTransliteratedDIN</metadata>
+		<metadata num="*">AuthorTransliteratedISO</metadata>
+		<metadata num="*">Contributor</metadata>
+		<metadata num="*">Creator</metadata>
+		<metadata num="*">Editor</metadata>
+		<metadata num="*">Illustrator</metadata>
+		<metadata num="*">Printer</metadata>
+		<metadata num="*">Reviewer</metadata>
+		<metadata num="*">Translator</metadata>
+		<metadata num="1o">CreatorsAllOrigin</metadata>
+		<metadata num="1o">IdentifierSource</metadata>
+		<metadata num="1o">CatalogIDDigital</metadata>
+		<metadata num="1o">SICI</metadata>
+		<metadata num="1o">ZBLIdentifier</metadata>
+		<metadata num="1o">JFMIdentifier</metadata>
+		<metadata num="1o">_LogicalPageNumbers</metadata>
+		<metadata num="1o">_purl</metadata>
+	</DocStrctType>
+	<DocStrctType>
+		<Name>Abstract</Name>
+		<language name="en">Abstract</language>
+		<language name="de">Abstract</language>
+		<language name="rusdml">Abstract</language>
+		<allowedchildtype>Figure</allowedchildtype>
+		<allowedchildtype>Supplement</allowedchildtype>
+		<allowedchildtype>Imprint</allowedchildtype>
+		<allowedchildtype>Errata</allowedchildtype>
+		<allowedchildtype>CurriculumVitae</allowedchildtype>
+		<allowedchildtype>Obituary</allowedchildtype>
+		<allowedchildtype>Index</allowedchildtype>
+		<allowedchildtype>Review</allowedchildtype>
+		<allowedchildtype>OtherDocStrct</allowedchildtype>
+		<allowedchildtype>Table</allowedchildtype>
+		<allowedchildtype>TitlePage</allowedchildtype>
+		<allowedchildtype>List</allowedchildtype>
+		<allowedchildtype>TableOfContents</allowedchildtype>
+		<allowedchildtype>ListOfPublications</allowedchildtype>
+		<allowedchildtype>Advertising</allowedchildtype>
+		<allowedchildtype>Dedication</allowedchildtype>
+		<allowedchildtype>Abstract</allowedchildtype>
+		<allowedchildtype>Article</allowedchildtype>
+		<metadata num="1o">TitleDocMain</metadata>
+		<metadata num="*">MainTitleTranslated</metadata>
+		<metadata num="*">MainTitleTransliterated</metadata>
+		<metadata num="*">Keyword</metadata>
+		<metadata num="*">CurrentNo</metadata>
+		<metadata num="1o">CurrentNoSorting</metadata>
+		<metadata num="*">Author</metadata>
+		<metadata num="*">ZBLAuthor</metadata>
+		<metadata num="*">AuthorTransliteratedDIN</metadata>
+		<metadata num="*">AuthorTransliteratedISO</metadata>
+		<metadata num="*">Contributor</metadata>
+		<metadata num="*">Creator</metadata>
+		<metadata num="*">Editor</metadata>
+		<metadata num="*">Illustrator</metadata>
+		<metadata num="*">Printer</metadata>
+		<metadata num="*">Reviewer</metadata>
+		<metadata num="*">Translator</metadata>
+		<metadata num="1o">CreatorsAllOrigin</metadata>
+		<metadata num="1o">IdentifierSource</metadata>
+		<metadata num="1o">CatalogIDDigital</metadata>
+		<metadata num="1o">SICI</metadata>
+		<metadata num="1o">ZBLIdentifier</metadata>
+		<metadata num="1o">JFMIdentifier</metadata>
+		<metadata num="1o">_LogicalPageNumbers</metadata>
+		<metadata num="1o">_purl</metadata>
+	</DocStrctType>
+	<DocStrctType>
+		<Name>Biography</Name>
+		<language name="en">Biography</language>
+		<language name="de">Biografie</language>
+		<language name="rusdml">Biography</language>
+		<allowedchildtype>Figure</allowedchildtype>
+		<allowedchildtype>Supplement</allowedchildtype>
+		<allowedchildtype>Imprint</allowedchildtype>
+		<allowedchildtype>Errata</allowedchildtype>
+		<allowedchildtype>CurriculumVitae</allowedchildtype>
+		<allowedchildtype>Obituary</allowedchildtype>
+		<allowedchildtype>Index</allowedchildtype>
+		<allowedchildtype>Review</allowedchildtype>
+		<allowedchildtype>OtherDocStrct</allowedchildtype>
+		<allowedchildtype>Table</allowedchildtype>
+		<allowedchildtype>TitlePage</allowedchildtype>
+		<allowedchildtype>List</allowedchildtype>
+		<allowedchildtype>TableOfContents</allowedchildtype>
+		<allowedchildtype>ListOfPublications</allowedchildtype>
+		<allowedchildtype>Advertising</allowedchildtype>
+		<allowedchildtype>Dedication</allowedchildtype>
+		<allowedchildtype>Abstract</allowedchildtype>
+		<metadata num="1o">TitleDocMain</metadata>
+		<metadata num="*">RUSMainTitle</metadata>
+		<metadata num="*">MainTitleTranslated</metadata>
+		<metadata num="*">MainTitleTransliterated</metadata>
+		<metadata num="*">CurrentNo</metadata>
+		<metadata num="1o">CurrentNoSorting</metadata>
+		<metadata num="*">Author</metadata>
+		<metadata num="*">ZBLAuthor</metadata>
+		<metadata num="*">AuthorTransliteratedDIN</metadata>
+		<metadata num="*">AuthorTransliteratedISO</metadata>
+		<metadata num="*">AuthorVariation</metadata>
+		<metadata num="*">Contributor</metadata>
+		<metadata num="*">Creator</metadata>
+		<metadata num="*">Editor</metadata>
+		<metadata num="*">Illustrator</metadata>
+		<metadata num="*">Printer</metadata>
+		<metadata num="*">Reviewer</metadata>
+		<metadata num="*">Translator</metadata>
+		<metadata num="*">PersonAsSubject</metadata>
+		<metadata num="*">Keyword</metadata>
+		<metadata num="*">RUSKeyword</metadata>
+		<metadata num="*">DocLanguage</metadata>
+		<metadata num="1o">CreatorsAllOrigin</metadata>
+		<metadata num="1o">IdentifierSource</metadata>
+		<metadata num="1o">CatalogIDDigital</metadata>
+		<metadata num="1o">SICI</metadata>
+		<metadata num="1o">ZBLIdentifier</metadata>
+		<metadata num="1o">JFMIdentifier</metadata>
+		<metadata num="1o">_LogicalPageNumbers</metadata>
+		<metadata num="1o">ZBLPageNumber</metadata>
+		<metadata num="1o">ZBLSource</metadata>
+		<metadata num="1o">ZBLAbstract</metadata>
+		<metadata num="1o">ZBLReviewAuthor</metadata>
+		<metadata num="1o">ZBLCita</metadata>
+		<metadata num="1o">ZBLTempID</metadata>
+		<metadata num="1o">ZBLReviewLink</metadata>
+		<metadata num="1o">ZBLIntern</metadata>
+		<metadata num="1o">_purl</metadata>
+	</DocStrctType>
+
+	<!-- ##########################################################################
+		 ##  Metadata types for the physical structure                           ##
+		 ########################################################################## -->
+
+	<!-- Physical structure entities -->
+	<DocStrctType>
+		<Name>page</Name>
+		<language name="de">Seite</language>
+		<language name="en">page</language>
+		<language name="rusdml">page</language>
+		<metadata num="1m">physPageNumber</metadata>
+		<metadata num="1m">logicalPageNumber</metadata>
+		<metadata num="1o">pagesize</metadata>
+	</DocStrctType>
+	<DocStrctType>
+		<Name>BoundBook</Name>
+		<language name="de">gebundenes Buch</language>
+		<language name="en">bound Book</language>
+		<language name="rusdml">bound Book</language>
+		<metadata num="1o">copyrightimageset</metadata>
+		<metadata num="1o">mediumsource</metadata>
+		<metadata num="1o">shelfmarksource</metadata>
+		<metadata num="1o">shelfmarkarchiveimageset</metadata>
+		<metadata num="1o">imagedescr</metadata>
+		<metadata num="1o">FormatSourcePrint</metadata>
+		<metadata num="1o">commentsource</metadata>
+		<metadata num="1o">datedigit</metadata>
+		<metadata num="1o">pathimagefiles</metadata>
+		<metadata num="1o">originImageSet</metadata>
+		<allowedchildtype>page</allowedchildtype>
+	</DocStrctType>
+
+	<!-- ##########################################################################
+		 ##  Formats section                                                     ##
+		 ########################################################################## -->
+
+	<Formats>
+
+		<RDF>
+			<class>ugh.dl.fileformats.rdffile</class>
+			<Metadata>
+				<Name>TitleDocMain</Name>
+				<RDFName>AGORA:TitleDocMain</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>RUSMainTitle</Name>
+				<RDFName>AGORA:TitleDocMainRus</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>MainTitleTranslated</Name>
+				<RDFName>AGORA:TitleDocMainTranslated</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>MainTitleTransliterated</Name>
+				<RDFName>AGORA:TitleDocMainTransliterated</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>Abstract</Name>
+				<RDFName>AGORA:Abstract</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>ClassificationMSC</Name>
+				<RDFName>AGORA:MSC</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>ClassificationUDK</Name>
+				<RDFName>AGORA:UDK</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>Keyword</Name>
+				<RDFName>AGORA:Keyword</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>RUSKeyword</Name>
+				<RDFName>AGORA:KeywordRus</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>CreatorsAllOrigin</Name>
+				<RDFName>AGORA:CreatorsAll</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>_LogicalPageNumbers</Name>
+				<RDFName>AGORA:LogicalPageNumbers</RDFName>
+			</Metadata>
+
+			<!-- Persons -->
+			<Metadata rdfList="AGORA:ListOfCreators" rdfListType="seq">
+				<Name>Author</Name>
+				<RDFName>AGORA:Author</RDFName>
+				<groupName>CreatorsAllOrigin</groupName>
+			</Metadata>
+			<Metadata rdfList="AGORA:ListOfCreators" rdfListType="seq">
+				<Name>ZBLAuthor</Name>
+				<RDFName>AGORA:ZBLAuthor</RDFName>
+				<groupName>CreatorsAllOrigin</groupName>
+			</Metadata>
+			<Metadata rdfList="AGORA:ListOfCreators" rdfListType="seq">
+				<Name>AuthorTransliteratedDIN</Name>
+				<RDFName>AGORA:AuthorTransliteratedDIN</RDFName>
+				<groupName>CreatorsAllOrigin</groupName>
+			</Metadata>
+			<Metadata rdfList="AGORA:ListOfCreators" rdfListType="seq">
+				<Name>AuthorTransliteratedISO</Name>
+				<RDFName>AGORA:AuthorTransliteratedISO</RDFName>
+				<groupName>CreatorsAllOrigin</groupName>
+			</Metadata>
+			<Metadata rdfList="AGORA:ListOfCreators" rdfListType="seq">
+				<Name>AuthorVariation</Name>
+				<RDFName>AGORA:AuthorVariation</RDFName>
+				<groupName>CreatorsAllOrigin</groupName>
+			</Metadata>
+			<Metadata rdfList="AGORA:ListOfCreators" rdfListType="seq">
+				<Name>Contributor</Name>
+				<RDFName>AGORA:Contributor</RDFName>
+				<groupName>CreatorsAllOrigin</groupName>
+			</Metadata>
+			<Metadata rdfList="AGORA:ListOfCreators" rdfListType="seq">
+				<Name>Creator</Name>
+				<RDFName>AGORA:Creator</RDFName>
+				<groupName>CreatorsAllOrigin</groupName>
+			</Metadata>
+			<Metadata rdfList="AGORA:ListOfCreators" rdfListType="seq">
+				<Name>Editor</Name>
+				<RDFName>AGORA:Editor</RDFName>
+				<groupName>CreatorsAllOrigin</groupName>
+			</Metadata>
+			<Metadata rdfList="AGORA:ListOfCreators" rdfListType="seq">
+				<Name>Illustrator</Name>
+				<RDFName>AGORA:Illustrator</RDFName>
+				<groupName>CreatorsAllOrigin</groupName>
+			</Metadata>
+			<Metadata rdfList="AGORA:ListOfCreators" rdfListType="seq">
+				<Name>Printer</Name>
+				<RDFName>AGORA:Printer</RDFName>
+				<groupName>CreatorsAllOrigin</groupName>
+			</Metadata>
+			<Metadata rdfList="AGORA:ListOfCreators" rdfListType="seq">
+				<Name>Reviewer</Name>
+				<RDFName>AGORA:Reviewer</RDFName>
+				<groupName>CreatorsAllOrigin</groupName>
+			</Metadata>
+			<Metadata rdfList="AGORA:ListOfCreators" rdfListType="seq">
+				<Name>Translator</Name>
+				<RDFName>AGORA:Translator</RDFName>
+				<groupName>CreatorsAllOrigin</groupName>
+			</Metadata>
+
+			<!-- -->
+			<Metadata>
+				<Name>PersonAsSubject</Name>
+				<RDFName>AGORA:PersonAsSubject</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>CurrentNo</Name>
+				<RDFName>AGORA:CurrentNo</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>CurrentNoSorting</Name>
+				<RDFName>AGORA:CurrentNoForSorting</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>CreatorsAllOrigin</Name>
+				<RDFName>AGORA:CreatorsAll</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>PublisherName</Name>
+				<RDFName>AGORA:PublisherName</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>RUSPublisherName</Name>
+				<RDFName>AGORA:PublisherNameRus</RDFName>
+			</Metadata>
+			<Metadata rdfList="AGORA:PlacesOfPublicationRus" rdfListType="seq">
+				<Name>RUSPlaceOfPublication</Name>
+				<RDFName>AGORA:PlaceOfPublicationRus</RDFName>
+			</Metadata>
+			<Metadata rdfList="AGORA:PlacesOfPublication" rdfListType="seq">
+				<Name>PlaceOfPublication</Name>
+				<RDFName>AGORA:PlaceOfPublication</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>RUSPublicationHouse</Name>
+				<RDFName>AGORA:PublicationHouseRus</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>ZBLPageNumber</Name>
+				<RDFName>AGORA:ZBLPageNumber</RDFName>
+			</Metadata>
+
+			<!-- Zentralblatt-Daten -->
+			<Metadata>
+				<Name>ZBLPageNumber</Name>
+				<RDFName>AGORA:ZBLPageNumber</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>ZBLSource</Name>
+				<RDFName>AGORA:ZBLSource</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>ZBLAbstract</Name>
+				<RDFName>AGORA:ZBLAbstract</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>ZBLReviewAuthor</Name>
+				<RDFName>AGORA:ZBLReviewAuthor</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>ZBLCita</Name>
+				<RDFName>AGORA:ZBLCita</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>ZBLTempID</Name>
+				<RDFName>AGORA:ZBLTempID</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>ZBLReviewLink</Name>
+				<RDFName>AGORA:ZBLReviewLink</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>ZBLIntern</Name>
+				<RDFName>AGORA:ZBLIntern</RDFName>
+			</Metadata>
+
+			<!-- Identifier -->
+			<Metadata>
+				<Name>ISSN</Name>
+				<RDFName>AGORA:ISSN</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>ZDBID</Name>
+				<RDFName>AGORA:CatalogIDPeriodicalDB</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>CatalogIDDigital</Name>
+				<RDFName>AGORA:CatalogIDDigital</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>IdentifierSource</Name>
+				<RDFName>AGORA:CatalogIDSource</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>SICI</Name>
+				<RDFName>AGORA:SICI</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>ZBLIdentifier</Name>
+				<RDFName>AGORA:ZBL</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>JFMIdentifier</Name>
+				<RDFName>AGORA:JFM</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>PublicationStart</Name>
+				<RDFName>AGORA:YearOfPublicationStart</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>PublicationEnd</Name>
+				<RDFName>AGORA:YearOfPublicationEnd</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>TSL_ATS</Name>
+				<RDFName>AGORA:ShortCutDoc</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>copyrightimageset</Name>
+				<RDFName>AGORA:CopyrightImageSet</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>mediumsource</Name>
+				<RDFName>AGORA:MediumSource</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>shelfmarksource</Name>
+				<RDFName>AGORA:ShelfmarkSource</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>imagedescr</Name>
+				<RDFName>AGORA:ImageDescr</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>commentsource</Name>
+				<RDFName>AGORA:CommentSource</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>datedigit</Name>
+				<RDFName>AGORA:DateDigitizationImageSet</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>pathimagefiles</Name>
+				<RDFName>AGORA:PathImagefiles</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>originImageSet</Name>
+				<RDFName>AGORA:OriginatorImageSet</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>copyrightSource</Name>
+				<RDFName>AGORA:CopyrightSourcePrint</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>editionVersion</Name>
+				<RDFName>AGORA:EditionVersion</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>DocLanguage</Name>
+				<RDFName>AGORA:DocLanguage</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>PublicationYear</Name>
+				<RDFName>AGORA:PublicationYear</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>PublicationStart</Name>
+				<RDFName>AGORA:YearOfPublicationStart</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>PublicationEnd</Name>
+				<RDFName>AGORA:YearOfPublicationEnd</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>shelfmarkarchiveimageset</Name>
+				<RDFName>AGORA:ShelfmarkArchiveImageSet</RDFName>
+			</Metadata>
+			<Metadata rdfList="AGORA:DigitalLibraryCollections" rdfListType="seq">
+				<Name>singleDigCollection</Name>
+				<RDFName>AGORA:DigitalLibraryCollection</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>SizeSourcePrint</Name>
+				<RDFName>AGORA:SizeSourcePrint</RDFName>
+			</Metadata>
+			<Metadata>
+				<Name>FormatSourcePrint</Name>
+				<RDFName>AGORA:FormatSourcePrint</RDFName>
+				<!-- define rules for input / output:
+					name = name of rule or command; can be moveToParent; copyToParent;
+					parameter = only some rules need a parameter
+					condition = name of docstruct type of the source docstruct
+					for which this rule should be valid; if not given it is valid for any
+					docstruct
+					<filterrule name="" parameter="" condition="" type=""/>
+				-->
+			</Metadata>
+
+			<!-- Definition of structure types -->
+			<DocStruct>
+				<Name>Periodical</Name>
+				<RDFName>AGORA:Periodical</RDFName>
+			</DocStruct>
+			<DocStruct>
+				<Name>PeriodicalVolume</Name>
+				<RDFName>AGORA:PeriodicalVolume</RDFName>
+			</DocStruct>
+			<DocStruct>
+				<Name>PeriodicalIssue</Name>
+				<RDFName>AGORA:PeriodicalIssue</RDFName>
+			</DocStruct>
+			<DocStruct>
+				<Name>PeriodicalPart</Name>
+				<RDFName>AGORA:PeriodicalPart</RDFName>
+			</DocStruct>
+			<DocStruct>
+				<Name>Article</Name>
+				<RDFName>AGORA:Article</RDFName>
+			</DocStruct>
+			<DocStruct>
+				<Name>Figure</Name>
+				<RDFName>AGORA:Figure</RDFName>
+			</DocStruct>
+			<DocStruct>
+				<Name>Supplement</Name>
+				<RDFName>AGORA:Supplement</RDFName>
+			</DocStruct>
+			<DocStruct>
+				<Name>Imprint</Name>
+				<RDFName>AGORA:Imprint</RDFName>
+			</DocStruct>
+			<DocStruct>
+				<Name>Errata</Name>
+				<RDFName>AGORA:Errata</RDFName>
+			</DocStruct>
+			<DocStruct>
+				<Name>CurriculumVitae</Name>
+				<RDFName>AGORA:CurriculumVitae</RDFName>
+			</DocStruct>
+			<DocStruct>
+				<Name>Obituary</Name>
+				<RDFName>AGORA:Obituary</RDFName>
+			</DocStruct>
+			<DocStruct>
+				<Name>Index</Name>
+				<RDFName>AGORA:Index</RDFName>
+			</DocStruct>
+			<DocStruct>
+				<Name>Review</Name>
+				<RDFName>AGORA:Review</RDFName>
+			</DocStruct>
+			<DocStruct>
+				<Name>OtherDocStrct</Name>
+				<RDFName>AGORA:OtherDocStrct</RDFName>
+			</DocStruct>
+			<DocStruct>
+				<Name>Biography</Name>
+				<RDFName>AGORA:Biography</RDFName>
+			</DocStruct>
+			<DocStruct>
+				<Name>Remarks</Name>
+				<RDFName>AGORA:Remarks</RDFName>
+			</DocStruct>
+			<DocStruct>
+				<Name>Bibliography</Name>
+				<RDFName>AGORA:Bibliography</RDFName>
+			</DocStruct>
+			<DocStruct>
+				<Name>Introduction</Name>
+				<RDFName>AGORA:Introduction</RDFName>
+			</DocStruct>
+			<DocStruct>
+				<Name>Epilog</Name>
+				<RDFName>AGORA:Epilog</RDFName>
+			</DocStruct>
+			<DocStruct>
+				<Name>Preface</Name>
+				<RDFName>AGORA:Preface</RDFName>
+			</DocStruct>
+			<DocStruct>
+				<Name>Addendum</Name>
+				<RDFName>AGORA:Addendum</RDFName>
+			</DocStruct>
+			<DocStruct>
+				<Name>Table</Name>
+				<RDFName>AGORA:Table</RDFName>
+			</DocStruct>
+			<DocStruct>
+				<Name>TitlePage</Name>
+				<RDFName>AGORA:TitlePage</RDFName>
+			</DocStruct>
+			<DocStruct>
+				<Name>List</Name>
+				<RDFName>AGORA:List</RDFName>
+			</DocStruct>
+			<DocStruct>
+				<Name>TableOfContents</Name>
+				<RDFName>AGORA:TableOfContents</RDFName>
+			</DocStruct>
+			<DocStruct>
+				<Name>ListOfPublications</Name>
+				<RDFName>AGORA:ListOfPublications</RDFName>
+			</DocStruct>
+			<DocStruct>
+				<Name>Advertising</Name>
+				<RDFName>AGORA:Advertising</RDFName>
+			</DocStruct>
+			<DocStruct>
+				<Name>Dedication</Name>
+				<RDFName>AGORA:Dedication</RDFName>
+			</DocStruct>
+			<DocStruct>
+				<Name>Abstract</Name>
+				<RDFName>AGORA:Abstract</RDFName>
+			</DocStruct>
+			<DocStruct>
+				<Name>Cover</Name>
+				<RDFName>AGORA:Cover</RDFName>
+			</DocStruct>
+		</RDF>
+
+		<!-- The ZVDD METS format
+			================================================================================
+			
+			The ZVDD METS format describes the structure information in METS, while the
+			descriptive metadata is stored in MODS.
+			
+			The configuration describes the mapping between the internal metadata
+			structure and MODS. For every metadata type there is a Metadata element. This
+			metadata element must have least the following two sub elements:
+			
+			- <MODSName> contains the MODS name as defined in the MODS schema
+			- <InternalName> the name of metadata type
+			
+			In case the MODSName belongs to a substructure as e.g. the title, which is
+			stored in the titleinfo element, we have a MODSGroup element.
+			
+			Many MODS elements have appropriate attributes to qualify the metadata value.
+			E.g. a type, an authority are stored in these attributes. For each
+			MODS-attribute there is a special element which contains the value of the
+			attribute. When reading a METS file, the MODS metadata field is only mapped
+			to the internal Metadata type, when the appropriate MODS attribute has the
+			same value.
+			
+			The following elements are available for the MODS attributes:
+			
+			MODSType            type - attribute
+			MODSAuthority       authority - attribute
+			MODSEncoding        encoding - attribute
+			MODSQualifier       qualifier attribute
+			MODSQualifierValue  qualifierValue - attribute
+			MODSLang            lang - attribute
+			MODSXMLLang         xmlLang - attribute
+			MODSID              ID - attribute
+			MODSTransliteration	Transliteration - attibute
+			XPath               The XPath for reading MODS metadata
+			WriteXPath			The XPath for writing MODS metadata, you have to put in
+			the appropriate namespace ("mods:" or "gdz:")
+			FirstnameXPath      relative path within the <mods:name> element
+			LastnameXPath     	relative path within the <mods:name> element
+			
+			As MODS is very flexible and extendable, there are two elements which may
+			contain two complete MODS records. This is the "originInfo" and the
+			"relatedItem" element. If an internal metadata element should only be read
+			from (or written to) one of those elements, the ruleset's MODSName element
+			must have a parentElement-attribute which must contain the value "originInfo"
+			or "relatedItem".
+			The parentElement attribute is also used in case of the
+			MODS:physicalDescription element. If a metadata type should be mapped to the
+			MODS physical description element, the appropriate sub element must be named
+			in the MODSName element and the parentElement-attribute must be set to
+			"physicalDescription".
+			
+			Storing persons in MODS requires to store the role of each person. Therefore
+			the MODSName element can have a role-attribute if the value of MODSName is
+			"person".
+		-->
+
+		<METS>
+			<class>ugh.fileformats.mets.MetsModsImportExport</class>
+
+			<!-- Namespace definitions :
+				If the METS' <NamespyceDefinition> has the attribute default="true", the METS namespace
+				is set as default namespace and written without its namespace prefix.
+				If a <schemaLocation> tag is set, that location is used in the created METS file. METS
+				and MODS schema locations are set from UGH and may be overwritten by a <schemaLocation>
+				tag (thought that would not be wise, because UGH does know, which METS and MODS schema
+				version it is generating.
+			-->
+			<NamespaceDefinition>
+				<URI>http://www.loc.gov/METS/</URI>
+				<prefix>mets</prefix>
+			</NamespaceDefinition>
+			<NamespaceDefinition>
+				<URI>http://gdz.sub.uni-goettingen.de</URI>
+				<prefix>gdz</prefix>
+			</NamespaceDefinition>
+			<NamespaceDefinition>
+				<URI>http://meta.goobi.org/v1.5.1/</URI>
+				<prefix>goobi</prefix>
+			</NamespaceDefinition>
+			<NamespaceDefinition>
+				<URI>http://dfg-viewer.de</URI>
+				<prefix>dv</prefix>
+			</NamespaceDefinition>
+			<NamespaceDefinition>
+				<URI>http://www.loc.gov/mods/v3</URI>
+				<prefix>mods</prefix>
+			</NamespaceDefinition>
+
+			<!-- The XPathAnchorQuery defines the element, whose content contains the
+				identifier of the anchor. The anchor is stored in another METS file which is
+				loaded separatly; during databaseimport this identifier is used to store the
+				relationship between these docstruct objects. -->
+			<XPathAnchorQuery>./mods:mods/mods:relatedItem[@type='host']/mods:recordInfo/mods:recordIdentifier[@source='gbv-ppn']</XPathAnchorQuery>
+			<AnchorIdentifierMetadataType>CatalogIDDigital</AnchorIdentifierMetadataType>
+
+			<!-- ##########################################################################
+				 ##  Metadata mapping definition                                         ##
+				 ########################################################################## -->
+
+			<Metadata>
+				<InternalName>CatalogIDDigital</InternalName>
+				<WriteXPath>./mods:mods/mods:recordInfo/#mods:recordIdentifier[@source='gbv-ppn']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>_purl</InternalName>
+				<WriteXPath>./mods:mods/mods:identifier[@type='purl']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>TitleDocMain</InternalName>
+				<WriteXPath>./mods:mods/mods:titleInfo/#mods:title</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>RUSMainTitle</InternalName>
+				<WriteXPath>./mods:mods/#mods:titleInfo[@lang='ru']/mods:title</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>MainTitleTranslated</InternalName>
+				<WriteXPath>./mods:mods/#mods:titleInfo[@type='translated']/mods:title</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>MainTitleTransliterated</InternalName>
+				<WriteXPath>./mods:mods/#mods:titleInfo[@transliteration='true']/mods:title</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>Abstract</InternalName>
+				<WriteXPath>./mods:mods/#mods:abstract</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>ZBLAbstract</InternalName>
+				<WriteXPath>./mods:mods/#mods:abstract</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>ClassificationMSC</InternalName>
+				<WriteXPath>./mods:mods/#mods:classification[@authority='MSC2000']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>ClassificationUDK</InternalName>
+				<WriteXPath>./mods:mods/#mods:classification[@displayLabel='UDK']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>Keyword</InternalName>
+				<WriteXPath>./mods:mods/mods:subject/#mods:topic</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>RUSKeyword</InternalName>
+				<WriteXPath>./mods:mods/mods:subject/#mods:topic</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>PersonAsSubject</InternalName>
+				<WriteXPath>./mods:mods/mods:subject/#mods:name</WriteXPath>
+				<FirstnameXPath>./mods:namePart[@type='given']</FirstnameXPath>
+				<LastnameXPath>./mods:namePart[@type='family']</LastnameXPath>
+				<DisplayNameXPath>./mods:displayForm</DisplayNameXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>Author</InternalName>
+				<WriteXPath>./mods:mods/#mods:name[@type='personal'][mods:role/mods:roleTerm="aut"[@authority='marcrelator'][@type='code']]</WriteXPath>
+				<FirstnameXPath>./mods:namePart[@type='given']</FirstnameXPath>
+				<LastnameXPath>./mods:namePart[@type='family']</LastnameXPath>
+				<DisplayNameXPath>./mods:displayForm</DisplayNameXPath>
+				<!-- Yet still hardcoded in UGH -->
+				<IdentifierXPath>../mods:nameq[@authority='pnd'][@ID='']</IdentifierXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>AuthorTransliteratedDIN</InternalName>
+				<WriteXPath>./mods:mods/#mods:name[@type='personal'][mods:role/mods:roleTerm="aut"[@authority='marcrelator'][@type='code']]</WriteXPath>
+				<FirstnameXPath>./mods:namePart[@type='given']</FirstnameXPath>
+				<LastnameXPath>./mods:namePart[@type='family']</LastnameXPath>
+				<DisplayNameXPath>./mods:displayForm</DisplayNameXPath>
+				<!-- Yet still hardcoded in UGH -->
+				<IdentifierXPath>../mods:nameq[@authority='pnd'][@ID='']</IdentifierXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>AuthorTransliteratedISO</InternalName>
+				<WriteXPath>./mods:mods/#mods:name[@type='personal'][mods:role/mods:roleTerm="aut"[@authority='marcrelator'][@type='code']]</WriteXPath>
+				<FirstnameXPath>./mods:namePart[@type='given']</FirstnameXPath>
+				<LastnameXPath>./mods:namePart[@type='family']</LastnameXPath>
+				<DisplayNameXPath>./mods:displayForm</DisplayNameXPath>
+				<!-- Yet still hardcoded in UGH -->
+				<IdentifierXPath>../mods:nameq[@authority='pnd'][@ID='']</IdentifierXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>ZBLAuthor</InternalName>
+				<WriteXPath>./mods:mods/#mods:name[@type='personal'][mods:role/mods:roleTerm="aut"[@authority='marcrelator'][@type='code']]</WriteXPath>
+				<FirstnameXPath>./mods:namePart[@type='given']</FirstnameXPath>
+				<LastnameXPath>./mods:namePart[@type='family']</LastnameXPath>
+				<DisplayNameXPath>./mods:displayForm</DisplayNameXPath>
+				<!-- Yet still hardcoded in UGH -->
+				<IdentifierXPath>../mods:nameq[@authority='pnd'][@ID='']</IdentifierXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>AuthorVariation</InternalName>
+				<WriteXPath>./mods:mods/#mods:name[@type='personal'][mods:role/mods:roleTerm="aut"[@authority='marcrelator'][@type='code']]</WriteXPath>
+				<FirstnameXPath>./mods:namePart[@type='given']</FirstnameXPath>
+				<LastnameXPath>./mods:namePart[@type='family']</LastnameXPath>
+				<DisplayNameXPath>./mods:displayForm</DisplayNameXPath>
+				<!-- Yet still hardcoded in UGH -->
+				<IdentifierXPath>../mods:nameq[@authority='pnd'][@ID='']</IdentifierXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>Contributor</InternalName>
+				<WriteXPath>./mods:mods/#mods:name[@type='personal'][mods:role/mods:roleTerm="ctb"[@authority='marcrelator'][@type='code']]</WriteXPath>
+				<FirstnameXPath>./mods:namePart[@type='given']</FirstnameXPath>
+				<LastnameXPath>./mods:namePart[@type='family']</LastnameXPath>
+				<DisplayNameXPath>./mods:displayForm</DisplayNameXPath>
+				<!-- Yet still hardcoded in UGH -->
+				<IdentifierXPath>../mods:nameq[@authority='pnd'][@ID='']</IdentifierXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>Creator</InternalName>
+				<WriteXPath>./mods:mods/#mods:name[@type='personal'][mods:role/mods:roleTerm="cre"[@authority='marcrelator'][@type='code']]</WriteXPath>
+				<FirstnameXPath>./mods:namePart[@type='given']</FirstnameXPath>
+				<LastnameXPath>./mods:namePart[@type='family']</LastnameXPath>
+				<DisplayNameXPath>./mods:displayForm</DisplayNameXPath>
+				<!-- Yet still hardcoded in UGH -->
+				<IdentifierXPath>../mods:nameq[@authority='pnd'][@ID='']</IdentifierXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>Editor</InternalName>
+				<WriteXPath>./mods:mods/#mods:name[@type='personal'][mods:role/mods:roleTerm="edt"[@authority='marcrelator'][@type='code']]</WriteXPath>
+				<FirstnameXPath>./mods:namePart[@type='given']</FirstnameXPath>
+				<LastnameXPath>./mods:namePart[@type='family']</LastnameXPath>
+				<DisplayNameXPath>./mods:displayForm</DisplayNameXPath>
+				<!-- Yet still hardcoded in UGH -->
+				<IdentifierXPath>../mods:nameq[@authority='pnd'][@ID='']</IdentifierXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>Illustrator</InternalName>
+				<WriteXPath>./mods:mods/#mods:name[@type='personal'][mods:role/mods:roleTerm="ill"[@authority='marcrelator'][@type='code']]</WriteXPath>
+				<FirstnameXPath>./mods:namePart[@type='given']</FirstnameXPath>
+				<LastnameXPath>./mods:namePart[@type='family']</LastnameXPath>
+				<DisplayNameXPath>./mods:displayForm</DisplayNameXPath>
+				<!-- Yet still hardcoded in UGH -->
+				<IdentifierXPath>../mods:nameq[@authority='pnd'][@ID='']</IdentifierXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>Printer</InternalName>
+				<WriteXPath>./mods:mods/#mods:name[@type='personal'][mods:role/mods:roleTerm="prt"[@authority='marcrelator'][@type='code']]</WriteXPath>
+				<FirstnameXPath>./mods:namePart[@type='given']</FirstnameXPath>
+				<LastnameXPath>./mods:namePart[@type='family']</LastnameXPath>
+				<DisplayNameXPath>./mods:displayForm</DisplayNameXPath>
+				<!-- Yet still hardcoded in UGH -->
+				<IdentifierXPath>../mods:nameq[@authority='pnd'][@ID='']</IdentifierXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>Reviewer</InternalName>
+				<WriteXPath>./mods:mods/#mods:name[@type='personal'][mods:role/mods:roleTerm="rev"[@authority='marcrelator'][@type='code']]</WriteXPath>
+				<FirstnameXPath>./mods:namePart[@type='given']</FirstnameXPath>
+				<LastnameXPath>./mods:namePart[@type='family']</LastnameXPath>
+				<DisplayNameXPath>./mods:displayForm</DisplayNameXPath>
+				<!-- Yet still hardcoded in UGH -->
+				<IdentifierXPath>../mods:nameq[@authority='pnd'][@ID='']</IdentifierXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>Translator</InternalName>
+				<WriteXPath>./mods:mods/#mods:name[@type='personal'][mods:role/mods:roleTerm="trl"[@authority='marcrelator'][@type='code']]</WriteXPath>
+				<FirstnameXPath>./mods:namePart[@type='given']</FirstnameXPath>
+				<LastnameXPath>./mods:namePart[@type='family']</LastnameXPath>
+				<DisplayNameXPath>./mods:displayForm</DisplayNameXPath>
+				<!-- Yet still hardcoded in UGH -->
+				<IdentifierXPath>../mods:nameq[@authority='pnd'][@ID='']</IdentifierXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>DocLanguage</InternalName>
+				<WriteXPath>
+					./mods:mods/#mods:language/mods:languageTerm[@type='code'][@authority='rfc3066']
+				</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>CurrentNoSorting</InternalName>
+				<WriteXPath>./mods:mods/#mods:part[@type='host']/@order</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>CurrentNo</InternalName>
+				<WriteXPath>./mods:mods/mods:part/mods:detail/mods:number</WriteXPath>
+			</Metadata>
+			<!-- Finger weg sonst ab Jochen 20090506 
+				 So geht's auch :-) fu 20090610
+			<Metadata>
+				<InternalName>CurrentNo</InternalName>
+				<WriteXPath>./mods:mods/mods:part[@type='host']/#mods:detail/mods:number</WriteXPath>
+			</Metadata>
+			-->
+			<Metadata>
+				<InternalName>PublisherName</InternalName>
+				<WriteXPath>./mods:mods/mods:originInfo/#mods:publisher</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>RUSPublisherName</InternalName>
+				<WriteXPath>./mods:mods/mods:originInfo/#mods:publisher</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>PlaceOfPublication</InternalName>
+				<WriteXPath>./mods:mods/mods:originInfo/#mods:place/mods:placeTerm[@type='text']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>RUSPublicationHouse</InternalName>
+				<WriteXPath>./mods:mods/mods:originInfo/#mods:place/mods:placeTerm[@type='text']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>RUSPlaceOfPublication</InternalName>
+				<WriteXPath>./mods:mods/mods:originInfo/#mods:place/mods:placeTerm[@type='text']</WriteXPath>
+			</Metadata>
+			<InternalName>PublicationYear</InternalName>
+			<WriteXPath>./mods:mods/mods:originInfo/#mods:dateIssued[@encoding='w3cdtf']</WriteXPath>
+			<Metadata>
+				<InternalName>ISSN</InternalName>
+				<WriteXPath>./mods:mods/#mods:identifier[@type='ISSN']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>ZDBID</InternalName>
+				<WriteXPath>./mods:mods/#mods:identifier[@type='ZDBID']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>SICI</InternalName>
+				<WriteXPath>./mods:mods/#mods:identifier[@type='SICI']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>ZBLIdentifier</InternalName>
+				<WriteXPath>./mods:mods/#mods:identifier[@type='Zbl']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>JFMIdentifier</InternalName>
+				<WriteXPath>./mods:mods/#mods:identifier[@type='JfM']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>PublicationStart</InternalName>
+				<WriteXPath>./mods:mods/mods:originInfo/mods:dateIssued[@point='start'][@encoding='w3cdtf']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>PublicationEnd</InternalName>
+				<WriteXPath>./mods:mods/mods:originInfo/mods:dateIssued[@point='end'][@encoding='w3cdtf']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>TSL_ATS</InternalName>
+				<WriteXPath>./mods:mods/mods:subject[@authority="gdz"]/mods:topic</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>shelfmarksource</InternalName>
+				<WriteXPath>./mods:mods/mods:location/#mods:shelfLocator</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>datedigit</InternalName>
+				<WriteXPath>./mods:mods/mods:originInfo/#mods:dateCaptured[@encoding='w3cdtf']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>singleDigCollection</InternalName>
+				<WriteXPath>./mods:mods/#mods:classification[@authority='GDZ']</WriteXPath>
+			</Metadata>
+			<!--
+			<Metadata>
+				<InternalName>IdentifierSource</InternalName>
+				<WriteXPath />
+			</Metadata>
+			<Metadata>
+				<InternalName>ZBLPageNumber</InternalName>
+				<WriteXPath />
+			</Metadata>
+			<Metadata>
+				<InternalName>ZBLSource</InternalName>
+				<WriteXPath />
+			</Metadata>
+			<Metadata>
+				<InternalName>ZBLReviewAuthor</InternalName>
+				<WriteXPath />
+			</Metadata>
+			<Metadata>
+				<InternalName>ZBLCita</InternalName>
+				<WriteXPath />
+			</Metadata>
+			<Metadata>
+				<InternalName>ZBLTempID</InternalName>
+				<WriteXPath />
+			</Metadata>
+			<Metadata>
+				<InternalName>ZBLReviewLink</InternalName>
+				<WriteXPath />
+			</Metadata>
+			<Metadata>
+				<InternalName>ZBLIntern</InternalName>
+				<WriteXPath />
+			</Metadata>
+			<Metadata>
+				<InternalName>ZBLIntern</InternalName>
+				<WriteXPath />
+			</Metadata>
+			<Metadata>
+				<InternalName>physPageNumber</InternalName>
+				<WriteXPath />
+			</Metadata>
+			<Metadata>
+				<InternalName>logicalPageNumber</InternalName>
+				<WriteXPath />
+			</Metadata>
+			<Metadata>
+				<InternalName>pagesize</InternalName>
+				<WriteXPath />
+			</Metadata>
+			<Metadata>
+				<InternalName>copyrightimageset</InternalName>
+				<WriteXPath />
+			</Metadata>
+			<Metadata>
+				<InternalName>editionVersion</InternalName>
+				<WriteXPath />
+			</Metadata>
+			<Metadata>
+				<InternalName>mediumsource</InternalName>
+				<WriteXPath />
+			</Metadata>
+			<Metadata>
+				<InternalName>imagedescr</InternalName>
+				<WriteXPath />
+			</Metadata>
+			<Metadata>
+				<InternalName>commentsource</InternalName>
+				<WriteXPath />
+			</Metadata>
+			<Metadata>
+				<InternalName>FormatSourcePrint</InternalName>
+				<WriteXPath />
+			</Metadata>
+			<Metadata>
+				<InternalName>pathimagefiles</InternalName>
+				<WriteXPath />
+			</Metadata>
+			<Metadata>
+				<InternalName>originImageSet</InternalName>
+				<WriteXPath />
+			</Metadata>
+			<Metadata>
+				<InternalName>copyrightSource</InternalName>
+				<WriteXPath />
+			</Metadata>
+			<Metadata>
+				<InternalName>shelfmarkarchiveimageset</InternalName>
+				<WriteXPath />
+			</Metadata>
+			<Metadata>
+				<InternalName>Illustration</InternalName>
+				<WriteXPath />
+			</Metadata>
+			-->
+			<Metadata>
+				<InternalName>_digitalOrigin</InternalName>
+				<WriteXPath>./mods:mods/mods:physicalDescription/#mods:digitalOrigin/</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>SizeSourcePrint</InternalName>
+				<WriteXPath>./mods:mods/mods:physicalDescription/#mods:extent</WriteXPath>
+			</Metadata>
+			
+			<!-- ##########################################################################
+				 ##  Physical document structure types                                   ##
+				 ########################################################################## -->
+
+			<!-- DO NOT CHANGE!! -->
+			<DocStruct>
+				<InternalName>BoundBook</InternalName>
+				<MetsType>physSequence</MetsType>
+			</DocStruct>
+			<DocStruct>
+				<InternalName>page</InternalName>
+				<MetsType>page</MetsType>
+			</DocStruct>
+			<!-- DO NOT CHANGE!! -->
+
+			<!-- ##########################################################################
+				 ##  Logical document structure types                                    ##
+				 ########################################################################## -->
+
+			<DocStruct>
+				<InternalName>Article</InternalName>
+				<MetsType>Article</MetsType>
+			</DocStruct>
+			<DocStruct>
+				<InternalName>Epilogue</InternalName>
+				<MetsType>Epilogue</MetsType>
+			</DocStruct>
+			<DocStruct>
+				<InternalName>PeriodicalVolume</InternalName>
+				<MetsType>PeriodicalVolume</MetsType>
+			</DocStruct>
+			<DocStruct>
+				<InternalName>PeriodicalPart</InternalName>
+				<MetsType>PeriodicalPart</MetsType>
+			</DocStruct>
+			<DocStruct>
+				<InternalName>Advertising</InternalName>
+				<MetsType>Advertising</MetsType>
+			</DocStruct>
+			<DocStruct>
+				<InternalName>Periodical</InternalName>
+				<MetsType>Periodical</MetsType>
+			</DocStruct>
+			<DocStruct>
+				<InternalName>Errata</InternalName>
+				<MetsType>Errata</MetsType>
+			</DocStruct>
+			<DocStruct>
+				<InternalName>Index</InternalName>
+				<MetsType>Index</MetsType>
+			</DocStruct>
+			<DocStruct>
+				<InternalName>TitlePage</InternalName>
+				<MetsType>TitlePage</MetsType>
+			</DocStruct>
+			<DocStruct>
+				<InternalName>OtherDocStrct</InternalName>
+				<MetsType>OtherDocStrct</MetsType>
+			</DocStruct>
+			<DocStruct>
+				<InternalName>Bibliography</InternalName>
+				<MetsType>Bibliography</MetsType>
+			</DocStruct>
+			<DocStruct>
+				<InternalName>CurriculumVitae</InternalName>
+				<MetsType>CurriculumVitae</MetsType>
+			</DocStruct>
+			<DocStruct>
+				<InternalName>Preface</InternalName>
+				<MetsType>Preface</MetsType>
+			</DocStruct>
+			<DocStruct>
+				<InternalName>Supplement</InternalName>
+				<MetsType>Supplement</MetsType>
+			</DocStruct>
+			<DocStruct>
+				<InternalName>PeriodicalIssue</InternalName>
+				<MetsType>PeriodicalIssue</MetsType>
+			</DocStruct>
+			<DocStruct>
+				<InternalName>Introduction</InternalName>
+				<MetsType>Introduction</MetsType>
+			</DocStruct>
+			<DocStruct>
+				<InternalName>Imprint</InternalName>
+				<MetsType>Imprint</MetsType>
+			</DocStruct>
+			<DocStruct>
+				<InternalName>Obituary</InternalName>
+				<MetsType>Obituary</MetsType>
+			</DocStruct>
+			<DocStruct>
+				<InternalName>Figure</InternalName>
+				<MetsType>Figure</MetsType>
+			</DocStruct>
+			<DocStruct>
+				<InternalName>Table</InternalName>
+				<MetsType>Table</MetsType>
+			</DocStruct>
+			<DocStruct>
+				<InternalName>Addendum</InternalName>
+				<MetsType>Addendum</MetsType>
+			</DocStruct>
+			<DocStruct>
+				<InternalName>Cover</InternalName>
+				<MetsType>Cover</MetsType>
+			</DocStruct>
+			<DocStruct>
+				<InternalName>Remarks</InternalName>
+				<MetsType>Remarks</MetsType>
+			</DocStruct>
+			<DocStruct>
+				<InternalName>TableOfContents</InternalName>
+				<MetsType>TableOfContents</MetsType>
+			</DocStruct>
+			<DocStruct>
+				<InternalName>TableOfAbbreviations</InternalName>
+				<MetsType>TableOfAbbreviations</MetsType>
+			</DocStruct>
+			<DocStruct>
+				<InternalName>Review</InternalName>
+				<MetsType>Review</MetsType>
+			</DocStruct>
+			<DocStruct>
+				<InternalName>List</InternalName>
+				<MetsType>List</MetsType>
+			</DocStruct>
+			<DocStruct>
+				<InternalName>ListOfPublications</InternalName>
+				<MetsType>ListOfPublications</MetsType>
+			</DocStruct>
+			<DocStruct>
+				<InternalName>Dedication</InternalName>
+				<MetsType>Dedication</MetsType>
+			</DocStruct>
+			<DocStruct>
+				<InternalName>Abstract</InternalName>
+				<MetsType>Abstract</MetsType>
+			</DocStruct>
+			<DocStruct>
+				<InternalName>Biography</InternalName>
+				<MetsType>Biography</MetsType>
+			</DocStruct>
+		</METS>
+	</Formats>
+</Preferences>

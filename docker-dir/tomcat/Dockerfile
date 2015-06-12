@@ -86,8 +86,8 @@ COPY data/goobi_*.xml    /opt/digiverso/goobi/config/
 
 
 COPY data/modules.xml    /opt/digiverso/goobi/config/
-COPY data/docket.xsl     /opt/digiverso/goobi/xslt/
-COPY data/slub.xml /opt/digiverso/goobi/rulesets/
+COPY data/laufzettel/*.xsl     /opt/digiverso/goobi/xslt/
+COPY data/regelsaetze/*.xml /opt/digiverso/goobi/rulesets/
 
 COPY data/script_*.sh /opt/digiverso/goobi/scripts/
 #ADD data/script_createDirUserHome.sh /opt/digiverso/goobi/scripts/script_createDirUserHome.sh
