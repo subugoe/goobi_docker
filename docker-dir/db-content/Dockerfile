@@ -1,6 +1,8 @@
 FROM mysql:5.5
 
-ADD Goobi_setup_default.sql /tmp/Goobi_setup_default.sql
-CMD sleep 15 && mysql --host=goobi -u $MYSQL_USER --password=$MYSQL_PASSWORD -D $MYSQL_DATABASE < /tmp/Goobi_setup_default.sql  && tail -f /dev/null
+COPY Goobi_setup_schema.sql /tmp/Goobi_setup_schema.sql
+COPY Goobi_setup_default.sql /tmp/Goobi_setup_default.sql
+COPY fill_db.sh /tmp/fill_db.sh
 
 
+CMD /tmp/fill_db.sh
