@@ -5,7 +5,7 @@ WORKDIR /usr/local/tomcat/
 
 RUN mkdir webapps/goobi/
 
-ADD data/goobi.xml    /usr/local/tomcat/conf/Catalina/localhost/goobi.xml
+ADD data/goobi.xml           /usr/local/tomcat/conf/Catalina/localhost/goobi.xml
 ADD data/tomcat-users.xml    /usr/local/tomcat/conf/tomcat-users.xml
 
 RUN mkdir -p    /opt/digiverso/goobi/config/
