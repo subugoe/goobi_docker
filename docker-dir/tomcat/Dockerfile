@@ -5,7 +5,7 @@ WORKDIR /usr/local/tomcat/
 
 RUN mkdir webapps/goobi/
 
-ADD data/goobi.xml    /usr/local/tomcat/conf/Catalina/localhost/goobi.xml
+ADD data/goobi.xml           /usr/local/tomcat/conf/Catalina/localhost/goobi.xml
 ADD data/tomcat-users.xml    /usr/local/tomcat/conf/tomcat-users.xml
 
 RUN mkdir -p    /opt/digiverso/goobi/config/
@@ -86,8 +86,8 @@ COPY data/goobi_*.xml    /opt/digiverso/goobi/config/
 
 
 COPY data/modules.xml    /opt/digiverso/goobi/config/
-COPY data/docket.xsl     /opt/digiverso/goobi/xslt/
-COPY data/slub.xml /opt/digiverso/goobi/rulesets/
+COPY data/laufzettel/*.xsl     /opt/digiverso/goobi/xslt/
+COPY data/regelsaetze/*.xml /opt/digiverso/goobi/rulesets/
 
 COPY data/script_*.sh /opt/digiverso/goobi/scripts/
 #ADD data/script_createDirUserHome.sh /opt/digiverso/goobi/scripts/script_createDirUserHome.sh

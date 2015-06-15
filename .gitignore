@@ -6,3 +6,4 @@ goobi_docker.iml
 **/db/goobi/
 **/*~
 **/tomcat/goobi2.0/
+**/.DS_Store

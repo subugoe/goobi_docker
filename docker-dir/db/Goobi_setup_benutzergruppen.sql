@@ -1,0 +1,25 @@
+/*!40000 ALTER TABLE `benutzergruppen` DISABLE KEYS */;
+INSERT INTO `benutzergruppen` (`BenutzerGruppenID`, `Titel`, `Berechtigung`) VALUES (1, "Scannen", 4);
+INSERT INTO `benutzergruppen` (`BenutzerGruppenID`, `Titel`, `Berechtigung`) VALUES (2, "Metadaten Moskau", 4);
+INSERT INTO `benutzergruppen` (`BenutzerGruppenID`, `Titel`, `Berechtigung`) VALUES (3, "Imagenachbearbeitung", 4);
+INSERT INTO `benutzergruppen` (`BenutzerGruppenID`, `Titel`, `Berechtigung`) VALUES (4, "Übersetzung", 4);
+INSERT INTO `benutzergruppen` (`BenutzerGruppenID`, `Titel`, `Berechtigung`) VALUES (5, "Qualitätskontrolle", 4);
+INSERT INTO `benutzergruppen` (`BenutzerGruppenID`, `Titel`, `Berechtigung`) VALUES (6, "Administration", 1);
+INSERT INTO `benutzergruppen` (`BenutzerGruppenID`, `Titel`, `Berechtigung`) VALUES (11, "Prozessverwaltung", 2);
+INSERT INTO `benutzergruppen` (`BenutzerGruppenID`, `Titel`, `Berechtigung`) VALUES (12, "Metadaten", 4);
+INSERT INTO `benutzergruppen` (`BenutzerGruppenID`, `Titel`, `Berechtigung`) VALUES (13, "Metadaten Hannover", 4);
+INSERT INTO `benutzergruppen` (`BenutzerGruppenID`, `Titel`, `Berechtigung`) VALUES (14, "Metadaten Berlin", 4);
+INSERT INTO `benutzergruppen` (`BenutzerGruppenID`, `Titel`, `Berechtigung`) VALUES (15, "Import DMS Göttingen", 4);
+INSERT INTO `benutzergruppen` (`BenutzerGruppenID`, `Titel`, `Berechtigung`) VALUES (16, "Import DMS Hannover", 4);
+INSERT INTO `benutzergruppen` (`BenutzerGruppenID`, `Titel`, `Berechtigung`) VALUES (17, "Import DMS Moskau", 4);
+INSERT INTO `benutzergruppen` (`BenutzerGruppenID`, `Titel`, `Berechtigung`) VALUES (18, "test original", 4);
+INSERT INTO `benutzergruppen` (`BenutzerGruppenID`, `Titel`, `Berechtigung`) VALUES (19, "Gäste", 4);
+INSERT INTO `benutzergruppen` (`BenutzerGruppenID`, `Titel`, `Berechtigung`) VALUES (20, "Bestellmanagement", 4);
+INSERT INTO `benutzergruppen` (`BenutzerGruppenID`, `Titel`, `Berechtigung`) VALUES (21, "AuftragsCD", 4);
+INSERT INTO `benutzergruppen` (`BenutzerGruppenID`, `Titel`, `Berechtigung`) VALUES (22, "Buchmanager", 4);
+INSERT INTO `benutzergruppen` (`BenutzerGruppenID`, `Titel`, `Berechtigung`) VALUES (23, "Archivierung", 4);
+INSERT INTO `benutzergruppen` (`BenutzerGruppenID`, `Titel`, `Berechtigung`) VALUES (24, "Import DMS DigiZeitschriften", 4);
+INSERT INTO `benutzergruppen` (`BenutzerGruppenID`, `Titel`, `Berechtigung`) VALUES (25, "Import DMS Rezensionszeitschriften", 4);
+INSERT INTO `benutzergruppen` (`BenutzerGruppenID`, `Titel`, `Berechtigung`) VALUES (26, "Import DMS DigiZeitschriften preview", 1);
+/*!40000 ALTER TABLE `benutzergruppen` ENABLE KEYS */;
+

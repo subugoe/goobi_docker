@@ -1,0 +1,1264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- GDZ - EFRE - Göttinger Universitätsgeschichte - Archivalien - Goobi 1.5.1 - UGH 1.9.0 - Stand: 23.03.2011
+	================================================================================
+	This file defines the ruleset for the UGH metadata library. This ruleset is
+	read by the "Prefs.class" of the UGH library.
+	
+	The file defines all metadata types, types of document structures and their
+	relationship. To read/write the data at least one format must be defined in
+	the <Formats> section. The appropriate section for the format is read by the
+	class implementing the read/write routines for the format. Not all title formats
+	need to be read and/or writeable.
+	================================================================================ -->
+
+<!-- CHANGELOG
+	================================================================================
+	 08.08.2011, Timo Schleier
+	 	- um Srukturdaten ergänzt (IndexSubject, Figure, Signet)
+	 01.08.2011, Timo Schleier
+	 	- Um "Volltext"-Feld erweitert
+	 07.07.2011, Timo Schleier
+	 	- um Strukturdaten ergänzt (Cover, TitlePage, TableOfContents, Chapter)
+	 29.06.2011, Timo Schleier
+	 	- 9. und 10. Person hinzugefügt
+	 28.03.2011, Timo Schleier
+	 	- Erste Version
+	================================================================================ -->
+
+<Preferences>
+
+	<!-- ##########################################################################
+		 ##  Metadata types for the physical structure                           ##
+		 ########################################################################## -->
+
+	<!-- ##  DO NOT CHANGE  ## -->
+	<MetadataType>
+		<Name>physPageNumber</Name>
+		<language name="de">Physische Seitenzahl (Imagenummer)</language>
+		<language name="en">Physical page number</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>logicalPageNumber</Name>
+		<language name="de">Logische Seitenzahl (gedruckte Zeitenzahl)</language>
+		<language name="en">Logical page number</language>
+	</MetadataType>
+
+	<!-- im Digizeitregelsatz auch nicht vorhanden   -->
+	<MetadataType>
+		<Name>pagesize</Name>
+		<language name="de">Seitengröße / Format</language>
+		<language name="en">Format of book</language>
+		</MetadataType>
+
+	<MetadataType>
+		<Name>mediumsource</Name>
+		<language name="de">Vorlagenform</language>
+		<language name="en">Medium of source</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>shelfmarksource</Name>
+		<language name="de">Signatur der Quelle</language>
+		<language name="en">Shelfmark of source media</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>shelfmarkarchiveimageset</Name>
+		<language name="de">Signatur des Archivierungsimagesets</language>
+		<language name="en">Shelfmark of archive imageset</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>imagedescr</Name>
+		<language name="de">ImageDescription (TIFF-Header)</language>
+		<language name="en">Image description of tiff header</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>datedigit</Name>
+		<language name="de">Datum Digitalisierung</language>
+		<language name="en">Date digitalization</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>pathimagefiles</Name>
+		<language name="de">Pfad der Imagedaten</language>
+		<language name="en">Path of image data</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>copyrightimageset</Name>
+		<language name="de">Copyright</language>
+		<language name="en">Copyright</language>
+	</MetadataType>
+
+	<!-- im Digizeitregelsatz auch nicht vorhanden  -->
+	<MetadataType>
+		<Name>singleDigCollection</Name>
+		<language name="de">Digitale Kollektion</language>
+		<language name="en">Digital collection</language>
+	</MetadataType> 
+	
+	<MetadataType>
+		<Name>TSL_ATS</Name>
+		<language name="en">TSL/ATS</language>
+		<language name="de">TSL/ATS</language>
+		</MetadataType> 
+
+	<MetadataType>
+		<Name>FormatSourcePrint</Name>
+		<language name="de">Ausmasse/Dimension (Quelle)</language>
+		<language name="en">Dimensions</language>
+	</MetadataType>
+	<!-- ##  DO NOT CHANGE  ## -->
+
+	<!-- ##########################################################################
+		 ##  Metadata types for the logical structure                            ##
+		 ########################################################################## -->
+
+	<!-- They are fully configurable; make sure, that modules within GOOBI will be
+		 reconfigured accordingly, if any changes are made here! -->
+
+
+	<!-- Titeldaten -->
+
+	<MetadataType>
+		<Name>title</Name>
+		<language name="de">Name des Exponats</language>
+	</MetadataType>
+
+
+	<!-- 1. Person -->
+
+	<MetadataType>
+		<Name>person_role_1</Name>
+		<language name="de">1. Person: Funktion</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_family_1</Name>
+		<language name="de">1. Person: Nachname</language>
+	</MetadataType>
+
+	<MetadataType>
+		<Name>person_given_1</Name>
+		<language name="de">1. Person: Vorname</language>
+	</MetadataType>
+
+	<MetadataType>
+		<Name>person_name_1</Name>
+		<language name="de">1. Person: vollst. Name</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_date_1</Name>
+		<language name="de">1. Person: Lebensdaten</language>
+	</MetadataType>
+
+	<MetadataType>
+		<Name>person_wikipedia_1</Name>
+		<language name="de">1. Person: Wikipedia</language>
+	</MetadataType>
+	
+	<!-- 2. Person -->
+	
+	<MetadataType>
+		<Name>person_role_2</Name>
+		<language name="de">2. Person: Funktion</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_family_2</Name>
+		<language name="de">2. Person: Nachname</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_given_2</Name>
+		<language name="de">2. Person: Vorname</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_name_2</Name>
+		<language name="de">2. Person: vollst. Name</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_date_2</Name>
+		<language name="de">2. Person: Lebensdaten</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_wikipedia_2</Name>
+		<language name="de">2. Person: Wikipedia</language>
+	</MetadataType>
+	
+	<!-- 3. Person -->
+	
+	<MetadataType>
+		<Name>person_role_3</Name>
+		<language name="de">3. Person: Funktion</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_family_3</Name>
+		<language name="de">3. Person: Nachname</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_given_3</Name>
+		<language name="de">3. Person: Vorname</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_name_3</Name>
+		<language name="de">3. Person: vollst. Name</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_date_3</Name>
+		<language name="de">3. Person: Lebensdaten</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_wikipedia_3</Name>
+		<language name="de">3. Person: Wikipedia</language>
+	</MetadataType>
+	
+	<!-- 4. Person -->
+	
+	<MetadataType>
+		<Name>person_role_4</Name>
+		<language name="de">4. Person: Funktion</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_family_4</Name>
+		<language name="de">4. Person: Nachname</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_given_4</Name>
+		<language name="de">4. Person: Vorname</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_name_4</Name>
+		<language name="de">4. Person: vollst. Name</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_date_4</Name>
+		<language name="de">4. Person: Lebensdaten</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_wikipedia_4</Name>
+		<language name="de">4. Person: Wikipedia</language>
+	</MetadataType>
+	
+	<!-- 5. Person -->
+	
+	<MetadataType>
+		<Name>person_role_5</Name>
+		<language name="de">5. Person: Funktion</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_family_5</Name>
+		<language name="de">5. Person: Nachname</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_given_5</Name>
+		<language name="de">5. Person: Vorname</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_name_5</Name>
+		<language name="de">5. Person: vollst. Name</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_date_5</Name>
+		<language name="de">5. Person: Lebensdaten</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_wikipedia_5</Name>
+		<language name="de">5. Person: Wikipedia</language>
+	</MetadataType>
+	
+	<!-- 6. Person -->
+	
+	<MetadataType>
+		<Name>person_role_6</Name>
+		<language name="de">6. Person: Funktion</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_family_6</Name>
+		<language name="de">6. Person: Nachname</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_given_6</Name>
+		<language name="de">6. Person: Vorname</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_name_6</Name>
+		<language name="de">6. Person: vollst. Name</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_date_6</Name>
+		<language name="de">6. Person: Lebensdaten</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_wikipedia_6</Name>
+		<language name="de">6. Person: Wikipedia</language>
+	</MetadataType>
+	
+	<!-- 7. Person -->
+	
+	<MetadataType>
+		<Name>person_role_7</Name>
+		<language name="de">7. Person: Funktion</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_family_7</Name>
+		<language name="de">7. Person: Nachname</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_given_7</Name>
+		<language name="de">7. Person: Vorname</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_name_7</Name>
+		<language name="de">7. Person: vollst. Name</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_date_7</Name>
+		<language name="de">7. Person: Lebensdaten</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_wikipedia_7</Name>
+		<language name="de">7. Person: Wikipedia</language>
+	</MetadataType>
+	
+	<!-- 8. Person -->
+	
+	<MetadataType>
+		<Name>person_role_8</Name>
+		<language name="de">8. Person: Funktion</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_family_8</Name>
+		<language name="de">8. Person: Nachname</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_given_8</Name>
+		<language name="de">8. Person: Vorname</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_name_8</Name>
+		<language name="de">8. Person: vollst. Name</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_date_8</Name>
+		<language name="de">8. Person: Lebensdaten</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_wikipedia_8</Name>
+		<language name="de">8. Person: Wikipedia</language>
+	</MetadataType>
+	
+	<!-- 9. Person -->
+	
+	<MetadataType>
+		<Name>person_role_9</Name>
+		<language name="de">9. Person: Funktion</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_family_9</Name>
+		<language name="de">9. Person: Nachname</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_given_9</Name>
+		<language name="de">9. Person: Vorname</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_name_9</Name>
+		<language name="de">9. Person: vollst. Name</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_date_9</Name>
+		<language name="de">9. Person: Lebensdaten</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_wikipedia_9</Name>
+		<language name="de">9. Person: Wikipedia</language>
+	</MetadataType>
+	
+	<!-- 10. Person -->
+	
+	<MetadataType>
+		<Name>person_role_10</Name>
+		<language name="de">10. Person: Funktion</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_family_10</Name>
+		<language name="de">10. Person: Nachname</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_given_10</Name>
+		<language name="de">10. Person: Vorname</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_name_10</Name>
+		<language name="de">10. Person: vollst. Name</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_date_10</Name>
+		<language name="de">10. Person: Lebensdaten</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_wikipedia_10</Name>
+		<language name="de">10. Person: Wikipedia</language>
+	</MetadataType>
+
+
+
+	<!-- Objekttyp -->
+
+	<MetadataType>
+		<Name>typeOfResource</Name>
+		<language name="de">Objekttyp</language>
+	</MetadataType>
+
+
+	<!-- Daten zur Herkunft -->
+
+	<MetadataType>
+		<Name>dateCreated_start</Name>
+		<language name="de">Entstehungsdatum: Start</language>
+	</MetadataType>
+
+	<MetadataType>
+		<Name>dateCreated_end</Name>
+		<language name="de">Entstehungsdatum: Ende</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>dateCreated_text</Name>
+		<language name="de">Entstehungsdatum: Text</language>
+	</MetadataType>
+
+	<MetadataType>
+		<Name>place</Name>
+		<language name="de">Ort</language>
+	</MetadataType>
+	
+
+	<!-- Formale Beschreibung -->
+
+	<MetadataType>
+		<Name>form</Name>
+		<language name="de">Materialart</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>extent</Name>
+		<language name="de">Maße / Umfang</language>
+	</MetadataType>
+
+
+	<!-- Inhaltliche Beschreibung -->
+
+	<MetadataType>
+		<Name>abstract</Name>
+		<language name="de">Textliche Beschreibung</language>
+	</MetadataType>
+
+
+	<!-- Identifier -->
+
+	<MetadataType>
+		<Name>_CatalogIDDigital</Name>
+		<language name="de">Identifier des Exponats</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>shelfLocator</Name>
+		<language name="de">Signatur</language>
+	</MetadataType>
+	
+	
+	<!-- Für die Strukturdaten -->
+	<MetadataType>
+		<Name>fulltext</Name>
+		<language name="de">Volltext</language>
+	</MetadataType>
+
+	<!-- Verwaltungsdaten -->
+	
+	<MetadataType>
+		<Name>_relatedItem_host</Name>
+		<language name="de">Übergeordnete Sammlung</language>
+	</MetadataType>
+
+	<!-- Für die Strukturdaten -->
+	<MetadataType>
+		<Name>TitleDocMain</Name>
+		<language name="de">Titel</language>
+	</MetadataType>
+	
+	<!-- Goobi besteht drauf (massig Fehlermeldungen beim Export ohne...) auch wenn es hier nicht benutzt wird -->
+	<MetadataType>
+		<Name>CatalogIDDigital</Name>
+		<language name="de">Identifier</language>
+	</MetadataType>
+
+
+	<!-- Versteckte Felder -->
+	
+	<MetadataType>
+		<Name>_recordContentSource</Name>
+		<language name="de">Erfasser der Metadaten</language>
+	</MetadataType>
+
+
+
+	<!-- ##########################################################################
+		 ##  EFRE logical document structure types                               ##
+		 ########################################################################## -->
+
+	<DocStrctType>
+		<Name>Monograph</Name>
+		<language name="de">Exponat</language>
+		<allowedchildtype>Cover</allowedchildtype>
+		<allowedchildtype>TitlePage</allowedchildtype>
+		<allowedchildtype>TableOfContents</allowedchildtype>
+		<allowedchildtype>Chapter</allowedchildtype>
+		<allowedchildtype>IndexSubject</allowedchildtype>
+		<allowedchildtype>Figure</allowedchildtype>
+		<allowedchildtype>Signet</allowedchildtype>
+		
+		<!-- #############    SICHTBAR    ############# -->
+
+		<!-- Zusammenstellung der Metadaten für die Archivalien des Universitätsarchivs der Uni Göttingen -->
+		
+		<metadata DefaultDisplay="true" num="1m">title</metadata>
+		
+		<metadata DefaultDisplay="true" num="1m">typeOfResource</metadata>
+		
+		<metadata DefaultDisplay="true" num="1m">dateCreated_start</metadata>
+		<metadata DefaultDisplay="true" num="1o">dateCreated_end</metadata>
+		<metadata DefaultDisplay="true" num="1o">dateCreated_text</metadata>
+		
+		<metadata DefaultDisplay="true" num="1o">shelfLocator</metadata>
+		
+		<metadata DefaultDisplay="true" num="1o">form</metadata>
+		<metadata DefaultDisplay="true" num="1o">extent</metadata>
+		
+		<metadata DefaultDisplay="true" num="1o">place</metadata>
+		
+		<metadata DefaultDisplay="true" num="1o">abstract</metadata>
+		
+		<metadata DefaultDisplay="true" num="1o">fulltext</metadata>
+		
+		<!-- 1. Person -->
+		<metadata DefaultDisplay="false" num="1o">person_role_1</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_family_1</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_given_1</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_name_1</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_date_1</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_wikipedia_1</metadata>
+		
+		<!-- 2. Person -->
+		<metadata DefaultDisplay="false" num="1o">person_role_2</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_family_2</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_given_2</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_name_2</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_date_2</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_wikipedia_2</metadata>
+		
+		<!-- 3. Person -->
+		<metadata DefaultDisplay="false" num="1o">person_role_3</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_family_3</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_given_3</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_name_3</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_date_3</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_wikipedia_3</metadata>
+		
+		<!-- 4. Person -->
+		<metadata DefaultDisplay="false" num="1o">person_role_4</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_family_4</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_given_4</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_name_4</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_date_4</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_wikipedia_4</metadata>
+		
+		<!-- 5. Person -->
+		<metadata DefaultDisplay="false" num="1o">person_role_5</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_family_5</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_given_5</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_name_5</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_date_5</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_wikipedia_5</metadata>
+		
+		<!-- 6. Person -->
+		<metadata DefaultDisplay="false" num="1o">person_role_6</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_family_6</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_given_6</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_name_6</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_date_6</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_wikipedia_6</metadata>
+		
+		<!-- 7. Person -->
+		<metadata DefaultDisplay="false" num="1o">person_role_7</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_family_7</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_given_7</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_name_7</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_date_7</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_wikipedia_7</metadata>
+		
+		<!-- 8. Person -->
+		<metadata DefaultDisplay="false" num="1o">person_role_8</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_family_8</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_given_8</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_name_8</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_date_8</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_wikipedia_8</metadata>
+		
+		<!-- 9. Person -->
+		<metadata DefaultDisplay="false" num="1o">person_role_9</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_family_9</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_given_9</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_name_9</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_date_9</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_wikipedia_9</metadata>
+		
+		<!-- 10. Person -->
+		<metadata DefaultDisplay="false" num="1o">person_role_10</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_family_10</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_given_10</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_name_10</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_date_10</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_wikipedia_10</metadata>
+		
+		
+		
+		
+		
+		<!-- #############    Versteckt   ############# -->
+		
+		<metadata DefaultDisplay="false" num="1o">singleDigCollection</metadata>
+
+
+		<!-- #############    GESPERRT   ############# -->
+		
+		<metadata num="1m">_relatedItem_host</metadata>
+		<metadata num="1m">_CatalogIDDigital</metadata>
+		<metadata num="1m">_recordContentSource</metadata>
+		
+		<!-- #############    Folgende Felder müssen in der Nachbearbeitung gesetzt werden   ############# 
+		
+		<metadata num="1m">_recordChangeDate</metadata>
+		<metadata num="1m">_physicalLocation</metadata>
+		<metadata num="1m">_physicalLocation_id</metadata>
+		
+		<metadata DefaultDisplay="false" num="1m">host_id_1</metadata>
+		<metadata DefaultDisplay="false" num="1m">host_name_1</metadata>
+		
+		-->
+		
+	</DocStrctType>
+	
+	<!-- Strukturdaten -->
+	<DocStrctType>
+		<Name>Cover</Name>
+		<language name="de">Deckblatt</language>
+		<language name="en">Cover</language>
+		<metadata DefaultDisplay="true" num="1o">TitleDocMain</metadata>
+	</DocStrctType>
+	<DocStrctType>
+		<Name>TitlePage</Name>
+		<language name="de">Titelblatt</language>
+		<language name="en">Title Page</language>
+		<metadata DefaultDisplay="true" num="1o">TitleDocMain</metadata>
+	</DocStrctType>
+	<DocStrctType>
+		<Name>TableOfContents</Name>
+		<language name="de">Verzeichnis-Inhalt</language>
+		<language name="en">Table of Contents</language>
+		<metadata DefaultDisplay="true" num="1o">TitleDocMain</metadata>
+	</DocStrctType>
+	<DocStrctType>
+		<Name>Chapter</Name>
+		<language name="de">Kapitel</language>
+		<language name="en">Chapter</language>
+		<metadata DefaultDisplay="true" num="1o">TitleDocMain</metadata>
+	</DocStrctType>
+	<DocStrctType>
+		<Name>IndexSubject</Name>
+		<language name="de">Sachregister</language>
+		<language name="en">subject index</language>
+		<metadata DefaultDisplay="true" num="1o">TitleDocMain</metadata>
+	</DocStrctType>
+	<DocStrctType>
+		<Name>Figure</Name>
+		<language name="de">Abbildung</language>
+		<language name="en">Figure</language>
+		<metadata DefaultDisplay="true" num="1o">TitleDocMain</metadata>
+	</DocStrctType>
+	<DocStrctType>
+		<Name>Signet</Name>
+		<language name="de">Siegel</language>
+		<language name="en">Signet</language>
+		<metadata DefaultDisplay="true" num="1o">TitleDocMain</metadata>
+	</DocStrctType>
+
+	<!-- ##########################################################################
+		 ##  Physical document structure types                                   ##
+		 ########################################################################## -->
+
+	<!-- ##  DO NOT CHANGE  ## -->
+	<DocStrctType>
+		<Name>BoundBook</Name>
+		<language name="de">Gebundenes Buch</language>
+		<language name="en">Bound book</language>
+		<metadata num="1o">copyrightimageset</metadata>
+		<metadata num="1o">shelfmarksource</metadata>
+		<metadata num="1o">shelfmarkarchiveimageset</metadata>
+		<metadata num="1o">imagedescr</metadata>
+		<metadata num="1o">datedigit</metadata>
+		<metadata num="1o">pathimagefiles</metadata>
+		<metadata num="1o">FormatSourcePrint</metadata>
+	 <!--<metadata num="*">PhysicalLocation</metadata>--> 
+		<allowedchildtype>page</allowedchildtype>
+	</DocStrctType>
+	<DocStrctType>
+		<Name>page</Name>
+		<language name="de">Seite</language>
+		<language name="en">Page</language>
+		<metadata num="1m">physPageNumber</metadata>
+		<metadata num="1m">logicalPageNumber</metadata>
+	</DocStrctType>
+	<!-- ##  DO NOT CHANGE  ## -->
+
+	<Formats>
+
+		<!-- ##########################################################################
+			 ##  METS/MODS                                                           ##
+			 ########################################################################## -->
+
+		<METS>
+			<!--
+			<NamespaceDefinition>
+				<URI>http://www.w3.org/1999/xlink</URI>
+				<prefix>xlink</prefix>
+				<schemaLocation>http://www.loc.gov/standards/xlink/xlink.xsd</schemaLocation>
+			</NamespaceDefinition>
+			-->
+			
+			
+			<!-- ##########################################################################
+				 ##  Only the <AnchorIdentifierMetadataType> is needed for internal      ##
+				 ##  METS storing.                                                       ##
+				 ########################################################################## -->
+
+			<AnchorIdentifierMetadataType>_CatalogIDDigital</AnchorIdentifierMetadataType>
+			<XPathAnchorQuery>./mods:mods/mods:relatedItem[@type='host']/mods:recordInfo/mods:recordIdentifier</XPathAnchorQuery>
+
+			<!-- ##########################################################################
+				 ##  Metadata mapping definition                                         ##
+				 ########################################################################## -->
+
+
+			<!-- #########   title   ######### -->
+
+			<Metadata>
+				<InternalName>title</InternalName>
+				<WriteXPath>./mods:mods/mods:titleInfo/#mods:title</WriteXPath>
+			</Metadata>
+			
+			
+			<!-- #########   TitleDocMain  ######### -->
+			
+			<Metadata>
+				<InternalName>TitleDocMain</InternalName>
+				<WriteXPath>./mods:mods/mods:titleInfo/#mods:title</WriteXPath>
+			</Metadata>
+
+
+			<!-- #########   name   ######### -->
+			
+			<!-- 1. Person -->
+			<Metadata>
+				<InternalName>person_role_1</InternalName>
+				<WriteXPath>./mods:mods/mods:name[1]/#mods:role/mods:roleTerm[@type='code'][@authority='marcrelator']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_family_1</InternalName>
+				<WriteXPath>
+					./mods:mods/mods:name[1]/#mods:namePart[@type='family'] 
+				</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_given_1</InternalName>
+				<WriteXPath>./mods:mods/mods:name[1]/#mods:namePart[@type='given']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_name_1</InternalName>
+				<WriteXPath>./mods:mods/mods:name[1]/#mods:namePart</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_date_1</InternalName>
+				<WriteXPath>./mods:mods/mods:name[1]/#mods:namePart[@type='date']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_wikipedia_1</InternalName>
+				<WriteXPath>./mods:mods/mods:name[1]/#mods:description</WriteXPath>
+			</Metadata>
+			
+			<!-- 2. Person -->
+			<Metadata>
+				<InternalName>person_role_2</InternalName>
+				<WriteXPath>./mods:mods/mods:name[2]/#mods:role/mods:roleTerm[@type='code'][@authority='marcrelator']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_family_2</InternalName>
+				<WriteXPath>
+					./mods:mods/mods:name[2]/#mods:namePart[@type='family'] 
+				</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_given_2</InternalName>
+				<WriteXPath>./mods:mods/mods:name[2]/#mods:namePart[@type='given']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_name_2</InternalName>
+				<WriteXPath>./mods:mods/mods:name[2]/#mods:namePart</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_date_2</InternalName>
+				<WriteXPath>./mods:mods/mods:name[2]/#mods:namePart[@type='date']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_wikipedia_2</InternalName>
+				<WriteXPath>./mods:mods/mods:name[2]/#mods:description</WriteXPath>
+			</Metadata>
+			
+			<!-- 3. Person -->
+			<Metadata>
+				<InternalName>person_role_3</InternalName>
+				<WriteXPath>./mods:mods/mods:name[3]/#mods:role/mods:roleTerm[@type='code'][@authority='marcrelator']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_family_3</InternalName>
+				<WriteXPath>
+					./mods:mods/mods:name[3]/#mods:namePart[@type='family'] 
+				</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_given_3</InternalName>
+				<WriteXPath>./mods:mods/mods:name[3]/#mods:namePart[@type='given']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_name_3</InternalName>
+				<WriteXPath>./mods:mods/mods:name[3]/#mods:namePart</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_date_3</InternalName>
+				<WriteXPath>./mods:mods/mods:name[3]/#mods:namePart[@type='date']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_wikipedia_3</InternalName>
+				<WriteXPath>./mods:mods/mods:name[3]/#mods:description</WriteXPath>
+			</Metadata>
+			
+			<!-- 4. Person -->
+			<Metadata>
+				<InternalName>person_role_4</InternalName>
+				<WriteXPath>./mods:mods/mods:name[4]/#mods:role/mods:roleTerm[@type='code'][@authority='marcrelator']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_family_4</InternalName>
+				<WriteXPath>
+					./mods:mods/mods:name[4]/#mods:namePart[@type='family'] 
+				</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_given_4</InternalName>
+				<WriteXPath>./mods:mods/mods:name[4]/#mods:namePart[@type='given']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_name_4</InternalName>
+				<WriteXPath>./mods:mods/mods:name[4]/#mods:namePart</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_date_4</InternalName>
+				<WriteXPath>./mods:mods/mods:name[4]/#mods:namePart[@type='date']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_wikipedia_4</InternalName>
+				<WriteXPath>./mods:mods/mods:name[4]/#mods:description</WriteXPath>
+			</Metadata>
+			
+			<!-- 5. Person -->
+			<Metadata>
+				<InternalName>person_role_5</InternalName>
+				<WriteXPath>./mods:mods/mods:name[5]/#mods:role/mods:roleTerm[@type='code'][@authority='marcrelator']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_family_5</InternalName>
+				<WriteXPath>
+					./mods:mods/mods:name[5]/#mods:namePart[@type='family'] 
+				</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_given_5</InternalName>
+				<WriteXPath>./mods:mods/mods:name[5]/#mods:namePart[@type='given']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_name_5</InternalName>
+				<WriteXPath>./mods:mods/mods:name[5]/#mods:namePart</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_date_5</InternalName>
+				<WriteXPath>./mods:mods/mods:name[5]/#mods:namePart[@type='date']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_wikipedia_5</InternalName>
+				<WriteXPath>./mods:mods/mods:name[5]/#mods:description</WriteXPath>
+			</Metadata>
+			
+			<!-- 6. Person -->
+			<Metadata>
+				<InternalName>person_role_6</InternalName>
+				<WriteXPath>./mods:mods/mods:name[6]/#mods:role/mods:roleTerm[@type='code'][@authority='marcrelator']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_family_6</InternalName>
+				<WriteXPath>
+					./mods:mods/mods:name[6]/#mods:namePart[@type='family'] 
+				</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_given_6</InternalName>
+				<WriteXPath>./mods:mods/mods:name[6]/#mods:namePart[@type='given']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_name_6</InternalName>
+				<WriteXPath>./mods:mods/mods:name[6]/#mods:namePart</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_date_6</InternalName>
+				<WriteXPath>./mods:mods/mods:name[6]/#mods:namePart[@type='date']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_wikipedia_6</InternalName>
+				<WriteXPath>./mods:mods/mods:name[6]/#mods:description</WriteXPath>
+			</Metadata>
+			
+			<!-- 7. Person -->
+			<Metadata>
+				<InternalName>person_role_7</InternalName>
+				<WriteXPath>./mods:mods/mods:name[7]/#mods:role/mods:roleTerm[@type='code'][@authority='marcrelator']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_family_7</InternalName>
+				<WriteXPath>
+					./mods:mods/mods:name[7]/#mods:namePart[@type='family'] 
+				</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_given_7</InternalName>
+				<WriteXPath>./mods:mods/mods:name[7]/#mods:namePart[@type='given']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_name_7</InternalName>
+				<WriteXPath>./mods:mods/mods:name[7]/#mods:namePart</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_date_7</InternalName>
+				<WriteXPath>./mods:mods/mods:name[7]/#mods:namePart[@type='date']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_wikipedia_7</InternalName>
+				<WriteXPath>./mods:mods/mods:name[7]/#mods:description</WriteXPath>
+			</Metadata>
+			
+			<!-- 8. Person -->
+			<Metadata>
+				<InternalName>person_role_8</InternalName>
+				<WriteXPath>./mods:mods/mods:name[8]/#mods:role/mods:roleTerm[@type='code'][@authority='marcrelator']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_family_8</InternalName>
+				<WriteXPath>
+					./mods:mods/mods:name[8]/#mods:namePart[@type='family'] 
+				</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_given_8</InternalName>
+				<WriteXPath>./mods:mods/mods:name[8]/#mods:namePart[@type='given']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_name_8</InternalName>
+				<WriteXPath>./mods:mods/mods:name[8]/#mods:namePart</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_date_8</InternalName>
+				<WriteXPath>./mods:mods/mods:name[8]/#mods:namePart[@type='date']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_wikipedia_8</InternalName>
+				<WriteXPath>./mods:mods/mods:name[8]/#mods:description</WriteXPath>
+			</Metadata>
+			
+			<!-- 9. Person -->
+			<Metadata>
+				<InternalName>person_role_9</InternalName>
+				<WriteXPath>./mods:mods/mods:name[9]/#mods:role/mods:roleTerm[@type='code'][@authority='marcrelator']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_family_9</InternalName>
+				<WriteXPath>
+					./mods:mods/mods:name[9]/#mods:namePart[@type='family'] 
+				</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_given_9</InternalName>
+				<WriteXPath>./mods:mods/mods:name[9]/#mods:namePart[@type='given']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_name_9</InternalName>
+				<WriteXPath>./mods:mods/mods:name[9]/#mods:namePart</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_date_9</InternalName>
+				<WriteXPath>./mods:mods/mods:name[9]/#mods:namePart[@type='date']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_wikipedia_9</InternalName>
+				<WriteXPath>./mods:mods/mods:name[9]/#mods:description</WriteXPath>
+			</Metadata>
+			
+			<!-- 10. Person -->
+			<Metadata>
+				<InternalName>person_role_10</InternalName>
+				<WriteXPath>./mods:mods/mods:name[10]/#mods:role/mods:roleTerm[@type='code'][@authority='marcrelator']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_family_10</InternalName>
+				<WriteXPath>
+					./mods:mods/mods:name[10]/#mods:namePart[@type='family'] 
+				</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_given_10</InternalName>
+				<WriteXPath>./mods:mods/mods:name[10]/#mods:namePart[@type='given']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_name_10</InternalName>
+				<WriteXPath>./mods:mods/mods:name[10]/#mods:namePart</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_date_10</InternalName>
+				<WriteXPath>./mods:mods/mods:name[10]/#mods:namePart[@type='date']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_wikipedia_10</InternalName>
+				<WriteXPath>./mods:mods/mods:name[10]/#mods:description</WriteXPath>
+			</Metadata>
+
+
+
+			<!-- #########   typeOfResource  ######### -->
+
+			<Metadata>
+				<InternalName>typeOfResource</InternalName>
+				<WriteXPath>./mods:mods/#mods:typeOfResource</WriteXPath>
+			</Metadata>
+
+
+
+			<!-- #########    originInfo   ######### -->
+
+			<Metadata>
+				<InternalName>place</InternalName>
+				<WriteXPath>./mods:mods/mods:originInfo/#mods:place/mods:placeTerm[@type='text']</WriteXPath>
+			</Metadata>
+			
+			<Metadata>
+				<InternalName>dateCreated_start</InternalName>
+				<WriteXPath>./mods:mods/mods:originInfo/#mods:dateCreated[@encoding='iso8601'][@point='start']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>dateCreated_end</InternalName>
+				<WriteXPath>./mods:mods/mods:originInfo/#mods:dateCreated[@encoding='iso8601'][@point='end']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>dateCreated_text</InternalName>
+				<WriteXPath>./mods:mods/mods:originInfo/#mods:dateCreated</WriteXPath>
+			</Metadata>
+
+
+			<!-- #########    physicalDescription   ######### -->
+
+			<Metadata>
+				<InternalName>form</InternalName>
+				<WriteXPath>./mods:mods/mods:physicalDescription/#mods:form</WriteXPath>
+			</Metadata>
+			
+			<Metadata>
+				<InternalName>extent</InternalName>
+				<WriteXPath>./mods:mods/mods:physicalDescription/#mods:extent</WriteXPath>
+			</Metadata>
+
+
+
+			<!-- #########    abstract   ######### -->
+
+			<Metadata>
+				<InternalName>abstract</InternalName>
+				<WriteXPath>./mods:mods/#mods:abstract</WriteXPath>
+			</Metadata>
+			
+
+
+			<!-- #########    location   ######### -->
+
+			<Metadata>
+				<InternalName>shelfLocator</InternalName>
+				<WriteXPath>./mods:mods/mods:location/#mods:shelfLocator</WriteXPath>
+			</Metadata>
+
+
+
+			<!-- #########    relatedItem    ######### -->
+			
+			<Metadata>
+				<InternalName>_relatedItem_host</InternalName>
+				<WriteXPath>./mods:mods/#mods:relatedItem[@type='host']/mods:titleInfo/mods:title</WriteXPath>
+			</Metadata>
+			
+			
+			
+			<!-- #########    identifier    ######### -->
+
+			<Metadata>
+				<InternalName>_CatalogIDDigital</InternalName>
+				<ValueRegExp>s/(.*)/isil_DE-7_$1/</ValueRegExp>
+				<WriteXPath>./mods:mods/#mods:identifier[@type='kuni']</WriteXPath>
+			</Metadata>
+			
+			
+			
+			<!-- #########    accessCondition    ######### -->
+			
+			<Metadata>
+				<InternalName>_CatalogIDDigital</InternalName>
+				<ValueRegExp>s/(.*)/Dieses Exponat befindet sich nicht im öffentlich zugänglichen Bereich und kann daher nur nach vorheriger Rücksprache zur Verfügung gestellt werden./</ValueRegExp>
+				<WriteXPath>./mods:mods/#mods:accessCondition[@type='restriction on access']</WriteXPath>
+			</Metadata>
+
+
+
+        	<!-- #########    recordInfo   ######### -->
+
+			<!-- Default setzten -->
+			<Metadata>
+				<InternalName>_recordContentSource</InternalName>
+				<WriteXPath>./mods:mods/mods:recordInfo/#mods:recordContentSource</WriteXPath>
+			</Metadata>
+
+
+			<Metadata>
+				<InternalName>_CatalogIDDigital</InternalName>
+				<WriteXPath>./mods:mods/mods:recordInfo/#mods:recordIdentifier</WriteXPath>
+			</Metadata>
+
+
+			<!-- #########    extension   ######### -->
+			
+			<Metadata>
+				<InternalName>fulltext</InternalName>
+				<WriteXPath>./mods:mods/mods:extension/#fulltext</WriteXPath>
+			</Metadata>
+
+			<!-- ######## TEMPLATES, kann später gelöscht werden ######## -->
+
+			<!-- ##########################################################################
+				 ##  Physical document structure types                                   ##
+				 ########################################################################## -->
+
+			<!-- DO NOT CHANGE!! -->
+			<DocStruct>
+				<InternalName>BoundBook</InternalName>
+				<MetsType>physSequence</MetsType>
+			</DocStruct>
+			<DocStruct>
+				<InternalName>page</InternalName>
+				<MetsType>page</MetsType>
+			</DocStruct>
+			<!-- DO NOT CHANGE!! -->
+
+			<!-- ##########################################################################
+				 ##  Logical document structure types                                    ##
+				 ########################################################################## -->
+			
+			<DocStruct>
+				<InternalName>Monograph</InternalName>
+				<MetsType>exhibit</MetsType>
+			</DocStruct>
+			<DocStruct>
+				<InternalName>Cover</InternalName>
+				<MetsType>cover</MetsType>
+			</DocStruct>
+			<DocStruct>
+				<InternalName>TitlePage</InternalName>
+				<MetsType>title_page</MetsType>
+			</DocStruct>
+			<DocStruct>
+				<InternalName>TableOfContents</InternalName>
+				<MetsType>contents</MetsType>
+			</DocStruct>
+			<DocStruct>
+				<InternalName>Chapter</InternalName>
+				<MetsType>chapter</MetsType>
+			</DocStruct>
+			<DocStruct>
+				<InternalName>IndexSubject</InternalName>
+				<MetsType>index</MetsType>
+			</DocStruct>
+			<DocStruct>
+				<InternalName>Figure</InternalName>
+				<MetsType>illustration</MetsType>
+			</DocStruct>
+			<DocStruct>
+				<InternalName>Signet</InternalName>
+				<MetsType>signet</MetsType>
+			</DocStruct>	
+		</METS>
+	</Formats>
+</Preferences>
+

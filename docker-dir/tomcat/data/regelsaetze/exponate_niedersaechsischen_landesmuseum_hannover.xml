@@ -1,0 +1,817 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- GDZ - EFRE - Regelsatz für das Niedersächsische Landesmuseum Hannover - Goobi 1.5.1 - UGH 1.9.0 - Stand: 23.03.2011
+	================================================================================
+	This file defines the ruleset for the UGH metadata library. This ruleset is
+	read by the "Prefs.class" of the UGH library.
+	
+	The file defines all metadata types, types of document structures and their
+	relationship. To read/write the data at least one format must be defined in
+	the <Formats> section. The appropriate section for the format is read by the
+	class implementing the read/write routines for the format. Not all title formats
+	need to be read and/or writeable.
+	================================================================================ -->
+
+<!-- CHANGELOG
+	================================================================================
+	 13.01.2012, Timo Schleier
+	 	- Strukturtypen verso und obverse hinzugefügt
+	 10.01.2012, Timo Schleier
+	 	- Strukturtypen main_view und detailed_view hinzugefügt
+	 	- Anpassungen für den Export
+	 06.09.2011, Timo Schleier
+		- Mapping für Fund- und Entstehungsort korrigiert, Goobi exportiert nicht richtig
+	 15.07.2011, Timo Schleier
+	 	- Mapping für Fund- und Entstehungsort geändert
+	 31.03.2011, Timo Schleier
+		- Wikipedialinks von Personen und Künstlern entfernt
+	 28.03.2011, Timo Schleier
+	 	- Erste Version
+	================================================================================ -->
+
+<Preferences>
+
+	<!-- ##########################################################################
+		 ##  Metadata types for the physical structure                           ##
+		 ########################################################################## -->
+
+	<!-- ##  DO NOT CHANGE  ## -->
+	<MetadataType>
+		<Name>physPageNumber</Name>
+		<language name="de">Physische Seitenzahl (Imagenummer)</language>
+		<language name="en">Physical page number</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>logicalPageNumber</Name>
+		<language name="de">Logische Seitenzahl (gedruckte Zeitenzahl)</language>
+		<language name="en">Logical page number</language>
+	</MetadataType>
+
+	<!-- im Digizeitregelsatz auch nicht vorhanden   -->
+	<MetadataType>
+		<Name>pagesize</Name>
+		<language name="de">Seitengröße / Format</language>
+		<language name="en">Format of book</language>
+		</MetadataType>
+
+	<MetadataType>
+		<Name>mediumsource</Name>
+		<language name="de">Vorlagenform</language>
+		<language name="en">Medium of source</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>shelfmarksource</Name>
+		<language name="de">Signatur der Quelle</language>
+		<language name="en">Shelfmark of source media</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>shelfmarkarchiveimageset</Name>
+		<language name="de">Signatur des Archivierungsimagesets</language>
+		<language name="en">Shelfmark of archive imageset</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>imagedescr</Name>
+		<language name="de">ImageDescription (TIFF-Header)</language>
+		<language name="en">Image description of tiff header</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>datedigit</Name>
+		<language name="de">Datum Digitalisierung</language>
+		<language name="en">Date digitalization</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>pathimagefiles</Name>
+		<language name="de">Pfad der Imagedaten</language>
+		<language name="en">Path of image data</language>
+	</MetadataType>
+	<MetadataType>
+		<Name>copyrightimageset</Name>
+		<language name="de">Copyright</language>
+		<language name="en">Copyright</language>
+	</MetadataType>
+
+	<!-- im Digizeitregelsatz auch nicht vorhanden  -->
+	<MetadataType>
+		<Name>singleDigCollection</Name>
+		<language name="de">Digitale Kollektion</language>
+		<language name="en">Digital collection</language>
+	</MetadataType> 
+	
+	<MetadataType>
+		<Name>TSL_ATS</Name>
+		<language name="en">TSL/ATS</language>
+		<language name="de">TSL/ATS</language>
+		</MetadataType> 
+
+	<MetadataType>
+		<Name>FormatSourcePrint</Name>
+		<language name="de">Ausmasse/Dimension (Quelle)</language>
+		<language name="en">Dimensions</language>
+	</MetadataType>
+	<!-- ##  DO NOT CHANGE  ## -->
+
+	<!-- ##########################################################################
+		 ##  Metadata types for the logical structure                            ##
+		 ########################################################################## -->
+
+	<!-- They are fully configurable; make sure, that modules within GOOBI will be
+		 reconfigured accordingly, if any changes are made here! -->
+
+
+	<!-- Titeldaten -->
+
+	<MetadataType>
+		<Name>title</Name>
+		<language name="de">Name des Exponats</language>
+	</MetadataType>
+
+
+	<!-- 1. Person -->
+
+	<MetadataType>
+		<Name>person_family_1</Name>
+		<language name="de">1. Künstler: Nachname</language>
+	</MetadataType>
+
+	<MetadataType>
+		<Name>person_given_1</Name>
+		<language name="de">1. Künstler: Vorname</language>
+	</MetadataType>
+
+	<MetadataType>
+		<Name>person_date_1</Name>
+		<language name="de">1. Künstler: Lebensdaten</language>
+	</MetadataType>
+
+
+	<!-- 2. Person -->
+	
+	<MetadataType>
+		<Name>person_family_2</Name>
+		<language name="de">2. Künstler: Nachname</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_given_2</Name>
+		<language name="de">2. Künstler: Vorname</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_date_2</Name>
+		<language name="de">2. Künstler: Lebensdaten</language>
+	</MetadataType>
+
+
+	<!-- 3. Person -->
+	
+	<MetadataType>
+		<Name>person_family_3</Name>
+		<language name="de">3. Künstler: Nachname</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_given_3</Name>
+		<language name="de">3. Künstler: Vorname</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>person_date_3</Name>
+		<language name="de">3. Künstler: Lebensdaten</language>
+	</MetadataType>
+
+
+	<!-- Objekttyp -->
+
+	<MetadataType>
+		<Name>typeOfResource</Name>
+		<language name="de">Objekttyp</language>
+	</MetadataType>
+
+
+	<!-- Daten zur Herkunft -->
+
+	<MetadataType>
+		<Name>dateCreated_start</Name>
+		<language name="de">Entstehungsdatum: Start</language>
+	</MetadataType>
+
+	<MetadataType>
+		<Name>dateCreated_end</Name>
+		<language name="de">Entstehungsdatum: Ende</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>dateCreated_text</Name>
+		<language name="de">Entstehungsdatum: Text</language>
+	</MetadataType>
+
+	<MetadataType>
+		<Name>findSpot</Name>
+		<language name="de">Fundort</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>placeOfOrigin</Name>
+		<language name="de">Entstehungsort</language>
+	</MetadataType>
+
+
+	<!-- Formale Beschreibung -->
+
+	<MetadataType>
+		<Name>form</Name>
+		<language name="de">Materialart</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>extent</Name>
+		<language name="de">Maße / Gewicht</language>
+	</MetadataType>
+
+
+	<!-- Inhaltliche Beschreibung -->
+
+	<MetadataType>
+		<Name>abstract</Name>
+		<language name="de">Textliche Beschreibung</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>subject</Name>
+		<language name="de">Schlagwort</language>
+	</MetadataType>
+
+
+	<!-- 1. Personenschlagwort -->
+
+	<MetadataType>
+		<Name>subject_person_family_1</Name>
+		<language name="de">1. Abgebildeter: Nachname</language>
+	</MetadataType>
+
+	<MetadataType>
+		<Name>subject_person_given_1</Name>
+		<language name="de">1. Abgebildeter: Vorname</language>
+	</MetadataType>
+
+	<MetadataType>
+		<Name>subject_person_date_1</Name>
+		<language name="de">1. Abgebildeter: Lebensdaten</language>
+	</MetadataType>
+	
+	
+	<!-- 2. Personenschlagwort -->
+	
+	<MetadataType>
+		<Name>subject_person_family_2</Name>
+		<language name="de">2. Abgebildeter: Nachname</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>subject_person_given_2</Name>
+		<language name="de">2. Abgebildeter: Vorname</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>subject_person_date_2</Name>
+		<language name="de">2. Abgebildeter: Lebensdaten</language>
+	</MetadataType>
+
+
+	<!-- 3. Personenschlagwort -->
+	
+	<MetadataType>
+		<Name>subject_person_family_3</Name>
+		<language name="de">3. Abgebildeter: Nachname</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>subject_person_given_3</Name>
+		<language name="de">3. Abgebildeter: Vorname</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>subject_person_date_3</Name>
+		<language name="de">3. Abgebildeter: Lebensdaten</language>
+	</MetadataType>
+
+
+	<!-- Identifier -->
+
+	<MetadataType>
+		<Name>_CatalogIDDigital</Name>
+		<language name="de">Identifier des Exponats</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>shelfLocator</Name>
+		<language name="de">Inventarnummer (sichtbar)</language>
+	</MetadataType>
+	
+	
+	<!-- Verwaltungsdaten -->
+	
+	<MetadataType>
+		<Name>relatedItem_host</Name>
+		<language name="de">Übergeordnete Sammlung</language>
+	</MetadataType>
+	
+	<MetadataType>
+		<Name>accessCondition</Name>
+		<language name="de">Zugriffsbeschränkung</language>
+	</MetadataType>
+	
+
+	<!-- Goobi besteht drauf (massig Fehlermeldungen beim Export ohne...) auch wenn es hier nicht benutzt wird -->
+	<MetadataType>
+		<Name>CatalogIDDigital</Name>
+		<language name="de">Identifier</language>
+	</MetadataType>
+
+
+	<!-- Für die Bildunterschrift -->
+	<!-- Muss "TitleDocMain" sein, sonst wird es nicht als Label in der Struktmap verwendet, ist hardgecoded -->
+	<MetadataType>
+		<Name>TitleDocMain</Name>
+		<language name="de">Text</language>
+	</MetadataType>
+
+
+	<!-- Versteckte Felder -->
+	
+	<MetadataType>
+		<Name>_recordContentSource</Name>
+		<language name="de">Erfasser der Metadaten</language>
+	</MetadataType>
+
+
+
+	<!-- ##########################################################################
+		 ##  EFRE logical document structure types                               ##
+		 ########################################################################## -->
+
+	<DocStrctType>
+		<Name>Monograph</Name>
+		<language name="de">Exponat</language>
+		<allowedchildtype>Object</allowedchildtype>
+		<allowedchildtype>main_view</allowedchildtype>
+		<allowedchildtype>detailed_view</allowedchildtype>
+		<allowedchildtype>obverse</allowedchildtype>
+		<allowedchildtype>verso</allowedchildtype>
+
+		<!-- #############    SICHTBAR    ############# -->
+
+		<!-- Zusammenstellung die Exponate des Niedersächsichen Landesmuseums Hannover -->
+		
+		<metadata DefaultDisplay="true" num="1m">title</metadata>
+		
+		<metadata DefaultDisplay="true" num="1m">typeOfResource</metadata>
+		
+		<metadata DefaultDisplay="true" num="1m">relatedItem_host</metadata>
+		
+		<metadata DefaultDisplay="true" num="1m">dateCreated_start</metadata>
+		<metadata DefaultDisplay="true" num="1o">dateCreated_end</metadata>
+		<metadata DefaultDisplay="true" num="1o">dateCreated_text</metadata>
+		
+		<metadata DefaultDisplay="true" num="1o">shelfLocator</metadata>
+		<metadata DefaultDisplay="true" num="1o">accessCondition</metadata>
+		
+		<metadata DefaultDisplay="true" num="1o">form</metadata>
+		<metadata DefaultDisplay="true" num="1o">extent</metadata>
+		
+		<metadata DefaultDisplay="true" num="1o">placeOfOrigin</metadata>
+		<metadata DefaultDisplay="true" num="1o">findSpot</metadata>
+		
+		<metadata DefaultDisplay="true" num="*">subject</metadata>
+		<metadata DefaultDisplay="true" num="1o">abstract</metadata>
+		
+		<metadata DefaultDisplay="true" num="1o">person_family_1</metadata>
+		<metadata DefaultDisplay="true" num="1o">person_given_1</metadata>
+		<metadata DefaultDisplay="true" num="1o">person_date_1</metadata>
+		
+		<metadata DefaultDisplay="true" num="1o">subject_person_family_1</metadata>
+		<metadata DefaultDisplay="true" num="1o">subject_person_given_1</metadata>
+		<metadata DefaultDisplay="true" num="1o">subject_person_date_1</metadata>
+		
+		<metadata DefaultDisplay="false" num="1o">person_family_2</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_given_2</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_date_2</metadata>
+		
+		<metadata DefaultDisplay="false" num="1o">person_family_3</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_given_3</metadata>
+		<metadata DefaultDisplay="false" num="1o">person_date_3</metadata>
+		
+		<metadata DefaultDisplay="false" num="1o">subject_person_family_2</metadata>
+		<metadata DefaultDisplay="false" num="1o">subject_person_given_2</metadata>
+		<metadata DefaultDisplay="false" num="1o">subject_person_date_2</metadata>
+		
+		<metadata DefaultDisplay="false" num="1o">subject_person_family_3</metadata>
+		<metadata DefaultDisplay="false" num="1o">subject_person_given_3</metadata>
+		<metadata DefaultDisplay="false" num="1o">subject_person_date_3</metadata>
+		
+		<metadata DefaultDisplay="false" num="1o">singleDigCollection</metadata>
+
+
+		<!-- #############    GESPERRT   ############# -->
+		
+		<metadata num="1m">_CatalogIDDigital</metadata>
+		<metadata num="1m">_recordContentSource</metadata>
+		
+		<!-- #############    Folgende Felder müssen in der Nachbearbeitung gesetzt werden   ############# 
+		
+		<metadata num="1m">_recordChangeDate</metadata>
+		<metadata num="1m">_physicalLocation</metadata>
+		<metadata num="1m">_physicalLocation_id</metadata>
+		
+		<metadata DefaultDisplay="false" num="1m">host_id_1</metadata>
+		<metadata DefaultDisplay="false" num="1m">host_name_1</metadata>
+		
+		-->
+		
+	</DocStrctType>
+
+	<!-- Alt -->
+	<DocStrctType>
+		<Name>Object</Name>
+		<language name="de">Bildunterschrift</language>
+		<metadata DefaultDisplay="true" num="1m">TitleDocMain</metadata>
+	</DocStrctType>
+	
+	<!-- Gesamtansicht -->
+	<DocStrctType>
+		<Name>main_view</Name>
+		<language name="de">Gesamtansicht</language>
+		<metadata DefaultDisplay="true" num="1o">TitleDocMain</metadata>
+	</DocStrctType>
+	<!-- Detailansicht -->
+	<DocStrctType>
+		<Name>detailed_view</Name>
+		<language name="de">Detailansicht</language>
+		<metadata DefaultDisplay="true" num="1o">TitleDocMain</metadata>
+	</DocStrctType>
+	<!-- Vorderseite (Münzen) -->
+	<DocStrctType>
+		<Name>obverse</Name>
+		<language name="de">Vorderseite</language>
+		<metadata DefaultDisplay="true" num="1o">TitleDocMain</metadata>
+	</DocStrctType>
+	<!-- Rückseite (Münzen) -->
+	<DocStrctType>
+		<Name>verso</Name>
+		<language name="de">Rückseite</language>
+		<metadata DefaultDisplay="true" num="1o">TitleDocMain</metadata>
+	</DocStrctType>
+	
+
+	<!-- ##########################################################################
+		 ##  Physical document structure types                                   ##
+		 ########################################################################## -->
+
+	<!-- ##  DO NOT CHANGE  ## -->
+	<DocStrctType>
+		<Name>BoundBook</Name>
+		<language name="de">Gebundenes Buch</language>
+		<language name="en">Bound book</language>
+		<metadata num="1o">copyrightimageset</metadata>
+		<metadata num="1o">shelfmarksource</metadata>
+		<metadata num="1o">shelfmarkarchiveimageset</metadata>
+		<metadata num="1o">imagedescr</metadata>
+		<metadata num="1o">datedigit</metadata>
+		<metadata num="1o">pathimagefiles</metadata>
+		<metadata num="1o">FormatSourcePrint</metadata>
+	 <!--<metadata num="*">PhysicalLocation</metadata>--> 
+		<allowedchildtype>page</allowedchildtype>
+	</DocStrctType>
+	<DocStrctType>
+		<Name>page</Name>
+		<language name="de">Seite</language>
+		<language name="en">Page</language>
+		<metadata num="1m">physPageNumber</metadata>
+		<metadata num="1m">logicalPageNumber</metadata>
+	</DocStrctType>
+	<!-- ##  DO NOT CHANGE  ## -->
+
+	<Formats>
+
+		<!-- ##########################################################################
+			 ##  METS/MODS                                                           ##
+			 ########################################################################## -->
+
+		<METS>
+			<!--
+			<NamespaceDefinition>
+				<URI>http://www.w3.org/1999/xlink</URI>
+				<prefix>xlink</prefix>
+				<schemaLocation>http://www.loc.gov/standards/xlink/xlink.xsd</schemaLocation>
+			</NamespaceDefinition>
+			-->
+			
+			<!--
+			<NamespaceDefinition>
+				<URI>https://wiki.sub.uni-goettingen.de/p_efre/index.php/Internes_Datenformat#extension</URI>
+				<prefix>knd</prefix>
+			</NamespaceDefinition>
+			-->
+			
+			<!-- ##########################################################################
+				 ##  Only the <AnchorIdentifierMetadataType> is needed for internal      ##
+				 ##  METS storing.                                                       ##
+				 ########################################################################## -->
+
+			<AnchorIdentifierMetadataType>_CatalogIDDigital</AnchorIdentifierMetadataType>
+			<XPathAnchorQuery>./mods:mods/mods:relatedItem[@type='host']/mods:recordInfo/mods:recordIdentifier</XPathAnchorQuery>
+
+			<!-- ##########################################################################
+				 ##  Metadata mapping definition                                         ##
+				 ########################################################################## -->
+
+
+			<!-- #########   title   ######### -->
+
+			<Metadata>
+				<InternalName>title</InternalName>
+				<WriteXPath>./mods:mods/mods:titleInfo/#mods:title</WriteXPath>
+			</Metadata>
+			
+			<Metadata>
+				<InternalName>TitleDocMain</InternalName>
+				<WriteXPath>./mods:mods/mods:titleInfo/#mods:title</WriteXPath>
+			</Metadata>
+
+
+
+			<!-- #########   name   ######### -->
+			
+			<!-- 1. Person -->
+			<Metadata>
+				<InternalName>person_family_1</InternalName>
+				<WriteXPath>
+					./mods:mods/mods:name[1]/#mods:namePart[@type='family'] 
+				</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_family_1</InternalName>
+				<ValueCondition>/.+/</ValueCondition>
+				<ValueRegExp>s/(.*)/ctb/</ValueRegExp>
+				<WriteXPath>./mods:mods/mods:name[1]/#mods:role/mods:roleTerm[@type='code'][@authority='marcrelator']</WriteXPath>
+			</Metadata>
+				<Metadata>
+				<InternalName>person_given_1</InternalName>
+					<WriteXPath>./mods:mods/mods:name[1]/#mods:namePart[@type='given']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_date_1</InternalName>
+				<WriteXPath>./mods:mods/mods:name[1]/#mods:namePart[@type='date']</WriteXPath>
+			</Metadata>
+			
+			
+			<!-- 2. Person -->
+			<Metadata>
+				<InternalName>person_family_2</InternalName>
+				<WriteXPath>
+					./mods:mods/mods:name[2]/#mods:namePart[@type='family'] 
+				</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_family_2</InternalName>
+				<ValueCondition>/.+/</ValueCondition>
+				<ValueRegExp>s/(.*)/ctb/</ValueRegExp>
+				<WriteXPath>./mods:mods/mods:name[2]/#mods:role/mods:roleTerm[@type='code'][@authority='marcrelator']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_given_2</InternalName>
+				<WriteXPath>./mods:mods/mods:name[2]/#mods:namePart[@type='given']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_date_2</InternalName>
+				<WriteXPath>./mods:mods/mods:name[2]/#mods:namePart[@type='date']</WriteXPath>
+			</Metadata>
+			
+
+			<!-- 3. Person -->
+			<Metadata>
+				<InternalName>person_family_3</InternalName>
+				<WriteXPath>
+					./mods:mods/mods:name[3]/#mods:namePart[@type='family'] 
+				</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_family_3</InternalName>
+				<ValueCondition>/.+/</ValueCondition>
+				<ValueRegExp>s/(.*)/ctb/</ValueRegExp>
+				<WriteXPath>./mods:mods/mods:name[3]/#mods:role/mods:roleTerm[@type='code'][@authority='marcrelator']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_given_3</InternalName>
+				<WriteXPath>./mods:mods/mods:name[3]/#mods:namePart[@type='given']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>person_date_3</InternalName>
+				<WriteXPath>./mods:mods/mods:name[3]/#mods:namePart[@type='date']</WriteXPath>
+			</Metadata>
+
+
+
+			<!-- #########   typeOfResource  ######### -->
+
+			<Metadata>
+				<InternalName>typeOfResource</InternalName>
+				<WriteXPath>./mods:mods/#mods:typeOfResource</WriteXPath>
+			</Metadata>
+
+
+
+			<!-- #########    originInfo   ######### -->
+
+			<Metadata>
+				<InternalName>dateCreated_start</InternalName>
+				<WriteXPath>./mods:mods/mods:originInfo/#mods:dateCreated[@encoding='iso8601'][@point='start']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>dateCreated_end</InternalName>
+				<WriteXPath>./mods:mods/mods:originInfo/#mods:dateCreated[@encoding='iso8601'][@point='end']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>dateCreated_text</InternalName>
+				<WriteXPath>./mods:mods/mods:originInfo/#mods:dateCreated</WriteXPath>
+			</Metadata>
+
+
+			<!-- #########    physicalDescription   ######### -->
+
+			<Metadata>
+				<InternalName>form</InternalName>
+				<WriteXPath>./mods:mods/mods:physicalDescription/#mods:form</WriteXPath>
+			</Metadata>
+			
+			<Metadata>
+				<InternalName>extent</InternalName>
+				<WriteXPath>./mods:mods/mods:physicalDescription/#mods:extent</WriteXPath>
+			</Metadata>
+
+
+
+			<!-- #########    abstract   ######### -->
+
+			<Metadata>
+				<InternalName>abstract</InternalName>
+				<WriteXPath>./mods:mods/#mods:abstract</WriteXPath>
+			</Metadata>
+
+
+
+			<!-- #########    subject   ######### -->
+
+			<Metadata>
+				<InternalName>subject</InternalName>
+				<WriteXPath>./mods:mods/#mods:subject/mods:topic</WriteXPath>
+			</Metadata>
+
+			<!-- 1. Person -->
+			
+			<Metadata>
+				<InternalName>subject_person_family_1</InternalName>
+				<WriteXPath>./mods:mods/mods:subject[1]/mods:name[@type='personal']/#mods:namePart[@type='family']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>subject_person_given_1</InternalName>
+				<WriteXPath>./mods:mods/mods:subject[1]/mods:name/#mods:namePart[@type='given']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>subject_person_date_1</InternalName>
+				<WriteXPath>./mods:mods/mods:subject[1]/mods:name/#mods:namePart[@type='date']</WriteXPath>
+			</Metadata>
+			
+			
+			<!-- 2. Person -->
+			
+			<Metadata>
+				<InternalName>subject_person_family_2</InternalName>
+				<WriteXPath>./mods:mods/mods:subject[2]/mods:name[@type='personal']/#mods:namePart[@type='family']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>subject_person_given_2</InternalName>
+				<WriteXPath>./mods:mods/mods:subject[2]/mods:name/#mods:namePart[@type='given']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>subject_person_date_2</InternalName>
+				<WriteXPath>./mods:mods/mods:subject[2]/mods:name/#mods:namePart[@type='date']</WriteXPath>
+			</Metadata>
+
+			
+			<!-- 3. Person -->
+			
+			<Metadata>
+				<InternalName>subject_person_family_3</InternalName>
+				<WriteXPath>./mods:mods/mods:subject[3]/mods:name[@type='personal']/#mods:namePart[@type='family']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>subject_person_given_3</InternalName>
+				<WriteXPath>./mods:mods/mods:subject[3]/mods:name/#mods:namePart[@type='given']</WriteXPath>
+			</Metadata>
+			<Metadata>
+				<InternalName>subject_person_date_3</InternalName>
+				<WriteXPath>./mods:mods/mods:subject[3]/mods:name/#mods:namePart[@type='date']</WriteXPath>
+			</Metadata>
+
+
+
+			<!-- #########    location   ######### -->
+
+			<Metadata>
+				<InternalName>findSpot</InternalName>
+				<WriteXPath>./mods:mods/mods:location/#mods:physicalLocation[@type="discovery"]</WriteXPath>
+			</Metadata>
+			
+			<Metadata>
+				<InternalName>placeOfOrigin</InternalName>
+				<WriteXPath>./mods:mods/mods:location/#mods:physicalLocation[@type="creation"]</WriteXPath>
+			</Metadata>
+			
+			<Metadata>
+				<InternalName>shelfLocator</InternalName>
+				<WriteXPath>./mods:mods/mods:location/#mods:shelfLocator</WriteXPath>
+			</Metadata>
+
+
+			<!-- #########    relatedItem    ######### -->
+			
+			<Metadata>
+				<InternalName>relatedItem_host</InternalName>
+				<WriteXPath>./mods:mods/#mods:relatedItem[@type='host']/mods:titleInfo/mods:title</WriteXPath>
+			</Metadata>
+			
+			
+			
+			<!-- #########    identifier    ######### -->
+
+			<Metadata>
+				<InternalName>_CatalogIDDigital</InternalName>
+				<ValueRegExp>s/(.*)/isil_DE-MUS-163517_$1/</ValueRegExp>
+				<WriteXPath>./mods:mods/#mods:identifier[@type='kuni']</WriteXPath>
+			</Metadata>
+			
+			
+			<!-- #########    accessCondition    ######### -->
+			
+			<!--
+			<Metadata>
+				<InternalName>accessCondition</InternalName>
+				<ValueRegExp>s/(.*)/Zugriffsbeschränkung\: Text des NLM/</ValueRegExp>
+				<WriteXPath>./mods:mods/#mods:accessCondition[@type='restriction on access']</WriteXPath>
+			</Metadata>
+			-->
+
+			<!-- #########    extension    ######### -->
+			
+			
+
+
+        	<!-- #########    recordInfo   ######### -->
+
+			<!-- Default setzten -->
+			<Metadata>
+				<InternalName>_recordContentSource</InternalName>
+				<WriteXPath>./mods:mods/mods:recordInfo/#mods:recordContentSource</WriteXPath>
+			</Metadata>
+
+
+			<Metadata>
+				<InternalName>_CatalogIDDigital</InternalName>
+				<WriteXPath>./mods:mods/mods:recordInfo/#mods:recordIdentifier</WriteXPath>
+			</Metadata>
+
+
+			<!-- ######## TEMPLATES, kann später gelöscht werden ######## -->
+
+			<!-- ##########################################################################
+				 ##  Physical document structure types                                   ##
+				 ########################################################################## -->
+
+			<!-- DO NOT CHANGE!! -->
+			<DocStruct>
+				<InternalName>BoundBook</InternalName>
+				<MetsType>physSequence</MetsType>
+			</DocStruct>
+			<DocStruct>
+				<InternalName>page</InternalName>
+				<MetsType>page</MetsType>
+			</DocStruct>
+			<!-- DO NOT CHANGE!! -->
+
+			<!-- ##########################################################################
+				 ##  Logical document structure types                                    ##
+				 ########################################################################## -->
+
+			<DocStruct>
+				<InternalName>Monograph</InternalName>
+				<MetsType>museum_object</MetsType>
+			</DocStruct>
+			<DocStruct>
+				<InternalName>Object</InternalName>
+				<MetsType/>
+			</DocStruct>
+		</METS>
+	</Formats>
+</Preferences>
+

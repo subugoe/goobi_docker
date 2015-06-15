@@ -2,8 +2,8 @@ goobitomcat:
   build: tomcat/
   ports:
     - "8080:8080"
-  volumes_from:
-    - goobistorage
+#  volumes_from:
+ #   - goobistorage
   volumes:
     - tomcat/goobi2.0:/usr/local/tomcat/webapps/goobi
   links:
@@ -16,16 +16,16 @@ goobi:
   build: db/
   ports:
     - 3306:3306
-  volumes_from:
-    - goobistorage
+  #volumes_from:
+  #  - goobistorage
   env_file:
     - docker-env.yml
 
-goobistorage:
-  image: ubuntu:14.04
-  volumes:
-    - ../data:/data
-  command: tail -f /dev/null
+#goobistorage:
+#  image: ubuntu:14.04
+#  volumes:
+#    - ../data:/data
+#  command: tail -f /dev/null
 
 #dbtables:
 #  build: db-tables/
@@ -40,5 +40,5 @@ goobistorage:
 #    - goobi:goobi
 #    - dbtables:dbtables
 #  env_file:
-#    - docker-env.yml
+ #   - docker-env.yml
 
