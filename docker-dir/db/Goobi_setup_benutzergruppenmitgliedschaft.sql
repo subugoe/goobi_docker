@@ -1,6 +1,6 @@
 /*!40000 ALTER TABLE `benutzergruppenmitgliedschaft` DISABLE KEYS */;
 INSERT INTO `benutzergruppenmitgliedschaft` (`BenutzerID`,`BenutzerGruppenID`) VALUES
- (1,1);
+ (1,6);
 INSERT INTO `benutzergruppenmitgliedschaft` (`BenutzerID`,`BenutzerGruppenID`) VALUES
  (2,2);
 INSERT INTO `benutzergruppenmitgliedschaft` (`BenutzerID`,`BenutzerGruppenID`) VALUES
