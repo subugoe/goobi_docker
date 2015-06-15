@@ -36,35 +36,35 @@ sleep 60
 puts "\nCreate database schema"
 `docker exec -it dockerdir_goobi_1 sh -c 'exec mysql -u "$MYSQL_USER" --password="$MYSQL_PASSWORD" -D "$MYSQL_DATABASE" < /tmp/Goobi_setup_schema.sql'`
 
-#2
-puts "\nImport initial data to the database"
-`docker exec -it dockerdir_goobi_1 sh -c 'exec mysql -u "$MYSQL_USER" --password="$MYSQL_PASSWORD" -D "$MYSQL_DATABASE" < /tmp/Goobi_setup_default.sql'`
+##2
+#puts "\nImport initial data to the database"
+#`docker exec -it dockerdir_goobi_1 sh -c 'exec mysql -u "$MYSQL_USER" --password="$MYSQL_PASSWORD" -D "$MYSQL_DATABASE" < /tmp/Goobi_setup_default.sql'`
 
-#3
+#2
 puts "\nImport Laufzettel"
 `docker exec -it dockerdir_goobi_1 sh -c 'exec mysql -u "$MYSQL_USER" --password="$MYSQL_PASSWORD" -D "$MYSQL_DATABASE" < /tmp/Goobi_setup_laufzettel.sql'`
 
-#4
+#3
 puts "\nImport Regelsätze"
 `docker exec -it dockerdir_goobi_1 sh -c 'exec mysql -u "$MYSQL_USER" --password="$MYSQL_PASSWORD" -D "$MYSQL_DATABASE" < /tmp/Goobi_setup_regelsaetze.sql'`
 
 
-#5
+#4
 puts "\nImport Benutzer"
 `docker exec -it dockerdir_goobi_1 sh -c 'exec mysql -u "$MYSQL_USER" --password="$MYSQL_PASSWORD" -D "$MYSQL_DATABASE" < /tmp/Goobi_setup_benutzer.sql'`
 
-#6
+#5
 puts "\nImport Benutzergruppen"
 `docker exec -it dockerdir_goobi_1 sh -c 'exec mysql -u "$MYSQL_USER" --password="$MYSQL_PASSWORD" -D "$MYSQL_DATABASE" < /tmp/Goobi_setup_benutzergruppen.sql'`
 
-#7
+#6
 puts "\nImport Benutzergruppenmitgliedschaft"
 `docker exec -it dockerdir_goobi_1 sh -c 'exec mysql -u "$MYSQL_USER" --password="$MYSQL_PASSWORD" -D "$MYSQL_DATABASE" < /tmp/Goobi_setup_benutzergruppenmitgliedschaft.sql'`
 
-#8
+#7
 puts "\nImport LDAP Gruppen"
 `docker exec -it dockerdir_goobi_1 sh -c 'exec mysql -u "$MYSQL_USER" --password="$MYSQL_PASSWORD" -D "$MYSQL_DATABASE" < /tmp/Goobi_setup_ldapgruppen.sql'`
 
-#9
+#8
 puts "\nImport Datentypen"
 `docker exec -it dockerdir_goobi_1 sh -c 'exec mysql -u "$MYSQL_USER" --password="$MYSQL_PASSWORD" -D "$MYSQL_DATABASE" < /tmp/Goobi_setup_datentypen.sql'`
