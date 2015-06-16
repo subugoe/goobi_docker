@@ -33,14 +33,77 @@
             <mapping>Oj</mapping>
         </type>
     </doctypes>
+
+
     <catalogue title="GBV">
         <config address="gso.gbv.de" database="2.1" description="Gemeinsamer Bibliotheksverbund"
                 iktlist="IKTLIST-GBV.xml" port="80" ucnf="UCNF=NFC"/>
     </catalogue>
+
     <catalogue title="SUB">
         <config address="opac.sub.uni-goettingen.de" database="1" description="Niedersächsische Staats- und Universitätsbibliothek Göttingen"
                 iktlist="IKTLIST-SUB.xml" port="80" ucnf="XPNOFF=1"/>
         <specialmapping type="containedWork">Xy</specialmapping>
+    </catalogue>
+    
+    <catalogue title="JAL">
+        <config address="emdbs2.fho-emden.de" database="1"
+                ucnf="XPNOFF=1" description="Johannes a Lasco Bibliothek Emden" iktlist="IKTLIST-JAL.xml" port="8080" />
+    </catalogue>
+    <catalogue title="SWB">
+        <config address="pollux.bsz-bw.de" database="2.1"
+                description="Südwestdeutscher Bibliotheksverbund Baden-Württemberg, Saarland, Sachsen (SWB)"
+                ucnf="XPNOFF=1" iktlist="IKTLIST-SWB.xml" port="80" />
+    </catalogue>
+    <catalogue title="HEBIS">
+        <config address="cbsopac.rz.uni-frankfurt.de"
+                database="2.1" ucnf="XPNOFF=1"
+                description="HeBIS-Verbundkatalog" iktlist="IKTLIST-HEBIS.xml" port="80" />
+    </catalogue>
+    <catalogue title="DNB">
+        <config address="dispatch.opac.d-nb.de" database="4.1"
+                ucnf="XPNOFF=1" description="Deutsche Nationalbibliothek" iktlist="IKTLIST-DNB.xml" port="80" />
+    </catalogue>
+    <catalogue title="ZDB">
+        <config address="dispatch.opac.d-nb.de" database="1.1"
+                ucnf="XPNOFF=1" description="Zeitschriftendatenbank (ZDB)" iktlist="IKTLIST-ZDB.xml" port="80" />
+    </catalogue>
+    <catalogue title="GEO_GUIDE">
+        <config address="gso4.gbv.de" database="8.4" description="GEO-GUIDE"
+                ucnf="XPNOFF=1" iktlist="IKTLIST-GEO-GUIDE.xml" port="80" />
+    </catalogue>
+    <catalogue title="VKI">
+        <config address="gso.gbv.de" database="1.85" description="VKI" iktlist="IKTLIST-VKI.xml"
+                ucnf="XPNOFF=1" port="80" />
+    </catalogue>
+    <catalogue title="VKI_AALG">
+        <config address="gso.gbv.de" database="8.2" description="VKI-AALG"
+                ucnf="XPNOFF=1" iktlist="IKTLIST-VKI_AALG.xml" port="80" />
+    </catalogue>
+    <catalogue title="OLC_MATH">
+        <config address="gso.gbv.de" database="2.77" description="OLC-MATH"
+                ucnf="XPNOFF=1" iktlist="IKTLIST-OLC.xml" port="80" />
+    </catalogue>
+    <catalogue title="VKI_AAC">
+        <config address="gso.gbv.de" database="2.97" description="VKI-AAC"
+                ucnf="XPNOFF=1" iktlist="IKTLIST-VKI_AAC.xml" port="80" />
+    </catalogue>
+    <catalogue title="VKI_AACOLC">
+        <config address="gso.gbv.de" database="2.297" description="VKI-AAC+OLC"
+                ucnf="XPNOFF=1" iktlist="IKTLIST-VKI_AACOLC.xml" port="80" />
+    </catalogue>
+    <catalogue title="TIB">
+        <config address="opc4.tib.uni-hannover.de" database="1"
+                description="Technische Informationsbibliothek und Universitätsbibliothek Hannover"
+                ucnf="XPNOFF=1" iktlist="IKTLIST-TIB.xml" port="8080" />
+    </catalogue>
+    <catalogue title="SBB">
+        <config address="stabikat.de" database="1" description="Staatsbibliothek zu Berlin"
+                ucnf="XPNOFF=1" iktlist="IKTLIST-SBB.xml" port="80" />
+    </catalogue>
+    <catalogue title="ZBW">
+        <config description="ECONIS-Datenbank der ZBW" address="www.econis.eu" port="80" database="1" iktlist="IKTLIST.xml"
+                ucnf="XPNOFF=1" />
     </catalogue>
 
 </opacCatalogues>
