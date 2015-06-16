@@ -54,7 +54,8 @@
         <hide/>
       </itemlist>
       <opac use="true">
-        <catalogue>GBV</catalogue>
+        <!--<catalogue>GBV</catalogue>-->
+        <catalogue>SUB</catalogue>
       </opac>
       <templates use="true"/>
       <defaultdoctype>monograph</defaultdoctype>
