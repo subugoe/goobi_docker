@@ -95,6 +95,12 @@ COPY data/script_*.sh /opt/digiverso/goobi/scripts/
 #ADD data/script_createSymLink.sh     /opt/digiverso/goobi/scripts/script_createSymLink.sh
 #ADD data/script_deleteSymLink.sh     /opt/digiverso/goobi/scripts/script_deleteSymLink.sh
 
+
+COPY data/PicaOpacPlugin-5a6377c.jar /opt/digiverso/goobi/plugins/opac/
+
+COPY data/goobi_opacUmlaut.txt /opt/digiverso/goobi/config/
+
+
 RUN chmod +x /opt/digiverso/goobi/scripts/*.sh
 
 #ADD picaOpacImportClass.jar /opt/digiverso/goobi/plugins/opac/picaOpacImportClass.jar
