@@ -11,4 +11,5 @@ cat 	/tmp/Goobi_setup_schema.sql \
 	/tmp/Goobi_setup_regelsaetze.sql \
 	/tmp/Goobi_setup_laufzettel.sql \
 	/tmp/Goobi_setup_datentypen.sql \
+	/tmp/Goobi_setup_version.sql \
 	| mysql --host=goobi -u $MYSQL_USER --password=$MYSQL_PASSWORD -D $MYSQL_DATABASE

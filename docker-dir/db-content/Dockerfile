@@ -11,6 +11,7 @@ ADD Goobi_setup_regelsaetze.sql /tmp/Goobi_setup_regelsaetze.sql
 ADD Goobi_setup_laufzettel.sql /tmp/Goobi_setup_laufzettel.sql
 
 ADD Goobi_setup_datentypen.sql /tmp/Goobi_setup_datentypen.sql
+ADD Goobi_setup_version.sql /tmp/Goobi_setup_version.sql
 
 COPY fill_db.sh /tmp/fill_db.sh
 
