@@ -7,3 +7,7 @@ goobi_docker.iml
 **/*~
 **/tomcat/goobi2.0/
 **/.DS_Store
+**/pdc.crt
+**/server.xml
+**/cacert.crt
+**/mykeystore.ks
