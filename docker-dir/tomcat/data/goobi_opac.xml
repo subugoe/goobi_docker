@@ -35,17 +35,19 @@
     </doctypes>
 
 
-    <catalogue title="GBV">
-        <config address="gso.gbv.de" database="2.1" description="Gemeinsamer Bibliotheksverbund"
-                iktlist="IKTLIST-GBV.xml" port="80" ucnf="UCNF=NFC"/>
-    </catalogue>
-
     <catalogue title="SUB">
-        <config address="opac.sub.uni-goettingen.de" database="1" description="Niedersächsische Staats- und Universitätsbibliothek Göttingen"
-                iktlist="IKTLIST-SUB.xml" port="80" ucnf="XPNOFF=1"/>
+        <config address="opac.sub.uni-goettingen.de" database="1" ucnf="XPNOFF=1"
+                description="Niedersächsische Staats- und Universitätsbibliothek Göttingen"
+                iktlist="IKTLIST-SUB.xml" port="80" />
         <specialmapping type="containedWork">Xy</specialmapping>
     </catalogue>
-    
+
+    <catalogue title="GBV">
+        <config address="gso.gbv.de" database="2.1" description="Gemeinsamer Bibliotheksverbund"
+                ucnf="XPNOFF=1"
+                iktlist="IKTLIST-GBV.xml" port="80" />
+    </catalogue>
+
     <catalogue title="JAL">
         <config address="emdbs2.fho-emden.de" database="1"
                 ucnf="XPNOFF=1" description="Johannes a Lasco Bibliothek Emden" iktlist="IKTLIST-JAL.xml" port="8080" />
