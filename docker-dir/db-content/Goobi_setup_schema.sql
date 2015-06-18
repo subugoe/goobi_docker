@@ -53,7 +53,6 @@ CREATE TABLE `benutzer` (
   `displayOnlySelectedTasks` tinyint(1) DEFAULT '0',
   `displayOnlyOpenTasks` tinyint(1) DEFAULT '0',
   `displayModulesColumn` tinyint(1) DEFAULT '0',
-  `confVorgangsdatumAnzeigen` bit(1) DEFAULT NULL,
   PRIMARY KEY (`BenutzerID`),
   KEY `FK6564F1FD126095B4` (`ldapgruppenID`),
   KEY `FK6564F1FD78EC6B0F` (`ldapgruppenID`)
