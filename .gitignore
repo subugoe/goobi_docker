@@ -12,3 +12,4 @@ goobi_docker.iml
 **/cacert.crt
 **/mykeystore.ks
 **/tmp/*
+**/alles.sql
