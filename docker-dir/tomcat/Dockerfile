@@ -70,9 +70,9 @@ RUN chmod 777   /opt/digiverso/goobi/xslt/
 
 #ADD statischTechnischerHintergrund.jsf ???
 
-#ADD cacert.crt         /opt/digiverso/goobi/config/cacert.crt
-#ADD pdc.crt            /opt/digiverso/goobi/config/pdc.crt
-#ADD mykeystore.crt     /opt/digiverso/goobi/config/mykeystore.crt
+COPY data/cacert.crt         /opt/digiverso/goobi/config/cacert.crt
+COPY data/pdc.crt            /opt/digiverso/goobi/config/pdc.crt
+COPY data/mykeystore.ks     /opt/digiverso/goobi/config/mykeystore.ks
 
 
 #ADD data/log4j.properties   /usr/local/tomcat/webapps/goobi/WEB-INF/classes/log4j.properties
@@ -89,16 +89,20 @@ COPY data/modules.xml    /opt/digiverso/goobi/config/
 COPY data/laufzettel/*.xsl     /opt/digiverso/goobi/xslt/
 COPY data/regelsaetze/*.xml /opt/digiverso/goobi/rulesets/
 
+#ADD: script_createDirUserHome.sh, script_createDirMeta.sh, script_createSymLink.sh, script_deleteSymLink.sh
 COPY data/script_*.sh /opt/digiverso/goobi/scripts/
-#ADD data/script_createDirUserHome.sh /opt/digiverso/goobi/scripts/script_createDirUserHome.sh
-#ADD data/script_createDirMeta.sh     /opt/digiverso/goobi/scripts/script_createDirMeta.sh
-#ADD data/script_createSymLink.sh     /opt/digiverso/goobi/scripts/script_createSymLink.sh
-#ADD data/script_deleteSymLink.sh     /opt/digiverso/goobi/scripts/script_deleteSymLink.sh
+
+COPY data/tiffwriter.sh         /opt/digiverso/goobi/scripts/
+COPY data/copyFilesintranda.sh  /opt/digiverso/goobi/scripts/
+COPY data/iii.sh                /opt/digiverso/goobi/scripts/
+COPY data/copyfiles.sh          /opt/digiverso/goobi/scripts/
+COPY data/script_mountImageDir.sh   /opt/digiverso/goobi/scripts/
+COPY data/script_umountImageDir.sh  /opt/digiverso/goobi/scripts/
 
 
 COPY data/PicaOpacPlugin-5a6377c.jar /opt/digiverso/goobi/plugins/opac/
-
 COPY data/goobi_opacUmlaut.txt /opt/digiverso/goobi/config/
+
 
 
 RUN chmod +x /opt/digiverso/goobi/scripts/*.sh

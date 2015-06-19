@@ -12,4 +12,5 @@ cat 	/tmp/Goobi_setup_schema.sql \
 	/tmp/Goobi_setup_laufzettel.sql \
 	/tmp/Goobi_setup_datentypen.sql \
 	/tmp/Goobi_setup_version.sql \
+	/tmp/VD18.sql \
 	| mysql --default-character-set="UTF8" --host=goobi -u $MYSQL_USER --password=$MYSQL_PASSWORD -D $MYSQL_DATABASE
