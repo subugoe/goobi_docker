@@ -11,3 +11,4 @@ goobi_docker.iml
 **/server.xml
 **/cacert.crt
 **/mykeystore.ks
+**/tmp/*
