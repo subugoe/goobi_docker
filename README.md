@@ -22,19 +22,17 @@ Identify the container Id's:
 	$ cd <path-to-docker-dir>
 	$ ./clean-all.sh
 
-## Build the containers
+## Build and start the containers
 
 	$ cd <path-to-docker-dir>
-	$ docker-compose build
-	$ docker-compose up
+	$ ./start-all.sh
 	
 ## Connect to a container
 
 Connect to a container, e.g. the database container:
 
-	$ docker exec -it <id-1> bash
-	root@a39b7f03199a:/$ mysql -p
-	Enter password: 
+	$ docker exec -it db1 bash
+	root@a39b7f03199a:/$ mysql -ugoobi -pgoobi
 	Welcome to the MySQL monitor.  Commands end with ; or \g.
 	...
 	...
