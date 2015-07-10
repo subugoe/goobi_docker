@@ -70,9 +70,9 @@ RUN chmod 777   /opt/digiverso/goobi/xslt/
 
 #ADD statischTechnischerHintergrund.jsf ???
 
-COPY data/cacert.crt         /opt/digiverso/goobi/config/cacert.crt
-COPY data/pdc.crt            /opt/digiverso/goobi/config/pdc.crt
-COPY data/mykeystore.ks     /opt/digiverso/goobi/config/mykeystore.ks
+#COPY data/cacert.crt         /opt/digiverso/goobi/config/cacert.crt
+#COPY data/pdc.crt            /opt/digiverso/goobi/config/pdc.crt
+#COPY data/mykeystore.ks     /opt/digiverso/goobi/config/mykeystore.ks
 
 
 #ADD data/log4j.properties   /usr/local/tomcat/webapps/goobi/WEB-INF/classes/log4j.properties
